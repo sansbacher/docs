@@ -116,7 +116,7 @@ When you look at all the Authentication settings in SourceTree you'll see variou
 
 What you need to know, more or less in the order you need to know it:
 
-It's assumed you know that Git is a _Distributed Source Code Revision, or Version Control, System for keeping track of source files and collaborating with others_ - or why else would you be here? Probably you want to work on a project, saving to or sharing via [GitHub](https://www.github.com). Here's the vocab you'll need to know:
+It's assumed you know that Git is a _Distributed Source Code Revision, or Version Control, System for keeping track of source files and collaborating with others_ - or why else would you be here? Probably you want to work on a project, saving to or sharing via [GitHub](https://www.github.com). Here's the vocab you'll need to know - starting at beginning and building up.
 
 * **Index**  
     The Git Index, or The Index, is where Git keeps Track of files/folders, records all changes to files, and all the info, config, logs, etc it needs to work. It's in a .git/ folder in the root of a Working Directory (the local Repo).
@@ -163,7 +163,7 @@ It's assumed you know that Git is a _Distributed Source Code Revision, or Versio
 ## Git Illustrated
 This image was created from <https://learngitbranching.js.org/> and shows an example of several Git objects/processes
 ![Git objects and processes](images/git_commit_branch_merge_push_pull.png)  
-The Circles are Commits, the first one was created by **init** from local files, or **clone** from a remote repo like GitHub (or possibly **pulled** if it wasn't the first). After the 3rd Commit there was a Branch (the green Commits), but addition Commits continued (the purple Commits). Later the two Branches were **merged** together (yellow Commits) - and the final code was **deployed**, at various stages it was also **pushed** back to the Remote.
+The Circles are Commits, the first one was created by **init** from local files, or **clone** from a remote repo like GitHub (or possibly **pulled** if it wasn't the first). After the 3rd Commit there was a Branch (the green Commits), but additional Commits continued (the purple Commits). Later the two Branches were **merged** together (yellow Commits) - and the final code was **deployed**, at various stages it was also **pushed** back to the Remote. The solid black arrows between Commits point back to a Commit's parent (all the way back to the initial Commit), thus the Commit after the Merge has two parents. Another picture under [Merge vs Rebase Illustrated](#merge-vs-rebase-illustrated).
 
 ## Suggested Git Project Workflow
 
@@ -209,7 +209,7 @@ Generally this is what you'll be doing, see next section for the commands:
 ### Everyday Git Commands TYPICAL
 
 These are the commands for basic day-to-day Git usage, this is what you need to get started.  
-NOTE: some commands only need to be run once, such as `--set-upstream` when you `git push` the first time... but Git will prompt you when needed, just read any messages, they're not listed here.
+NOTE: some commands only need to be run once, such as `--set-upstream` when you `git push` the first time... but Git will prompt you when needed, just read any messages, they're not listed here. For full details of these commands see the next section.
 
 Either start with some existing files to initialize a local repo:  
 `git init`  
@@ -247,6 +247,7 @@ _OR_, if you want to keep the dev Branch but "catch-it-up" to the now merged-tog
 `git branch -f dev`  
 Then Check it out to continue working (editing, Staging, Committing, and merging back to master):  
 `git checkout dev`  
+Remember: before starting to work on something new, you want your dev Branch to point to the current master, and you should `git pull` to ensure your local master includes any work someone else may have committed at the same time.
 
 ## Git Commands
 
@@ -277,7 +278,7 @@ Your `user.name` and `user.email` which is used for Commits:
 Tip: You can omit the `--global` and override Global settings per-repo if needed.  
 
 **Edit Global options visually**, opens in current `core.editor`, see above to specify another editor  
-(The `--global` file is usually located: `%USERPROFILE%\Home\.gitconfig` if you needed to recover from a mistake. Or if you upgrade Git you can backup your Global Config before, as it overwrites the Editor)  
+(The `--global` file is usually located in: `%USERPROFILE%\Home\.gitconfig` if you needed to recover from a mistake. Or if you upgrade Git you can backup your Global Config before, as it overwrites the Editor)  
 `git config --edit --global`
 
 **Set current repo options**, using the editor  
@@ -532,9 +533,10 @@ Can also do be specific about destination and source (this moves source-Branch o
 ### Merge vs Rebase Illustrated
 This image shows the difference between Merge and Rebase, created using <https://learngitbranching.js>  
 ![Merge vs Rebase](images/merge_vs_rebase.png)  
-The image shows the Working Tree (at the **top**) _before_ Merge or Rebase. The (C#) circles represent Commits (in order they were made) and the black arrows show the parent of each Commit (C5's parent is C4, which has C3 as its parent, etc). The coloured blobs/arrows indicate Branches (master and dev). Thus at Commit C1 the dev Branch diverged from master, but master continued to have Commits made to it, while dev was also worked on. They now need to be re-joined:
- - The **middle** picture shows what it would look like after _Merging_ dev INTO master with `git merge dev` (with master Checkedout). Note that a new Commit is created with 2 parents (C5 in master and C9 in dev).
- - The **bottom** picture shows what it would look like after _Rebasing_ dev ONTO master with `git rebase master dev`. Note that the Commits from dev are replayed onto master from the point dev diverged from master [they're new Commits - denoted (C6'), (C7') etc] and the original Commits are discarded. The master Branch can be moved to where dev is with `git branch master -f` since dev is already Checkedout.
+The image shows the Working Tree (at the **top**) _before_ Merge or Rebase. The (C#) circles represent Commits (in order they were made) and the black arrows show the parent of each Commit (C5's parent is C4, which has C3 as its parent, etc). The coloured blobs/arrows indicate Branches (master and dev). Thus at Commit C1 the dev Branch diverged from master, but master continued to have Commits made to it, while dev was simultaneously worked on. They now need to be re-joined:
+ - The **middle** picture shows what it would look like after _Merging_ dev INTO master with `git merge dev` (with master Checkedout). Note that a new Commit is created with 2 parents (C5 in master and C9 in dev) that has the union of both Branches.
+ - The **bottom** picture shows what it would look like after _Rebasing_ dev ONTO master with `git rebase master dev`. Note that the Commits from dev are replayed onto master from the point dev diverged from master [they're new Commits - denoted C6', C7' etc] and the original Commits are discarded. Commit C9' (the final replayed dev Commit) has all the code as if work on dev Branch had commenced after all the work on master was done (same as being merged).  
+    Tip: the master Branch can be moved to where dev is (C9') with `git branch master -f` since dev is already Checkedout.
 
 **Merge/Rebase Conflicts**: If there's a conflict with a certain file/files it's helpful to use a GUI tool that can show the Differing Lines (difftool).
 But Git will handle different parts of the same file that are changed that don't conflict, and for when the same lines _are_ changed it will indicate IN the file.  
