@@ -110,7 +110,7 @@ When you look at all the Authentication settings in SourceTree you'll see variou
 - If you do want to learn GitHub and Pull Requests: <https://www.brianbunke.com/blog/2017/05/12/github-pr>
   - Or this is another good site/overview of Forking and contributing: <https://www.gun.io/blog/how-to-github-fork-branch-and-pull-request>
 - If you work on a larger project try this: <https://nvie.com/posts/a-successful-git-branching-model>
-- Basic Markdown reference for GitHub README.md files: <https://guides.github.com/features/mastering-markdown>
+- My basic Markdown Reference: <https://github.com/sansbacher/docs/tree/master/markdown>
 
 ## Definitions
 
