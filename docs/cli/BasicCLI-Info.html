@@ -1,0 +1,546 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Basic CLI Info</title>
+
+<meta content="Saul Ansbacher" name="author"></head>
+<body>
+<h1>PowerShell for Admins - Basic CLI Info</h1>
+If you are already familar with navigating around using CLI (Command
+Line Interface) commands you can probably skip this, there's PowerShell
+aliases for most DOS/Linux commands so you can just use those (and I
+will, because they're also useful to know for DOS/CMD prompts). If you <span style="font-style: italic;">can't</span> create or
+change directories, copy/move/rename files using a Command Prompt
+(PowerShell or otherwise) you should practice a bit. <br>
+<br>
+It's expected that most PowerShell .PS1 scripts are run from the prompt
+(not double-clicked), and if you maintain a text file of useful common
+commands that you will <span style="font-weight: bold;">copy
+and paste</span> them into the PowerShell prompt to run them. NOTE: we won't actually <span style="font-style: italic;">need</span>
+to use these until we start dealing with files (eg. importing/exporting
+CSV files) so feel free to work on your CLI skills while starting to
+dig into PowerShell.<br>
+<br>
+This will mostly be a list of commands/things you should know, and a
+suggested list of tasks to perform as a kind of "test" (with the
+results provided so you can check if you're not sure). If you know most
+of the things here (esp. the <a href="#Basic_Commands_you_should_know:">commands</a>)
+you're good to go. If&nbsp;you're not sure then try a <a href="CLITaskTest.html">CLI Task Test</a>, if
+you know you're not comfortable with the CLI then read on for a longer
+tutorial.<br>
+<br>
+If you would like<span style="font-weight: bold;"> a
+longer, more complete CLI Crash Course</span> then check out
+<span style="background-color: rgb(255, 255, 51);">Zed's </span><a style="background-color: rgb(255, 255, 51);" href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Appendix A</a><span style="background-color: rgb(255, 255, 51);"> of his "Learn
+Python
+The Hard Way"</span> (works better in Chrome than IE). It's
+designed for both
+Windows PowerShell, Mac OS, and Linux but has 15 exercises with
+practice tasks. <span style="font-style: italic;">Recommended</span>
+if you've never really used the CLI - it's very much a "type it in and
+you will learn it" guide, not just a list of commands. You can probably
+find <a href="https://www.youtube.com/playlist?list=PL6gx4Cwl9DGDV6SnbINlVUd0o2xT4JbMu" target="_blank">YouTube Tutorials</a> too. Spend a few
+lunch hours learning to use the command prompt on your own PC, you
+won't reget it!<br>
+<h3>CLI things you should know:</h3>
+<ul>
+</ul>
+<ul>
+<li>Run <span style="font-weight: bold;">powershell.exe</span>
+to start PowerShell, or look in your Start Menu.</li>
+<ul>
+<li>Type commands at the&nbsp;<span style="font-weight: bold;">PS C:\&gt;</span>
+prompt and press [Enter] after each.</li>
+</ul>
+<li>PowerShell commands are very verbose/long so most people
+uses aliases for common commands (eg. using "<span style="font-weight: bold;">dir</span>" instead of "<span style="font-weight: bold;">Get-ChildItem</span>").
+Type <span style="font-weight: bold;">alias</span>
+to see a list of all aliases. The aliases match the old DOS commands,
+which are shorter, or are abreviations for longer PowerShell commands.</li>
+<ul>
+<li>We will only use standard/built-in aliases to ensure they
+work on client servers.</li>
+</ul>
+<li>There's&nbsp;<span style="font-weight: bold;"><a name="Tab_completion"></a>Tab
+completion</span> for both commands and
+paramaters/switches/options, and files/directories. Start typing the
+command or option and press the [Tab] key to cycle through all choices,
+which even works for files.</li>
+<ul>
+<li>For example: Type <span style="font-weight: bold;">get-adu<span style="font-style: italic;">&lt;press TAB&gt;</span></span>
+and it will complete to <span style="font-weight: bold;">Get-ADUser</span>
+then type <span style="font-weight: bold;">-<span style="font-style: italic;">i&lt;press TAB&gt;</span></span>
+and it will complete to <span style="font-weight: bold;">-Identity</span>
+after which you can type a username. (assuming you're on a Server 2008
+R2 or better Domain Controller!)</li>
+<li>Or type&nbsp;<span style="font-weight: bold;">cd
+\win<span style="font-style: italic;">&lt;press
+TAB&gt;</span></span> and it will complete to&nbsp;<span style="font-weight: bold;">cd C:\Windows</span>.</li>
+<li>Press TAB multiple times to cycle through various
+options, such as <span style="font-weight: bold;">Get-AD<span style="font-style: italic;">&lt;TAB several times&gt;</span></span>
+will cycle through various AD related commads (eg. <span style="font-weight: bold;">Get-ADComputer</span>, <span style="font-weight: bold;">Get-ADGroup</span>, <span style="font-weight: bold;">Get-ADUser</span>, etc).
+Works for files / directories too!</li>
+</ul>
+<li><span style="font-weight: bold;">Paramaters/switches/options</span>
+are specified after a command with a [Space] and a dash [-], eg.
+-Identity. There's usually a space after the option if you need to
+provide a <span style="font-style: italic;">value</span>,
+like a username or something.</li>
+<ul>
+<li>Many common switches/options can be abrevated (shorten
+them enough to make them unique) and some can be skipped if they are
+implied by being manatory (eg. you can skip -Identity with <span style="font-weight: bold;">Get-ADUser</span> and just
+type <span style="font-weight: bold;">Get-ADUser <span style="font-style: italic;">username</span></span><span style="font-style: italic;"> </span>as Identity is
+assumed to be the first paramater<span style="font-style: italic;">).</span></li>
+</ul>
+<li>The Command Prompt is (generally) <span style="font-weight: bold;">NOT Case Sensitive</span>.
+You can type DIR, dir, DiR, etc. General PowerShell commands are
+written in CamelCase with words separated smooshed together using
+CapitalsToSeparateWords for readability.</li>
+<ul>
+<li>Files are also NOT Case Senitive, though they do retain
+case (so test.txt = TEST.TXT = Test.TxT, they all reference the same
+file). Note: UNIX/Linux IS Case Sensitive.</li>
+</ul>
+<li>Because of the need to put "quotes" around
+commands/files/folders with spaces in them you'll soon discover it's
+best to <span style="font-weight: bold;">avoid spaces in
+names</span> if possible (or use Tab Completion).</li>
+<li>To <span style="font-weight: bold;">run a
+script</span> you need to specify the path, if you are in the
+same directory you still have to specify the current directory, eg:
+<span style="font-weight: bold;">.\test-script.ps1</span>.
+You can use Tab Completion to start typing the name
+and press TAB and it will complete the filename along with the ".\"
+before it.</li>
+<ul>
+<li>Dealing with scripts will come later, for now you will
+mainly type or copy/paste.</li>
+<li>PowerShell
+scripts are text files that have a .PS1 extension (not .PS, that's
+PostScript printer files). Windows and most Email/AV/Spam filters will
+consider them executable so will be blocked from attachments; generally
+if you want to email a .PS1 file rename it to something like <span style="font-style: italic;">filename-rename-mePS1.txt </span>(but
+don't use .ps1.txt in case the double extension is caught as suspecious
+too).</li>
+</ul>
+<li>Before you can run any script the ExecutionPolicy must be
+RemoteSigned or Unrestricted. If you get an error running a script type:<br>
+<span style="font-weight: bold;">Set-ExecutionPolicy
+RemoteSigned</span></li>
+<ul>
+<li>We'll deal with that later, just know you can't run a
+script you download or create if the Policy is set to require code
+signing (which is often default)</li>
+</ul>
+<li>PowerShell is a Windows program, so be mindful of <span style="font-weight: bold;">Run as Administrator</span>,
+Admin Rights, UAC, etc. If you can't do something, try running your
+PowerShell prompt as an Administrator.</li>
+<li>You can run regular <span style="font-weight: bold;">external
+command/EXE files</span>, like PING, IPCONFIG, ROUTE, etc from
+PowerShell too, just type the name and any options as you normally
+would.</li>
+</ul>
+<h3><span style="font-weight: bold;">Using the
+PowerShell Prompt:</span></h3>
+There are several <a href="https://technet.microsoft.com/en-us/library/ff678293.aspx" target="_blank">Keyboard Shortcuts</a> that are worth
+knowing, they make using the CLI <span style="font-style: italic;">much
+more pleasent and efficient</span>,
+especially when correcting mistakes or building commands up by adding
+more options/commands. Most are the same as DOS/CMD. You don't need to
+memorize them all, but the ones worth learning are:<br>
+<br>
+<table style="text-align: left; width: 802px; height: 436px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 35px;">Up / Down Arrow </td>
+<td style="height: 35px;">Scroll Back / Forward
+through your command history.<br>
+Eg. Press UP Arrow to quickly get back to your previous command, press
+it again to go further back.</td>
+</tr>
+<tr>
+<td style="height: 46px;">Home / End</td>
+<td style="height: 46px;">Jump to the Start / End of
+the command line.</td>
+</tr>
+<tr>
+<td style="height: 46px;">Ctrl+Left / Right Arrow</td>
+<td style="height: 46px;">Jump Left / Right one
+whole word at a time.<br>
+(Left / Right arrows otherwise just one character at a time. And of
+course Del / Backspace work.)</td>
+</tr>
+<tr>
+<td style="height: 46px;">Tab / Shift-Tab</td>
+<td style="height: 46px;">Tab completion, as
+mentioned <a href="#Tab_completion">above</a>. You
+can also cycle backwards with Shift-Tab.</td>
+</tr>
+<tr>
+<td style="height: 46px;">Esc</td>
+<td style="height: 46px;">Clear the current command
+to start over (there is no undo!)</td>
+</tr>
+<tr>
+<td style="height: 46px;">F7</td>
+<td style="height: 46px;">Displays a pop-up window
+of your command history, use arrows and Enter to re-run a command.</td>
+</tr>
+<tr>
+<td style="height: 46px;">F8</td>
+<td style="height: 46px;">Start typing a command and
+press F8 to scroll through commands that match from your history<br>
+Eg. Typing <span style="font-weight: bold;">get<span style="font-style: italic;">[F8 a few times]</span></span>
+will cycle through all the commands you
+typed that start with "get".</td>
+</tr>
+<tr>
+<td style="height: 46px;">Ctrl+C</td>
+<td style="height: 46px;">Stop/Cancel a long running
+command that you don't want to wait any longer for.<br>
+Don't use Ctrl+Break as it will exit your whole PowerShell session!</td>
+</tr>
+<tr>
+<td style="height: 46px;">Ctrl+S / Pause</td>
+<td style="height: 46px;">Pause a long running command that is scrolling information by too fast.<br>Press any key to continue. Another option is to pipe (|) it to <span style="font-weight: bold;">more</span> to show only one page at a time.</td>
+</tr>
+<tr>
+<td style="height: 46px;">Mouse Right-Click</td>
+<td style="height: 46px;">If <a href="https://www.tekrevue.com/tip/boost-productivity-quickedit-mode-windows-command-prompt/" target="_blank">Quick Edit Mode</a> IS enabled it
+Pastes from your clipboard. (enabled the same for PowerShell)<br>
+If Quick Edit Mode ISN'T enabled it pops up a menu from which you can
+paste.</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3><a name="Basic_Commands_you_should_know:"></a>Basic
+Commands you should know:</h3>
+Here's the basic commands you should know, again this are the <span style="font-weight: bold;">aliases</span> for the
+actual PowerShell commands. I don't know anyone who types <span style="font-weight: bold;">Get-ChildItem</span> and
+while you may see the short alias <span style="font-weight: bold;">gci
+</span>occationally (especially on Microsoft blogs) most people
+type <span style="font-weight: bold;">dir</span>
+(or <span style="font-weight: bold;">ls</span> if
+they are Linux/UNIX users) because it's what we typed in DOS or the CMD
+Command Prompt.&nbsp;Most of these you could use in a CMD prompt,
+so there's
+a double benefit to learning them!<br>
+<br>
+<table style="text-align: left; width: 802px; height: 436px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 26px;">cls </td>
+<td style="height: 26px;">Clears the PowerShell
+window, short for "clear screen"<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">dir<br>
+</td>
+<td style="height: 26px;">Shows the directory
+listing (all files / folders), you can specify somewhere else too (eg. <span style="font-weight: bold;">dir c:\temp </span>)<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">md / mkdir<br>
+</td>
+<td style="height: 26px;">Make Directory (ie. create
+a Folder such as: <span style="font-weight: bold;">mkdir
+c:\temp </span>)<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">cd / chdir<br>
+</td>
+<td style="height: 26px;">Change Directory, changes
+to the specified directory / folder (eg.&nbsp;<span style="font-weight: bold;">cd c:\temp</span> )<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">rd / rmdir<br>
+</td>
+<td style="height: 26px;">Remove Directory (if it's
+not empty it will prompt you if you mean it)<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">pwd<br>
+</td>
+<td style="height: 26px;">Prints the current working
+directory (which is also shown in your prompt, eg. PS <span style="font-style: italic;">C:\temp</span>&gt;)<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">copy<br>
+</td>
+<td style="height: 26px;">Copy a file, specify <span style="font-style: italic;">source</span> and <span style="font-style: italic;">destination</span> which
+is often a folder (eg. <span style="font-weight: bold;">copy
+file.txt c:\temp</span>
+)<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">move<br>
+</td>
+<td style="height: 26px;">Move a file, similar to
+copy by you don't end up with a second copy - the original is moved.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">ren<br>
+</td>
+<td style="height: 26px;">Rename a file or folder,
+specify <span style="font-style: italic;">CurrentName</span>
+and <span style="font-style: italic;">NewName</span>
+(eg. <span style="font-weight: bold;">ren file.txt
+"Descriptive Name.txt"</span> )<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">del<br>
+</td>
+<td style="height: 26px;">Delete a file, just
+specify the file. Does NOT move it to the Recycle Bin and there's no
+undelete!<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">write / echo<br>
+</td>
+<td style="height: 26px;">Prints something to the
+screen, if multiple words aren't in "quotes" they will appear on
+separate lines.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">more<br>
+</td>
+<td style="height: 26px;">Displays the contents of a
+text file to the screen, one page at a time if needed. Eg: <span style="font-weight: bold;">more file.txt</span> ('q'
+quits)<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">help<br>
+</td>
+<td style="height: 26px;">Get help for any
+PowerShell command/alias to see various options and examples (eg. <span style="font-weight: bold;">help copy&nbsp;</span>)<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">alias<br>
+</td>
+<td style="height: 26px;">Almost all of these are
+aliases, <span style="font-weight: bold;">alias</span>
+will show you all aliases, or you can specify one to see the real
+command.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">SOME.EXE<br>
+</td>
+<td style="height: 26px;">You can run any regular
+.EXE file too, eg. <span style="font-weight: bold;">ping </span><span style="font-style: italic; font-weight: bold;">IP.Add.ress</span>&nbsp;or
+<span style="font-weight: bold;">notepad script.ps1</span>
+to edit a script.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">exit<br>
+</td>
+<td style="height: 26px;">Quits your PowerShell
+session and closes the window, doesn't ask for confirmation!<br>
+</td>
+</tr>
+<tr>
+<td style="height: 26px;">.\script.ps1</td>
+<td style="height: 26px;">Runs the named script in
+the <span style="font-style: italic;">current</span>
+directory. You can't just type the name, you need to
+specify the path.<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3>Important CLI symbols:</h3>
+There's a few other things you need to know to get around using the
+Command Line effectively, especially some of the symbols. Again many of
+these
+are applicable to the regular CMD Command Prompt as well. You won't
+need to know/use all of these just now <span style="font-style: italic;">but the more comon ones are near
+the top</span>.<br>
+<br>
+<table style="text-align: left; width: 837px; height: 456px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="height: 35px;">&nbsp; .
+&nbsp;(dot)</td>
+<td style="height: 35px;">The . (dot / period)
+represents the
+<span style="font-style: italic;">current</span>
+directory; thus .\file2.txt means the <span style="font-style: italic;">file2.txt</span> in the
+directory you are in.<br>
+If you are IN c:\temp\folder1\folder2 then . means folder2, and
+.\file2.txt means <span style="font-style: italic;">c:\temp\folder1\folder2\file2.txt</span></td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; ..
+&nbsp;(doubledot)</td>
+<td style="height: 46px;">The .. (double dots)
+represents the <span style="font-style: italic;">parent</span>
+directory (one level up). You can <span style="font-weight: bold;">cd
+..</span> to move up a directory.<br>
+If you are IN c:\temp\folder1\folder2 then .. means folder1, and ..\file<span style="font-style: italic;"></span>1.txt means <span style="font-style: italic;">c:\temp\folder1\file1.txt</span></td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; \
+&nbsp;&nbsp;(backslash)</td>
+<td style="height: 46px;">The \ (backslash)
+represent the <span style="font-style: italic;">root</span>
+directory of the drive. It's also used to separate directories and
+files!<br>
+If you are IN c:\temp\folder1\folder2 then \ means c:\,
+and&nbsp;\file3.txt means <span style="font-style: italic;">c:\file3.txt</span></td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; ~ &nbsp;
+(tilde)</td>
+<td style="height: 46px;">The ~ (tilde) represents
+YOUR <span style="font-style: italic;">home</span>
+directory, wherever that is. Useful in scripts a user might run.<br>
+If you are logged in as bsmith then ~\Desktop means <span style="font-style: italic;">c:\users\bsmith\Desktop </span>(or
+similar, maybe H:\ if a network map)</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; #
+&nbsp;(hashl)</td>
+<td style="height: 46px;">The # symbol starts a
+Comment which is ignored by PowerShell. &nbsp;<big><span style="font-weight: bold;">&lt;#</span></big>
+long
+comments can cross lines and are enclosed with opening and closing sets
+of sumbols <big><span style="font-weight: bold; font-style: italic;">#&gt;</span></big></td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; |
+&nbsp;(pipe)</td>
+<td style="height: 46px;">The | (pipe) is used to
+send the output of one command as the input of the next command. We'll
+cover this more later.<br>
+You'll use this lots: <span style="font-weight: bold;">dir
+| select Name, Length | fl</span> &nbsp;(<span style="font-weight: bold;">dir</span>'s output goes
+into <span style="font-weight: bold;">select</span>
+which goes into <span style="font-weight: bold;">fl</span>)</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; &gt;
+&nbsp;(greater)</td>
+<td style="height: 46px;">The &gt; (greater than
+sign) is used to send the output of a comand into a text file, eg. <span style="font-weight: bold;">dir &gt; file.txt</span>.
+This is the "cheap" way of saving output, not used much. Use
+&gt;&gt; (2 greater signs) to <span style="font-style: italic;">append</span> output,
+using just one (&gt;) <span style="font-style: italic;">overwrites</span>!</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; *
+&nbsp;(star)<br>
+</td>
+<td style="height: 46px;">The * (or asterisk) is
+used as a simple <span style="font-style: italic;">wildcard</span>,
+it represents <span style="font-style: italic;">any
+charters.</span> So <span style="font-weight: bold;">dir
+*cat.txt</span> finds all TXT files that ends in cat (eg.
+tomcat.txt, nicecat.txt, but not catalog.txt).<span style="font-style: italic;"> *cat*.txt</span> would
+find anything with "cat" in the file (tomcat2.txt).<br>
+</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; ?
+&nbsp;(question)<br>
+</td>
+<td style="height: 46px;">The ? (question mark) is
+used as a simple <span style="font-style: italic;">wildcard,</span>
+it represents <span style="font-style: italic;">any ONE
+character.<span style="font-weight: bold;"> </span></span>Not
+used as much as *.<br>
+But you will see it used as an abreviation for the "where" command -
+which we will cover later.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; %
+&nbsp;(percent)<br>
+</td>
+<td style="height: 46px;">The % (percent sign) is
+used as an abreviation for the "foreach" command - which we will cover
+later.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; $
+&nbsp;(dollar)<br>
+</td>
+<td style="height: 46px;">The $ (dollar sign) is
+used to start a variable name, so <span style="font-weight: bold;">$AllUsers</span>
+is a variable that might hold "all users" (once set)<br>
+We will cover variables later.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; &nbsp;-
+&nbsp;(dash)<br>
+</td>
+<td style="height: 46px;">The - (dash) is used to
+start all options/paramaters/switches on commands. So <span style="font-style: italic;">-Identity</span> denotes
+the Idenity parameter.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 46px;">" and ' (quotes)<br>
+</td>
+<td style="height: 46px;">The " (double quote) and '
+(single quote) are used to enclose strings of characters. <span style="font-style: italic;">My File.txt</span><span style="font-style: italic;"></span> would be two
+items, but "<span style="font-style: italic;">My File.txt</span>"
+is a single item. Use "double quotes" most often, esp. if you want
+variables to show their values.<br>
+</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp; &nbsp;;
+&nbsp;(semicolon)<br>
+</td>
+<td style="height: 46px;">The ; (semicolon) is used
+to separate commands on the same line. So insead of <span style="font-weight: bold;">cd \ (</span><span style="font-style: italic;">press enter)</span> <span style="font-weight: bold;">dir </span>(press enter)
+you can type <span style="font-weight: bold;">cd \ ; dir</span>
+and PowerShell will execute both (change to the root and show the
+contents of the root).<br>
+</td>
+</tr>
+<tr>
+<td style="height: 46px;">&nbsp;( ) [ ] { }<br>
+</td>
+<td style="height: 46px;">The various brackets:
+(parentheses), [square
+brackets], and {curly braces} are used for various things, which we
+will cover. The main thing is that they come in matching sets, and are
+not interchangable. (something] won't work.<br>
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<h3>Next steps</h3>
+That's about it. We've learned some basics of the PowerShell CLI, important and useful keystrokes, commands, and symbols.<br><br>Seems overwhelming if
+you're new to using the CLI, I know. But you will have a much easier
+time with PowerShell if you are semi-comfortable with using the CLI
+interface. I also have&nbsp;a sort of play-by-play <a href="CLITaskTest.html">CLI Task Test</a> you
+can try: a list of very basic CLI tasks to try - along with an answer
+list showing what to type to do them all (you can use PowerShell on
+your own PC). If you feel like you need extra practice then I strongly
+suggest Zed's <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">CLI Crash Course</a>, mentioned above.
+You can keep this page open as a quick reference.<br>
+<br>
+Don't forget to find a PowerShell editor, such as PowerShell ISE,
+Notepad++, Notepad2, etc!<br>
+</body></html>
