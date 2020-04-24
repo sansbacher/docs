@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>CLIT Guide for Windows</title>
 	<!-- Update these for each page -->
+	<title>Command Line Interface - The Basics</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
 	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
@@ -29,8 +29,8 @@
 	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
 	  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
 	  <!-- Side Nav Bar items -->
-	  <a class="w3-bar-item w3-button w3-theme" href="index.html">CLI Home</a>
-	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
+	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
+	  <a class="w3-bar-item w3-button w3-theme" href="cli-basics.html">CLI Basics</a>
 	  <a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
 	  <a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
 	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
@@ -46,64 +46,68 @@
 
 	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
-	<div class="w3-main" style="margin-left:250px"><!-- Main div for the body Start -->
+	<div class="w3-main" style="margin-left:250px;"><!-- Main div for the body Start -->
 
 	<!-- Change both of these to change the Page Header -->
 	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
 	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
-	  <span id="myIntro" class="w3-hide">CLI Basic Guide for Windows</span></p>
+	  <span id="myIntro" class="w3-hide">Command Line Interface - The Basics</span></p>
 	</div>
 	<header class="w3-container w3-theme" style="padding:64px 32px">
-	  <h1 class="w3-xxxlarge">CLI Basic Guide for Windows</h1>
+	  <h1 class="w3-xxxlarge">Command Line Interface - The Basics</h1>
 	</header>
 
 	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
-	
-	<img src="images/cli-logo.png" alt="Command Prompt Logo" class="w3-round-small">
 
-	<h2>Why this Guide?</h2>
+	<h2>CLI - The Basics</h2>
+	
+	<p>All command line shells work off the principle of a <i>prompt</i> where you type a <i>command</i> (either internal 
+		to the shell or an external .EXE file) and possibly add some <i>options/switches/parameters/arguments</i>, such as:</p>
 
-	<p>Why this guide? There's likely lots of CLI (Command Line Interface) guides out there - this one 
-		is not meant as a tutorial, more a (semi)-quick reference. It is designed for Windows (not Linux/Bash/macOS focused),
-		covers both the CMD "DOS" Shell and PowerShell, and has more of a focus for Windows Techs/Admins/Devs,
-		rather than home users or anyone else.</p>
+	<img src="images/command-line-example.png" alt="CLI Example: Prompt Command Switch Options" class="w3-round-small">
+
+	<p>After typing the command you press <b>[Enter]</b> and the command runs.</p>
+		<ul>
+			<li>Usually there is some output - displayed in the console or written to a file.</li>
+			<li>Read the lines between your command and the next prompt to see what happened.</li>
+			<li>Sometimes no news is good news if nothing is displayed.</li>
+		</ul>   
+
+	<p>If there's an error it <i>should</i> display the error. Read the lines between the command you 
+		typed and the next prompt to see what the problem is - often it tells you exactly what the problem is.</p>
 	
-	</p>It's assumed you know you way around a computer/server and probably know what you want to do: just not 
-		how to do it via the command line -	that you're familiar with Computers, Windows, Files/Folders, etc.</p>
+	<div class="w3-container w3-theme-l4 w3-leftbar">
+		<p><b>That's it:</b> type commands, things happen, type more commands, more things happen. For many tasks it's
+		 faster than pointing and clicking, once you get the hang of it!</p>
+	</div>
+
+	<hr>
 	
-	<p>It covers the basics in both CMD and PowerShell, together at the same time where applicable, 
-		and while I suggest PowerShell over CMD it is often useful to know CMD/DOS commands (especially for older systems).
-		PowerShell is also cross-platform and open source these days. Since the CMD Shell carries the MS-DOS
-		legacy it has some application to Linux/Unix/Bash/macOS Command Lines too - bonus.</p>
+	<p>If a command seems hung, stuck, or otherwise non-responsive try pressing any of: <i>Ctrl+C, Ctrl+Break, Ctrl+Z, or Ctrl+D</i>
+		-- these either cancel or break the command, or end the input it may be waiting for.</p>
+
+	<p>Type <code>EXIT</code> (or <code>exit</code>) to quit the shell (or click the <b>[X]</b> since the console is just a regular 
+		window displaying the shell). BUT resist the urge to close the Console when you're done with it - 
+		leave it open and try to use the CLI before you reach for the mouse.</p>
+
+	<p>Spelling, Punctuation, and <i>Spaces</i> matter.</p>
+
+	<p>Sometimes the CaSe of letters matters, but usually not on Windows (only for some options/switches really). 
+		File/Folder case <i>does</i> matter on Linux/Unix/macOS.</p>
+
+	<div class="w3-container w3-theme-l4 w3-leftbar">
+		<p>The "Command Line" can mean a Shell, Console, or Terminal - they're all different but basically 
+			mean the same thing at the level we're dealing with, don't sweat it!</p>
+	</div>
 
 	<hr>
 
-	<h2>What this Guide will be</h2>
+	<p>Most of what applies to the CMD/DOS Command Prompt applies to PowerShell, but usually not the other way around - PowerShell is newer.</p>
 
-	<p>This will mostly be a list of "things you should know", some useful Windows CLI tools to try, 
-		and how to <i>discover</i> things in PowerShell. But this isn't a PowerShell or Batch scripting guide. 
-		Nor does it teach the deeper ins and outs of PowerShell - though it covers some of the basics to get you up and running.</p>
-
-	<p>If you're somewhat familiar with the Command Line and basic file system navigation you should still
-		learn something from this guide, it's not a "type this, do that" sort of guide. It's about trying and discovering 
-		- and understanding (enough to strike out on your own).</p>
-
-	<ul>
-		<li>If you're not sure, you can try a little <a href="cli-tasktest.html">CLI Task Test</a> - if you can do that 
-			then you're probably able to skip some of the basics.</li>
-		<li>If you're totally unfamiliar with the Command Line then I suggest you try a longer "practice makes perfect" 
-			guide for some initial playing around, such as <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Appendix A</a>
-			of Zed's "Learn Python The Hard Way".</li>
-		<ul>
-			<li>It's designed for both Windows PowerShell, macOS, and Linux and has 15 exercises with practice tasks. Try this
-			<a href="https://learnpythonthehardway.org/python3/appendixa.html" target="_blank">link</a> if the first doesn't work or this
-			<a href="https://learnrubythehardway.org/book/appendixa.html" target="_blank">one</a>.</li>
-			<li><i>Recommended</i> if you've never really used the CLI - it's very much a "type it in and you will learn it" guide, not just a list of commands.</li>
-			<li>You can probably find <a href="https://www.youtube.com/playlist?list=PL6gx4Cwl9DGDV6SnbINlVUd0o2xT4JbMu" target="_blank">YouTube Tutorials</a> too.</li>
-		</ul></li>
-	</ul>
-
-	<p>So have a look at the list topics to the left and dive in! <b>Spend a few lunch hours learning to use the command prompt on your own PC, you won't regret it!</b></p>
+	<p>Anything - any commands - you type at the prompt can be turned into a script. Which at its most basic level 
+		is just a batch of commands to run (literally a "batch file"). Though scripts can be more complex with variables,
+		branches/conditionals, loops, etc. We won't be covering scripting, but that's basically all a script is - 
+		a list of commands to run you type into a file, instead of one at a time at the prompt.</p>
 
 	</div><!-- Page Content ends here -->
 
