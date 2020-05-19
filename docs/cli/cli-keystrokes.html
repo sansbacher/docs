@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<!-- Update these for each page -->
-	<title>Example Page</title>
+	<title>CLI Keystrokes</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
 	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
@@ -21,9 +21,9 @@
 	  <!-- Side Nav Bar items -->
 	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
 	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
-	  <a class="w3-bar-item w3-button w3-theme" href="ps-essentials.html">PowerShell Essentials</a>
+	  <a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
 	  <a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
-	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
+	  <a class="w3-bar-item w3-button w3-theme" href="cli-keystrokes.html">CLI Keystrokes</a>
 	  <a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
 	  <a class="w3-bar-item w3-button" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
 	  <a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
@@ -41,106 +41,83 @@
 	<!-- Change both of these to change the Page Header -->
 	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
 	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
-	  <span id="myIntro" class="w3-hide">Example Title</span></p>
+	  <span id="myIntro" class="w3-hide">Command Line Keystrokes</span></p>
 	</div>
 	<header class="w3-container w3-theme" style="padding:64px 32px">
-	  <h1 class="w3-xxxlarge">Example Title</h1>
+	  <h1 class="w3-xxxlarge">Command Line Keystrokes</h1>
 	</header>
 
 	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
 
-	<h2>Header Section1</h2>
+	<h2>CLI Keystrokes</h2>
 
-	<p>Start here</p>
-
-	<!-- ---- Examples below ---- -->
-
-	<p>Some basic text, etc, etc, etc. with some code...</p>
-
-	<div class="w3-container">
-		<div class="w3-panel w3-card w3-theme-light w3-threequarter">
-		  <h5>Example Code:</h5>
-		  <div class="w3-code notranslate">
-			C:\> Here_is_some_code.exe<br>
-			Use-Some-Command -With -Switches "And Stuff"<br>
-		  </div>
-		</div>
-	</div>
-
-	<p>Along with some example inline code: <code class="w3-codespan">Get-Command -foo BAR</code> is what you'd type. Or simply <code>CMD.EXE</code> will work and here is a prompt <code class="console">C:\></code>. Make sure to press <kbd>Enter</kbd> after! You can specify an option like <code class="console">-this</code> thanks to the sa-custom.css</p>
-
-	<br>
-	<hr>
-
-	<h2>Another section2</h2>
-
-	<p>And some more text, here is a link in another tab <a href="https://www.google.ca" target="_blank">Google</a> and here are some characters:</p>
-	<p>
-	space: &nbsp;
-	less than: &lt;
-	greater than: &gt;
-	ampersand: &amp;
-	double quote: &quot;
-	single quote: &apos;
-	cent: &cent;
-	copyright: &copy;
-	trademark: &trade;
-	left arrow: &larr;
-	right arrow: &rarr;
-	up arrow: &uarr;
-	down arrow: &darr;
-	</p>
+	<p>There are several <a href="https://technet.microsoft.com/en-us/library/ff678293.aspx" target="_blank">Keyboard Shortcuts</a> that are worth knowing, they make using the CLI <i>much more pleasant and efficient</i>, especially when correcting mistakes or building commands up by adding more options/commands. Most are the same for PowerShell and the CMD Command Prompt.</p>
+	<p>If you <i>are</i> using PowerShell and have the the <i>PSReadline</i> PowerShell module installed (standard with the PowerShell 5.1 that's included with Windows 10, <a href="https://github.com/PowerShell/PSReadLine" target="_blank">installable</a> for PowerShell 3.0+) there are many other helpful keyboard tricks.</p>
+	<ul>
+		<li>The most useful <i>PowerShell PSReadline specific</i> keystroke is probably: Press <kbd>Ctrl</kbd>+<kbd>Space</kbd> to pop-up a menu to auto-complete options, files, etc.<br>
+		For example, try: <code>Get-ADUser -[Press Ctrl+Space]</code> to see all the switches/options for the command.</li>
+		<li>Run the command <code>Get-PSReadLineKeyHandler</code> to seel all PSReadline keystrokes. You can even use <kbd>Ctrl</kbd>+<kbd>C</kbd> and <kbd>Ctrl</kbd>+<kbd>V</kbd> to copy/paste.</li>
+	</ul>
 	
-	<div class="w3-container w3-theme-l4 w3-leftbar">
-		<p>Some kind of call out<br>
-		Here</p>
-	</div>
-	
-	<p>Here is an image</p>
-	<img src="images/cli-logo.png" alt="Required Alt Text" class="w3-round-small">
-	<br>
-
-	<br>
-	<hr style="width:50%;text-align:left;margin-left:0"> <!-- left side half length HR -->
-
-
-	<h2>Header section 3</h2>
-	<p>Some other text re: tables and such<br>
-	&nbsp; &rarr; With an indented callout below</p>
+	<p>You don't need to memorize all these, but the ones worth learning are listed here:</p>
 
 	<table class="w3-table-all">
-		<tr>
-		  <th>Item</th>
-		  <th>Description</th>
-		</tr>
-		<tr>
-		  <td>ONE.EXE</td>
-		  <td>Runs something</td>
-		</tr>
-		<tr>
-		  <td>Two-Command</td>
-		  <td>Soes something super awesome. You can hardly believe it. OMG it's the best ... ok? Cool. Great. K THX BYE...</td>
-		</tr>
-		<tr>
-		  <td>Three<br>Command</td>
-		  <td>An equally long command but with fewer words</td>
-		</tr>
-		<tr>
-		  <td>Four</td>
-		  <td>This is a 2<br>line description</td>
-		</tr>
-	  </table>
+	<tr>
+	  <th>Keys</th>
+	  <th>Description or Action</th>
+	</tr>
+	<tr>
+		<td>Up / Down<br>
+		Arrow</td>
+		<td>Scroll Back	/ Forward through your command history.<br>
+		Eg. Press <kbd>&uarr;</kbd> to quickly get back to your previous command, press it again to go further back</td>
+	</tr>
+	<tr>
+		<td>Home / End</td>
+		<td>Jump to the	Start / End of the command line with <kbd>Home</kbd> and <kbd>End</kbd></td>
+	</tr>
+	<tr>
+		<td>Ctrl + Left / Right<br>
+		Arrow</td>
+		<td>Jump Left /	Right one whole word at a time using <kbd>Ctrl</kbd>+<kbd>&larr;</kbd> / <kbd>Ctrl</kbd>+<kbd>&rarr;</kbd>, otherwise move just one character at a time.<br>
+		(And of course <kbd>Del</kbd> / <kbd>Backspace</kbd> as expected)</td>
+	</tr>
+	<tr>
+		<td>Tab / Shift-Tab</td>
+		<td><kbd>Tab</kbd> completion, as mentioned on the Essentials pages, for files (and command with PowerShell).<br>
+		You can also cycle backwards with <kbd>Shift</kbd>-<kbd>Tab</kbd></td>
+	</tr>
+	<tr>
+		<td>Esc</td>
+		<td>Clear the current command line to start over with <kbd>Esc</kbd> (there is no undo!)</td>
+	</tr>
+	<tr>
+		<td>Enter</td>
+		<td>All commands are only processed/run after you press	<kbd>Enter</kbd> at the end of each command, or at the end of all the switches/options.</td>
+	</tr>
+	<tr>
+		<td>F7</td>
+		<td>In <i>DOS/CMD</i>:	<kbd>F7</kbd> Displays a pop-up window of your command history, use arrows and Enter to re-run a command.<br>
+		Doesn't work in <i>PowerShell</i> with PSReadline, type <code>history</code> (or just <code>h</code>) to see your command history and re-run a command by number with <code>r ##</code></td>
+	</tr>
+	<tr>
+	<td>Ctrl+C</td>
+	<td>Stop/Cancel	a long running command that you don't want to wait any longer for with <kbd>Ctrl</kbd>+<kbd>C</kbd>, with PSReadline it also copies to the clipboard.<br>
+	(On older systems <kbd>Ctrl</kbd>+<kbd>Break</kbd> would exit your whole PowerShell session, but now it appears to do nothing).</td>
+	</tr>
+	<tr>
+		<td>Pause</td>
+		<td><kbd>Pause</kbd> a long running command that is scrolling information by too fast. Press any key to continue.<br>
+		Another option is to pipe <kbd>|</kbd> it to <code>more</code> to show only one page at a time.</td>
+	</tr>
+	<tr>
+		<td>Mouse Right-Click</td>
+		<td>Not a keystroke, but if <a href="https://www.tekrevue.com/tip/boost-productivity-quickedit-mode-windows-command-prompt/" target="_blank">Quick Edit Mode</a> IS enabled it pastes from your clipboard. (enabled the same way for PowerShell)<br>
+		If Quick Edit Mode is NOT enabled it pops up a menu from which you can choose <i>Paste</i>. With PSReadline you can use <kbd>Ctrl</kbd>+<kbd>V</kbd> to Paste too.</td>
+	</tr>
+	</table>
 
-	<br>
-	<div class="w3-container"><div class="w3-quarter">&nbsp;</div><div class="w3-half"><hr></div></div>		<!-- centred half length HR -->
-
-	<h2>Final section 4</h2>
-	<p>And some example, lists - but you can't nest them really:</p>
-	<ul class="w3-ul">
-	  <li>Jill</li>
-	  <li>Eve</li>
-	  <li>Adam</li>
-	</ul>
+	<p>This is assuming the default console application in Windows - there are custom console apps which may have different keystrokes, but these would still be fairly common.</p>
 
 	</div><!-- Page Content ends here -->
 

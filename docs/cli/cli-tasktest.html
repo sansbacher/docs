@@ -1,18 +1,134 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>CLI Task Test</title><meta content="Saul Ansbacher" name="author"></head>
-<body><h1>PowerShell for Admins - CLI Task Test</h1>
-If you're wondering if you have enough CLI (command line interface)
-skills to work with PowerShell and files/folders within PowerShell then
-you can use this Task Test to see if you can accomplishing some basic
-tasks. If you have basic DOS/CMD Command Prompt knowledge you'll
-probably find you can use the same commands in PowerShell (there are
-standard aliases for most of them). If you need a more thorough
-run-through of the CLI then I suggest Zed's <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Appendix A</a>. You can also keep the <a href="BasicCLI-Info.html" target="_blank">Basic CLI Info</a> page open as a reference.<br><br>Follow through these tasks and try to accomplish them all via the PowerShell command line, refer to the <a href="BasicCLI-Info.html" target="_blank">Basic CLI Info</a> (all of the commands you need are on that page), or google for help. <a href="#Were_you_successful">At the end</a>
-is a link to a page showing what you could type to complete each task -
-if you're stuck you can also check there. These may all seem like
-trivial tasks, but that that's the point: you just need some basic CLI
-skills to make operating in PowerShell&nbsp;much easier. Good luck!<br><h3><a name="CLITaskTestStart"></a>Start here:</h3><ol><li>Open <span style="font-style: italic;">Windows PowerShell</span>, what folder&nbsp;are you in? What version of PowerShell<span style="font-style: italic;"> </span>are you running?</li><li>Change to the <span style="font-style: italic;">root</span> of the drive, create a folder called&nbsp;<span style="font-style: italic;">Playground</span> and change into it.</li><li>Create a file called&nbsp;<span style="font-style: italic;">example.txt</span> and put whatever you want in it (using Notepad or whatever editor you like)</li><li>Create two sub-folders called: <span style="font-style: italic;">Folder1</span> and <span style="font-style: italic;">Folder2</span>.</li><li>List what's in the Playground folder.</li><li>Copy <span style="font-style: italic;">example.txt</span> into <span style="font-style: italic;">Folder1</span>, and change to the <span style="font-style: italic;">Folder1</span> directory.</li><li>Create a file called <span style="font-style: italic;">file.txt</span> with the contents: <span style="font-style: italic;">write your PowerShell code here!&nbsp;</span>(using Notepad or whatever editor)</li><li><span style="font-style: italic;"><span style="font-style: italic;"></span></span>Copy <span style="font-style: italic;"><span style="font-style: italic;">file.txt</span></span> to <span style="font-style: italic;">Folder2</span> and delete <span style="font-style: italic;">example.txt</span> from <span style="font-style: italic;">Folder1</span>.</li><li>Change to <span style="font-style: italic;">Folder2</span>.</li><li>Rename <span style="font-style: italic;">file.txt</span> to <span style="font-style: italic;">file.ps1</span>. Try to run <span style="font-style: italic;">file.ps1</span> - what happens? If it doesn't work read the errors as they should tell you what to try. If it does something, why?</li><li>Chack back to the <span style="font-style: italic;">Playground</span> folder.</li><li>Create a file called <span style="font-style: italic;">Long Name.txt</span> (with a space) and put whatever you want in it (using whatever editor you like)</li><li>Look at what is in side of it and then rename it to&nbsp;<span style="font-style: italic;">tiny.txt</span>.</li><li>Move <span style="font-style: italic;">tiny.txt</span> to <span style="font-style: italic;">Folder2</span>. Change to <span style="font-style: italic;">Folder2</span>.</li><li>Make two copies of&nbsp;<span style="font-style: italic;">tiny.txt</span>, one as <span style="font-style: italic;">temp.txt</span> and one as <span style="font-style: italic;">test.txt.</span></li><li>Show<span style="font-style: italic;"> all</span> the files in the current folder, show only the files that <span style="font-style: italic;">start with the letter T</span>, and also show all the <span style="font-style: italic;">.PS1 files</span>.</li><li>Confirm you are in <span style="font-style: italic;">Folder2</span> and then delete all files in <span style="font-style: italic;">Folder2.</span> Is <span style="font-style: italic;">Folder2</span> empty now?</li><li>Change back one folder level and remove <span style="font-style: italic;">Folder2</span>.</li><li>Remove <span style="font-style: italic;">Folder1</span>.</li><li>See if any files are left, if so delete them. Change to the root of the drive and remove the <span style="font-style: italic;">Playground</span> folder.</li><li>Check if <span style="font-style: italic;">Playground</span> exists, quit from PowerShell.</li></ol><h3><a name="Were_you_successful"></a>Were you successful?</h3>Were you able to complete all the tasks, if you got stuck or want to check if what you typed you can look at the <a href="CLITaskAnswers.html">CLI Task Test Answers</a>
-to&nbsp;see a transcript of all the commands I typed to complete the
-Tasks (and the results). You may have used slightly differnet ones,
-that's OK - so long as you were able to accomplish each Task. If you
-need more practice try <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Zed's CLI Crash Course</a>.<br><br>You're now ready to <a href="BasicGet1.html">start</a> using PowerShell!<br><br></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Update these for each page -->
+	<title>CLI Ttask Test</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
+	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
+	<meta name="author" content="Saul Ansbacher">
+	<!-- Based on the "Material Design" W3.CSS Demo, with some changes, from www.w3schools.com. Simple and works. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Some custom CSS overrides: -->
+	<link rel="stylesheet" href="../css/sa-custom.css">
+</head>
+<body>
+	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+	  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+	  <!-- Side Nav Bar items -->
+	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
+	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
+	  <a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
+	  <a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
+	  <a class="w3-bar-item w3-button" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
+	  <a class="w3-bar-item w3-button w3-theme" href="cli-tasktest.html">CLI Task Test</a>
+	  <a class="w3-bar-item w3-button" href="console-commands.html">Common Console Commands</a>
+	  <a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="additional-topics.html">Additional Topics</a>
+	  <a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
+	</nav>
+
+	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+	<div class="w3-main" style="margin-left:250px;"><!-- Main div for the body Start -->
+
+	<!-- Change both of these to change the Page Header -->
+	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
+	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+	  <span id="myIntro" class="w3-hide">Command Line Task Test</span></p>
+	</div>
+	<header class="w3-container w3-theme" style="padding:64px 32px">
+	  <h1 class="w3-xxxlarge">Command Line Task Test</h1>
+	</header>
+
+	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
+
+	<h2>A simple Command Line File System Task Test</h2>
+
+	<p>If you're wondering if you have enough CLI (Command Line Interface) skills to work with the PowerShell Command Line, and files/folders within PowerShell, then you can use this Task Test to see if you can accomplish some basic tasks. If you have basic DOS/CMD Command Prompt knowledge you'll probably find you can use the same commands in PowerShell (there are standard aliases for most of them). If you need more thorough practice with the CLI then I suggest Zed's <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">Appendix A CLI Crash Course</a>.</p>
+	
+	<p>You can keep the <a href="basic-file-sys-commands.html" target="_blank">Basic File System Commands</a> page open as a reference, all the commands you need are listed there. Or on one of the other pages (such as Symbols, Keystrokes, or PowerShell Essentials).</p>
+	
+	<p>Follow through these tasks and try to accomplish them all via the PowerShell Command Line. At the <a href="#successful">end</a> is a link to a page showing what you could type to complete each task - so if you're stuck you can also check there. These may all seem like trivial tasks, but that that's the point: you just need some basic CLI skills to make operating in PowerShell much easier. Good luck!</p>
+
+	<div class="w3-container w3-theme-l4 w3-leftbar">
+	<p>Note: You could use the CMD/DOS Command Prompt for most of these, but would may need to make some modifications. If you're just starting: I recommend you learn PowerShell.</p>
+	</div>
+
+	<h3>Start Here</h3>
+
+<ol>
+	<li>Open <i>PowerShell</i>, what folder are you in? What version of PowerShell are you running?</li>
+	<li>Change to the <i>root</i> of the drive, create a folder called <i>Playground</i> and change into it.</li>
+	<li>Create a file called <i>example.txt</i> and put whatever you want in it (using <i>Notepad</i> or whatever editor you like)</li>
+	<li>Create two sub-folders in <i>Playground</i> called: <i>Folder1</i> and <i>Folder2</i>.</li>
+	<li>List what's in the <i>Playground</i> folder.</li>
+	<li>Copy <i>example.txt</i> into <i>Folder1</i>, and change to the <i>Folder1</i> directory.</li>
+	<li>Create a file called <i>file.txt</i> with the contents: <code  class="console">write your PowerShell code here!</code> (using Notepad or whatever editor)</li>
+	<li>Copy <i>file.txt</i> to <i>Folder2</i> and delete <i>example.txt</i> from <i>Folder1</i>.</li>
+	<li>Change to <i>Folder2</i>.</li>
+	<li>Rename <i>file.txt</i> to <i>file.ps1</i>. Try to run <i>file.ps1</i> - what happens? If it doesn't work read the errors as they should tell you what to try. If it does something, why?</li>
+	<li>Change back to the <i>Playground</i> folder.</li>
+	<li>Create a file called <i>Long Name.txt</i> (with a space) and put whatever you want in it (using whatever editor you like)</li>
+	<li>Look at what is inside of <i>Long Name.txt</i> and then rename it to <i>tiny.txt</i>.</li>
+	<li>Move <i>tiny.txt</i> to <i>Folder2</i>. Change to <i>Folder2</i>.</li>
+	<li>Make <i>two</i> copies of <i>tiny.txt</i>, one as <i>temp.txt</i> and one as <i>test.txt</i>.</li>
+	<li>Show all the files in the <i>current</i> folder, show only the files that <i>start with the letter T</i>, and also show all the <i>.PS1 files</i>.</li>
+	<li>Confirm you are in <i>Folder2</i> and then delete all files in <i>Folder2</i>. Is <i>Folder2</i> empty now?</li>
+	<li>Change <i>back one folder level</i> and remove <i>Folder2</i>.</li>
+	<li>Remove <i>Folder1</i>.</li>
+	<li>See if any files are left, if so delete them. Change to the <i>root</i> of the drive and remove the <i>Playground</i> folder.</li>
+	<li>Check if the <i>Playground</i> folder exists, <i>quit</i> from PowerShell.</li>
+</ol>
+
+	<br>
+	<hr>
+
+	<h3 id="successful">Were you successful?</h3>
+
+	<p>Were you able to complete all the tasks? If you got stuck or want to check if what you typed you can look at the <a href="cli-tasktest-answers.html"><b>CLI Task Test Answers</b></a> to see a transcript of all the commands I typed to complete the Tasks (and the results). You may have used slightly differnet ones, that's OK - so long as you were able to accomplish each Task. If you need more practice try Zed's <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">CLI Crash Course</a>.</p>
+
+	</div><!-- Page Content ends here -->
+
+	<!-- Footer -->
+	<footer class="w3-container w3-theme" style="padding:16px 32px">
+	  <p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs" >Docs</a> on GitHub.</p>
+	  <p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/" target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
+	</footer>
+		 
+	</div><!-- Main div for the body End -->
+
+	<script>
+		// These came from the w3schools.com Template as well:
+		//
+		// Open and close the sidebar on medium and small screens
+		function w3_open() {
+		  document.getElementById("mySidebar").style.display = "block";
+		  document.getElementById("myOverlay").style.display = "block";
+		}
+		function w3_close() {
+		  document.getElementById("mySidebar").style.display = "none";
+		  document.getElementById("myOverlay").style.display = "none";
+		}
+
+		// Change style of top container on scroll
+		window.onscroll = function() {myFunction()};
+		function myFunction() {
+		  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+			document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+			document.getElementById("myIntro").classList.add("w3-show-inline-block");
+		  } else {
+			document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+			document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+		  }
+		}
+	</script>
+		 
+</body>
+</html> 

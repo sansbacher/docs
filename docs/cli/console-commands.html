@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Update these for each page -->
+	<title>Common Console Commands</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
+	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
+	<meta name="author" content="Saul Ansbacher">
+	<!-- Based on the "Material Design" W3.CSS Demo, with some changes, from www.w3schools.com. Simple and works. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Some custom CSS overrides: -->
+	<link rel="stylesheet" href="../css/sa-custom.css">
+</head>
+<body>
+	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+	  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+	  <!-- Side Nav Bar items -->
+	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
+	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
+	  <a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
+	  <a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
+	  <a class="w3-bar-item w3-button" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
+	  <a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
+	  <a class="w3-bar-item w3-button w3-theme" href="console-commands.html">Common Console Commands</a>
+	  <a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="additional-topics.html">Additional Topics</a>
+	  <a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
+	</nav>
+
+	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+	<div class="w3-main" style="margin-left:250px;"><!-- Main div for the body Start -->
+
+	<!-- Change both of these to change the Page Header -->
+	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
+	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+	  <span id="myIntro" class="w3-hide">Common Console Commands</span></p>
+	</div>
+	<header class="w3-container w3-theme" style="padding:64px 32px">
+	  <h1 class="w3-xxxlarge">Common Console Commands</h1>
+	</header>
+
+	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
+
+	<h2>Some Common Console Commands worth knowing</h2>
+
+	<p>Here's some common/useful Console commands worth knowing that you may use while at a Command Prompt. These will work in DOS/CMD or PowerShell as they are external commands. You don't need to type them in using ALL CAPS, and you don't need to type .EXE - unless the name conflicts with a PowerShell alias<br>
+	(eg. <code>SC.EXE</code> is an external command [Service Controller] but <code>SC</code> is a PowerShell alias for <code>Set-Content</code> [write text to a file]. Typing <code>sc</code> at a PowerShell prompt is the same as typing <code>Set-Content</code>, but typing <code>sc.exe</code> will run the Service Controller external command).</p>
+
+	<p>The commands are roughly grouped, and this will mainly be included/built-in Windows commands that would be useful for administering a Windows Server from the CLI. There's many more than just these of course - and Service specific ones are not listed (such as <code>dfsradmin</code> and <code>dfsrdiag</code> for DFS-R Service, or <code>iisreset</code> for IIS). Many of these you can run from a Windows Workstation, not just a Server.
+	</p>
+	
+	<p>Of course one major function is maintaining Active Directory, and while there are commands to manage AD using external CLI commands - they aren't pleasent or intuitive (eg. <code>dsquery</code>, <code>dsadd</code>, etc). A <b>much</b> more friendly, useful and powerful way to manage AD from the CLI is to use the PowerShell <i>ActiveDirectory</i> module. There's no way (or need!) to cover every AD related PowerShell command - you just need to learn how to discover PowerShell commands and some basic PowerShell knowledge in the <a href="ps-bootcamp.html">PowerShell Boot Camp</a>.</p>
+
+	<div class="w3-container w3-theme-l4 w3-leftbar">
+	<p>Some useful examples are given for each command, but the examples given are just that: an example and are by no means the only or even most useful way to use a command.<br>
+	Most of these will display help if you add <code class="console">/?</code> after, as in <code>ping /?</code> to find other options and uses.</p>
+	</div>
+
+	<h3>Network Related Commands</h3>
+
+<table class="w3-table-all">
+	<tr>
+	  <th>Command</th>
+	  <th>Description</th>
+	</tr>
+	<tr>
+		<td><code>PING</code> and<br>
+		<code>TRACERT</code></td>
+		<td>Send ICMP Echo packets to check if a host is up or not, eg: <code>ping 8.8.8.8</code> useful options are <code class="console">-n</code> to specify how many packets to send, and <code class="console">-t</code> to ping for ever.<br>
+		Such as: <code>ping -n 10 www.google.ca</code>, and <code>tracert</code> (Trace Route) does the same, but reports every hop along the way, using <code class="console">-d</code> to not resolve hostnames.</td>
+	</tr>
+	<tr>
+		<td><code>IPCONFIG</code></td>
+		<td>Display the TCP/IP setting to find the IP Address, DNS Server, etc. Use <code>ipconfig /all</code> to see all IP settings. You can also <code class="console">/release</code> and <code class="console">/renew</code> a DHCP IP.<br>
+		Or try <code class="console">/displaydns</code> or <code class="console">/flushdns</code> to display or clear the DNS cache.</td>
+	</tr>
+	<tr>
+		<td><code>ROUTE</code></td>
+		<td>You can <code class="console">print</code>, <code class="console">add</code>, <code class="console">change</code>, or <code class="console">delete</code> your IP route table, eg. <code>route print</code><br>
+		Or <code>route add 172.16.40.0 mask 255.255.255.0 192.168.8.1</code> to route the 172.16.40.0/24 network via the 192.168.8.1 gateway.</td>
+	</tr>
+	<tr>
+		<td><code>NSLOOKUP</code></td>
+		<td>DNS Name Server Lookup, you can also find Address (A), Mail (MX), Service (SRV), and Text (TXT) records, eg: <code>nslookup -q=mx gmail.com</code> to find Gmail's mail server.<br>
+		You can find all Domain Controllers in Active Directory with <code>nslookup -q=srv _ldap._tcp.some-domain.local</code> or your WAN IP via OpenDNS using:<br>
+		<code>nslookup myip.opendns.com resolver1.opendns.com</code> Or run just <code>nslookup</code> to use it interactively, type <code>help</code> at the <code class="console">&gt; </code> prompt for all the commands.<br>
+		</td>
+	</tr>
+	<tr>
+		<td><code>NETSH</code></td>
+		<td>Manage and display all sorts of Network Interface / Wireless / Firewall / DNS / DHCP settings, for example to see details of the wifi networks around try:<br>
+		<code>netsh wlan show networks mode=bssid</code> or just run <code>netsh</code> by itself for interactive mode and type <code>help</code> at the <code class="console">netsh&gt;</code> prompt.</td>
+	</tr>
+	<tr>
+		<td><code>NETSTAT</code></td>
+		<td>Display TCP and UDP protocol stats, including what programs have what ports open for connections or IPs with established connections. Eg. <code>netstat -ano</code><br>
+		will display all Process IDs associated with IPs listening or having established TCP and UDP connections. Limit to just RDP with <code>netstat -ano | findstr ":3389"</code></td>
+	</tr>
+</table>
+
+
+	<h3>System Admin Commands</h3>
+
+<table class="w3-table-all">
+	<tr>
+	  <th>Command</th>
+	  <th>Description</th>
+	</tr>
+	<tr>
+		<td><code>DCDIAG</code> and<br>
+		<code>REPADMIN</code></td>
+		<td>Run some Domain Controller (DC) diagnostic checks: try <code>dcdiag /v /f:c:\output.txt</code> to log verbose testing info to a file.<br>
+		And check or force Replication between DCs eg: <code>repadmin /syncall /A /P /d /e</code> will force-push replication to all other DCs.
+		</td>
+	</tr>
+	<tr>
+		<td><code>NET</code> and<br>
+		<code>NETDOM</code></td>
+		<td>Manage local users, groups, machines, with <code>NET</code>, eg. to see all local Administrators: <code>net localgroup Administrators</code><br>
+		And change the local Administrator's password with: <code>net use Administrator My$tr0ngPwd /yes</code><br>
+		Or manage AD Domain computers, trusts, etc with <code>NETDOM</code>, eg: verify a PC's secure channel to a DC: <code>netdom verify PC-NAME /d:some-domain.local</code></td>
+	</tr>
+	<tr>
+		<td><code>GPUPDATE</code> and<br>
+		<code>GPRESULT</code></td>
+		<td>Force updating GPOs on a workstation and logoff with: <code>gpupdate /force /logoff</code><br>
+		Or check GPO Resultant Set of Policies to see what GPOs are in effect with in an HTML report with: <code>gpresult /H c:\output.htm</code></td>
+	</tr>
+	<tr>
+		<td><code>GIT</code></td>
+		<td>The Git source code revision control system command (if installed). Full info on using Git <a href="https://github.com/sansbacher/docs/tree/master/git" target="_blank">here</a>. Not included as part of Windows, but a common download for developers.</td>
+	</tr>
+	<tr>
+		<td><code>SQLCMD</code></td>
+		<td>Execute a SQL Server script (.SQL file) against a SQL Instance, or run SQL commands. Also not a built-in command, but included with MS SQL server and commonly used by DBAs.</td>
+	</tr>
+</table>
+
+	<h3>Computer Admin Commands</h3>
+
+<table class="w3-table-all">
+	<tr>
+	  <th>Command</th>
+	  <th>Description</th>
+	</tr>
+	<tr>
+		<td><code>WHOAMI</code> and<br>
+		<code>SYSTEMINFO</code></td>
+		<td>See info about the currently logged in user, including group membership, with <code>whoami /all /FO list</code><br>
+		Or see a lot of info about PC/Server with: <code>systeminfo</code>, if you add <code class="console">/FO csv &gt; c:\output.csv</code> you can capture to a .CSV</td>
+	</tr>
+	<tr>
+		<td><code>WMIC</code></td>
+		<td>WMI Controller, get or set all manner of WMI related objects. In PowerShell it's much better to use <code>Get-WmiObject</code> or <code>Get-CIMInstance</code> and related commands.<br>
+		Also works interactively if no parameters provided: <code>wmic</code>, but try: <code>wmic printer list brief /format:list</code> to see all printers.</td>
+	</tr>
+	<tr>
+		<td><code>TASKLIST</code></td>
+		<td>Display all the running processes (like Task Manager), you can filter (<code>tasklist /?</code> to see all the various ways) such as: <code>tasklist /fi "imagename eq notepad*"</code></td>
+	</tr>
+	<tr>
+		<td><code>TASKKILL</code></td>
+		<td>Kill or End a particular task/process, it supports many of the same filtering options as <code>TASKLIST</code> but usually by Process ID (PID), eg: <code>taskkill /pid 123456 /f</code></td>
+	</tr>
+	<tr>
+		<td><code>SC.EXE</code></td>
+		<td>View (<code class="console">query</code>), <code class="console">start</code>, <code class="console">stop</code> Windows Services - in PowerShell you <i>need</i> to include .exe or it will be an alias of <code>Set-Content</code>. In PowerShell you could also use <code>Get-Service</code><br>
+		Start the print spooler service: <code>sc.exe start spooler</code> or set it to manaul start: <code>sc.exe config spooler start= demand</code> (use <code class="console">start= auto</code> for Automatic start)</td>
+	</tr>
+	<tr>
+		<td><code>WHERE.EXE</code></td>
+		<td>Shows the location of a command by searching the <code class="console">PATH</code> environment variable, helpful if the wrong version is being run, eg. <code>where.exe psexec.exe</code><br>
+		In PowerShell you need to include .EXE or it will assume you mean <code>Where-Object</code>. In PowerShell you can also just use <code>Get-Command</code></td>
+	</tr>
+	<tr>
+		<td><code>DIR ENV:</code> or<br>
+		<code>SET</code> and <code>PATH</code></td>
+		<td>Show all environment variables, the first works only in PowerShell, the other two only in CMD Command Prompt (<code>PATH</code> just shows the <code class="console">PATH</code> variable)<br>
+		You can set/change environment variables but they will only persist in and as long as your Console window remains open - permenent changes must be made via the registry.</td>
+	</tr>
+	<tr>
+		<td><code>START</code> and<br>
+		<code>RUNAS</code></td>
+		<td>Start a new process, you can also start a file to open in the associated program, eg to open a Word file use: <code>start "" "some file.docx"</code> Or just <code>start .</code><br>
+		to open Windows File Explorer in the current directory. <code>runas /user:otheruser example.exe</code> lets you start a process as another user (it will prompt for a password).</td>
+	</tr>
+	<tr>
+		<td><code>NOTEPAD</code></td>
+		<td>Obviously not a command line tool, but if you are editing scripts then <code>notepad scriptFile.ps1</code> is important.<br>
+		<a href="https://notepad-plus-plus.org/" target="_blank">Better</a> <a href="https://xhmikosr.github.io/notepad2-mod/" target="_blank">editors</a> will have more options and switches, but even Notepad offers <code class="console">/A</code> and <code class="console">/W</code> before the filename to open in ANSI or UNICODE mode.</td>
+	</tr>
+	<tr>
+		<td><code>MSIEXEC</code></td>
+		<td>The MSI Installer Tool used to install or uninstall .MSI based programs, a common usage is to silently install an application and log the results, eg:<br>
+		<code>msiexec /i someProgram.msi /qn /norestart /log c:\logFile.txt</code> then you can check c:\logFile.txt for success/failure.</td>
+	</tr>
+	<tr>
+		<td><code>REG</code></td>
+		<td>View (<code class="console">query</code>), Change (<code class="console">add</code>), <code class="console">delete</code>, <code class="console">import</code>, <code class="console">export</code> Registry Values or whole Keys. For example, to allow multiple RDP sessions on a Windows Server:<br>
+		<code>reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fSingleSessionPerUser /d 0 /t REG_DWORD /f</code></td>
+	</tr>
+	<tr>
+		<td><code>SHUTDOWN</code> and<br>
+		<code>LOGOFF</code></td>
+		<td>Shutdown or Restart a computer (local or remote), eg to reboot in 30 seconds: <code>shutdown /r /t 30</code> you can add <code class="console">/m \\computerName</code> for a remote PC,<br>
+		or use <code class="console">/s</code> for <code class="console">/r</code> to shutdown. Use <code>shutdown /a</code> to abort within the timeout period. If you just want to logoff try: <code>logoff</code>, which can also logoff other sessions.</td>
+	</tr>
+	<tr>
+		<td><code>FC</code></td>
+		<td>File Compare to see if two files are identical. With text files it also shows you the different lines (it compares line by line), Eg: <code>fc file1.txt c:\temp\file2.txt</code></td>
+	</tr>
+	<tr>
+		<td><code>ATTRIB</code></td>
+		<td>View, Set or Clear file attrributes, including Read Only, Hidden and System. <code>attrib</code> by itself shows them, while <code>attrib +H file.txt</code> will hide a file.</td>
+	</tr>
+	<tr>
+		<td><code>XCOPY</code> and<br>
+		<code>ROBOCOPY</code></td>
+		<td>Advanced Copy commands that can copy whole file/folder trees, eg: <code>xcopy c:\source\*.* c:\dest /C /H /E /K /R /Y</code><br>
+		Robust Copy has <i>many</i> options and is very powerful for copying whole file structures with permissions, throttling, exclusions, retries, timeouts, etc like:<br>
+		<code>robocopy c:\source \\server\destShare\ /log:c:\log.txt /MT:16 /e /copyall /dcopy:DAT /secfix /timfix /zb /R:2 /W:5</code></td>
+	</tr>
+	<tr>
+		<td><code>CHKDSK</code></td>
+		<td>Run or schedule a Check Disk on a volume to look for disk errors, if the drive is in use it can be scheduled for next reboot: <code>chkdsk c: /f /r</code></td>
+	</tr>
+	<tr>
+		<td><code>MANAGE-BDE</code></td>
+		<td>Manage BitLocker state on the computer, including Encrypting and Decrypting a drive. Check the status of BitLocker with: <code>manage-bde.exe -status c:</code></td>
+	</tr>
+	<tr>
+		<td><code>FINDSTR</code> or<br>
+		<code>FIND</code></td>
+		<td>When the output of a command is too long you can <kbd>|</kbd> (pipe) it to <code>findstr</code> or <code>find</code> to filter based on some text string. Don't use <code>find</code> in PowerShell,<br>
+		in fact in PowerShell you probably want to use <code>Where</code> anyway. But <code>findstr</code> works in both, eg: <code>dir \ | findstr /I "Windows"</code></td>
+	</tr>
+	<tr>
+		<td><code>SORT</code> and<br>
+		<code>MORE</code></td>
+		<td>Other commands you can <kbd>|</kbd> (pipe) output to. To sort the output or page it one screen at a time - press the <kbd>Space</kbd> bar for the next page, eg: <code>dir \windows | more</code><br>
+		and then press <kbd>Space</kbd> or <kbd>q</kbd> to quit.</td>
+	</tr>
+</table>
+
+<p>
+This is by no means a complete list of all (or even useful) built-in Windows commands, there are more included Windows console .EXE applications, and as noted: some that are only installed if certain roles are installed. And there are a lot more 3rd party console/CLI/shell programs that can be downloaded (such as the <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/pstools" target="_blank">PsTools</a> from SysInternals).</p>
+
+<p>What about the PowerShell versions of these commands (and more)? There are simply too many to list! My system has over 3,000 PowerShell commands/cmdlets, so there would be little point in listing them all. Plus, since PowerShell is so much more regular and discoverable it is actually more instructive to learn how to find the PowerShell command you want rather than be given a huge list. See the <a href="ps-bootcamp.html">PowerShell Boot Camp</a> for how to discover, and work with, PowerShell commands.</p>
+
+	</div><!-- Page Content ends here -->
+
+	<!-- Footer -->
+	<footer class="w3-container w3-theme" style="padding:16px 32px">
+	  <p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs" >Docs</a> on GitHub.</p>
+	  <p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/" target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
+	</footer>
+		 
+	</div><!-- Main div for the body End -->
+
+	<script>
+		// These came from the w3schools.com Template as well:
+		//
+		// Open and close the sidebar on medium and small screens
+		function w3_open() {
+		  document.getElementById("mySidebar").style.display = "block";
+		  document.getElementById("myOverlay").style.display = "block";
+		}
+		function w3_close() {
+		  document.getElementById("mySidebar").style.display = "none";
+		  document.getElementById("myOverlay").style.display = "none";
+		}
+
+		// Change style of top container on scroll
+		window.onscroll = function() {myFunction()};
+		function myFunction() {
+		  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+			document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+			document.getElementById("myIntro").classList.add("w3-show-inline-block");
+		  } else {
+			document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+			document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+		  }
+		}
+	</script>
+		 
+</body>
+</html> 

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Update these for each page -->
+	<title>Additional CLI Topics</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
+	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
+	<meta name="author" content="Saul Ansbacher">
+	<!-- Based on the "Material Design" W3.CSS Demo, with some changes, from www.w3schools.com. Simple and works. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Some custom CSS overrides: -->
+	<link rel="stylesheet" href="../css/sa-custom.css">
+</head>
+<body>
+	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+	  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+	  <!-- Side Nav Bar items -->
+	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
+	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
+	  <a class="w3-bar-item w3-button w3-theme" href="ps-essentials.html">PowerShell Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
+	  <a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
+	  <a class="w3-bar-item w3-button" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
+	  <a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
+	  <a class="w3-bar-item w3-button" href="console-commands.html">Common Console Commands</a>
+	  <a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
+	  <a class="w3-bar-item w3-button w3-theme" href="additional-topics.html">Additional Topics</a>
+	  <a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
+	</nav>
+
+	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+	<div class="w3-main" style="margin-left:250px;"><!-- Main div for the body Start -->
+
+	<!-- Change both of these to change the Page Header -->
+	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
+	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+	  <span id="myIntro" class="w3-hide">Additional Topics</span></p>
+	</div>
+	<header class="w3-container w3-theme" style="padding:64px 32px">
+	  <h1 class="w3-xxxlarge">Additional Topics</h1>
+	</header>
+
+	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
+
+	<h2>Some Additional Topics</h2>
+
+	<p>If you will be editing or creating Scripts you should find a better editor than Notepad, something with Syntax Highlighting will make it much easier to code and spot errors. Some suggestions:</p>
+
+<ul>
+	<li>Windows includes the PowerShell Integrated Scripting Environment (ISE) - usually installed and ready to go. Try running: <code>ISE.EXE</code> from PowerShell<br>
+		Or look in the Start Menu for "Windows PowerShell ISE"</li>
+	<li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> has solid <a href="https://code.visualstudio.com/docs/languages/powershell" target="_blank">PowerShell support</a> with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell" target="_blank">PowerShell extension</a></li>
+	<li><a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a> is also very popular and works with .PS1, .BAT and .CMD files too.</li>
+	<li>Or the smaller, portable and very similar <a href="https://xhmikosr.github.io/notepad2-mod/" target="_blank">Notepad2</a>, also works with .PS1/.BAT/.CMD files.</li>
+	<li>Unless you already know them, don't try to use Vim or Emacs. If you already know them, feel free to use them</li>
+</ul>
+
+<p>If you run across a VBScript (.VBS file) you can run it with either <code>WSCRIPT.EXE</code> or <code>CSCRIPT.EXE</code>. <code>Wscript</code> is the Windows Scripting Host, and won't open a console, but any output is done via pop-up message boxes. <code>Cscript</code> is the Console Scripting Host - so while a Console opens the output is all at console. Example:<br> <code>cscript.exe //nologo c:\path\and\NameOfScript.VBS</code></p>
+
+<p>When pasting single or multiple commands from the web to a Console/Shell (or into a script file) keep in mind that may blogs will mangle the commands. PowerShell.exe and CMD.exe aren't very forgiving at times. So extra spaces need to be removed, or added. Funny characters may need to be trimmed, and those curly <i>"smart quotes"</i> may need to changed to regular "double" or 'single' quotes. Sometimes dashes need to be changed from longer Em- and En-dashes to regular hyphens/dashes. If something still doesn't work: check to see if spaces were added (like <i>Get -Content -Path someFile.txt</i>) or removed (like <i>Get-Content-Path someFile.txt</i>).</p>
+
+	<div class="w3-container w3-theme-l4 w3-leftbar">
+		<p>Tip: You can type <code>cmd</code> or <code>powershell</code> in the Address Bar of any Windows File Explorer window to open the CMD Command Prompt or a PowerShell Console <i>in that folder</i>, which can save a lot of CD'ing or copy/paste.</p>
+	</div>
+
+<p>Other Useful Links - there's no point listing every PowerShell related site (this isn't Yahoo circa 1999!) but if you want some decent generic PowerShell info: </p>
+
+<ul>
+	<li>A bunch of PowerShell <a href="https://blogs.technet.microsoft.com/chadcox/2017/09/19/powershell-cmdlets-to-help-administer-windows-without-the-gui/" target="_blank">commands for Admins</a><a href="https://blogs.technet.microsoft.com/chadcox/2017/09/19/powershell-cmdlets-to-help-administer-windows-without-the-gui/"></a></li>
+	<li>A bunch of PowerShell <a href="https://devops-collective-inc.gitbook.io/the-big-book-of-powershell-gotchas/" target="_blank">Gotchas</a></li>
+	<li>SS64 has some great references:<br>
+		For most PowerShell commands: <a href="https://ss64.com/ps/">https://ss64.com/ps/</a><br>
+		And PowerShell operators, variables, etc: <a href="https://ss64.com/ps/syntax.html">https://ss64.com/ps/syntax.html</a><br>
+		But also CMD commands: <a href="https://ss64.com/nt/">https://ss64.com/nt/</a></li>
+	<li><a href="http://www.robvanderwoude.com/powershellstart.php" target="_blank">Rob van der Woude</a> has lots of useful scripting info, including PowerShell.</li>
+	<li>There are also Cheat Sheets, such as this <a href="http://ramblingcookiemonster.github.io/images/Cheat-Sheets/powershell-basic-cheat-sheet2.pdf">basic PowerShell one [PDF]</a> if you want a quick reference.</li>
+	<li>If you want to learn general programming using PowerShell checkout <a href="https://en.wikiversity.org/wiki/Windows_PowerShell" target="_blank">Wikiversity</a>.</li>
+	<li>And if you'd like 100 short videos that teach <a href="https://www.youtube.com/playlist?list=PL6D474E721138865A&amp;feature=view_all" target="_blank">PowerShell in a Month of Lunchs</a> it's free on YouTube.</li>
+	<li>Or follow along as someone delves into writing a <a href="https://community.spiceworks.com/topic/597348-introduction-to-powershell" target="_blank">PowerShell Script</a>, also a good Introduction to PowerShell</li>
+	<li>Similarly making the leap from <a href="https://mikefrobbins.com/2016/02/04/video-making-the-leap-from-powershell-one-liners-and-scripts-to-advanced-functions-and-script-modules/" target="_blank">PowerShell commands to Scripts</a>.</li>
+	<li>If you have experience already with Bash, Python, Javascript, C# or other programming languages you may find <a href="https://learnxinyminutes.com/docs/powershell/" target="_blank">Learn PowerShell in Y Minutes helpful</a><br>
+		And knowing Regular Expressions can be helpful to process plain-text command output from regular Windows Console .EXE commands. Try <a href="https://regex101.com/" target="_blank">RegEx101</a> or <a href="https://regexr.com/" target="_blank">RegExr</a></li>
+</ul>
+
+	</div><!-- Page Content ends here -->
+
+	<!-- Footer -->
+	<footer class="w3-container w3-theme" style="padding:16px 32px">
+	  <p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs" >Docs</a> on GitHub.</p>
+	  <p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/" target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
+	</footer>
+		 
+	</div><!-- Main div for the body End -->
+
+	<script>
+		// These came from the w3schools.com Template as well:
+		//
+		// Open and close the sidebar on medium and small screens
+		function w3_open() {
+		  document.getElementById("mySidebar").style.display = "block";
+		  document.getElementById("myOverlay").style.display = "block";
+		}
+		function w3_close() {
+		  document.getElementById("mySidebar").style.display = "none";
+		  document.getElementById("myOverlay").style.display = "none";
+		}
+
+		// Change style of top container on scroll
+		window.onscroll = function() {myFunction()};
+		function myFunction() {
+		  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+			document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+			document.getElementById("myIntro").classList.add("w3-show-inline-block");
+		  } else {
+			document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+			document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+		  }
+		}
+	</script>
+		 
+</body>
+</html> 

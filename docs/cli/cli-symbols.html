@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Update these for each page -->
+	<title>CLI Symbols</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
+	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
+	<meta name="author" content="Saul Ansbacher">
+	<!-- Based on the "Material Design" W3.CSS Demo, with some changes, from www.w3schools.com. Simple and works. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Some custom CSS overrides: -->
+	<link rel="stylesheet" href="../css/sa-custom.css">
+</head>
+<body>
+	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+	  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+	  <!-- Side Nav Bar items -->
+	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
+	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
+	  <a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
+	  <a class="w3-bar-item w3-button w3-theme" href="cli-symbols.html">CLI Symbols</a>
+	  <a class="w3-bar-item w3-button" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
+	  <a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
+	  <a class="w3-bar-item w3-button" href="console-commands.html">Common Console Commands</a>
+	  <a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="additional-topics.html">Additional Topics</a>
+	  <a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
+	</nav>
+
+	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+	<div class="w3-main" style="margin-left:250px;"><!-- Main div for the body Start -->
+
+	<!-- Change both of these to change the Page Header -->
+	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
+	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+	  <span id="myIntro" class="w3-hide">CLI Symbols</span></p>
+	</div>
+	<header class="w3-container w3-theme" style="padding:64px 32px">
+	  <h1 class="w3-xxxlarge">CLI Symbols</h1>
+	</header>
+
+	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
+
+	<h2>Command Line Symbols</h2>
+
+	<p>To use the Command Line effectively you need to know some of the <b>symbols</b>. Like the keystrokes many of these are applicable to the regular CMD Command Prompt as well as PowerShell.</p>
+	
+	<p>Just as the Windows GUI has many symbols - in the form of icons, toolbar buttons, etc - that you basically have to memorize so too does the Command Line. Except you can't hover your mouse over them to see tool-tip, and as just one or two characters they may be even more obscure at first. But like standard icons, CLI symbols are mostly standardized in their use.</p>
+	
+	<p>You won't need to know/use all of these just now but the more common ones are nearer the top:</p>
+
+	
+	<table class="w3-table-all">
+	<tr>
+	  <th>Symbol</th>
+	  <th>Description</th>
+	</tr>
+	<tr>
+		<td>. &nbsp;(dot)</td>
+		<td>The <kbd>.</kbd> (dot / period) represents the <i>current</i> directory; thus <i>.\file2.txt</i> means the file2.txt in the directory you are in.<br>
+		If you are IN c:\temp\folder1\folder2 then <code class="console">.</code> means folder2, and <i>.\file2.txt</i> means c:\temp\folder1\folder2\file2.txt</td>
+	</tr>
+	<tr>
+		<td>.. &nbsp;(double dot)</td>
+		<td>The <kbd>.</kbd><kbd>.</kbd> (double dots) represents the <i>parent</i> directory (one level up). You can <code>cd ..</code> to move up a directory.<br>
+		If you are IN c:\temp\folder1\folder2 then <code class="console">..</code> means folder1, and <i>..\file1.txt</i> means c:\temp\folder1\file1.txt</td>
+	</tr>
+	<tr>
+		<td>\ &nbsp;(backslash)</td>
+		<td>The <kbd>\</kbd> (backslash) represents the <i>root</i> directory of the drive. It's also used to <i>separate</i> directories and files in paths.<br>
+		If you are IN c:\temp\folder1\folder2 then <code class="console">\</code> means c:\, and <i>\file3.txt</i> means c:\file3.txt</td>
+	</tr>
+	<tr>
+		<td>~ &nbsp;(tilde)</td>
+		<td>In PowerShell the <kbd>~</kbd> (tilde) represents YOUR <i>home</i> directory, wherever that is.<br>
+		If you are logged in as bsmith then <code class="console">~\Desktop</code> probably means c:\users\bsmith\Desktop. It doesn't have a basic use in CMD/DOS.</td>
+	</tr>
+	<tr>
+		<td># &nbsp;(hash)</td>
+		<td>In PowerShell the <kbd>#</kbd> symbol starts a <i>comment</i> which is ignored in scripts. Does nothing in CMD/DOS, in batch files use REM.<br>
+		&lt;# Long comments can cross lines and are enclosed with opening and closing sets of symbols #&gt;</td>
+	</tr>
+	<tr>
+		<td>| &nbsp;(pipe)</td>
+		<td>The <kbd>|</kbd> (pipe) is used to send the <i>output of one command as the input of the next command</i>. While CMD supports this, PowerShell uses it a lot.<br>
+		Eg: <code>dir | select Name, Length | fl</code> (The output from <code>dir</code> goes into <code>select</code> which goes into <code>fl</code> and finally displays it)</td>
+	</tr>
+	<tr>
+		<td>&gt; &nbsp;(greater)</td>
+		<td>The <kbd>&gt;</kbd> (greater than sign) is used to send the <i>output of a command into a text file</i>, eg. <code>dir &gt; file.txt</code><br>
+		This is the "cheap" way of saving output; use <code class="console">&gt;&gt;</code> (two greater signs) to append output, as using just one <code class="console">&gt;</code> overwrites!</td>
+	</tr>
+	<tr>
+		<td>* &nbsp;(star)</td>
+		<td>The <kbd>*</kbd> (or asterisk) is used as a simple <i>wildcard representing ANY number of characters</i>. So <code>dir *cat.txt</code> finds all .TXT files whose filenames end in <i>cat</i><br>
+		(eg. <i>tomcat.txt</i>, <i>nicecat.txt</i>, but <i>not</i> catalog.txt). Whereas <code class="console">*cat*.txt</code> would find anything with "<i>cat</i>" in the filename like <i>tomcat2.txt</i></td>
+	</tr>
+	<tr>
+		<td>? &nbsp;(question)</td>
+		<td>The <kbd>?</kbd> (question mark) is used as a simple <i>wildcard representing any ONE character</i>. Not used as much as <code class="console">*</code><br>
+		But you will see it used as an abbreviation for the <code>where</code> command in PowerShell cmdlet.</td>
+	</tr>
+	<tr>
+		<td>% &nbsp;(percent)</td>
+		<td>In DOS/CMD the <kbd>%</kbd> (percent sign) is used around <i>variables</i>, like <code class="console">%windir%</code><br>
+		In PowerShell the <code class="console">%</code> is sometimes used as an abbreviation for the <code>foreach</code> cmdlet.</td>
+	</tr>
+	<tr>
+		<td>$ &nbsp;(dollar)</td>
+		<td>In PowerShell the <kbd>$</kbd> (dollar sign) is used to indicate a <i>variable</i>, so <code class="console">$PWD</code> is a variable holding "the current directory".<br>
+		Another common built-in variable is <code class="console">$_</code> which is the implied pipeline variable, and <code class="console">$PSVersionTable</code> shows what version of PowerShell you're using.</td>
+	</tr>
+	<tr>
+		<td>" and ' &nbsp;(quotes)</td>
+		<td>The <kbd>"</kbd> (double quote) and <kbd>'</kbd> (single quote) are used to <i>enclose strings of characters</i>, especially if there's a space in them. So <code class="console">My File.txt</code> would be two items,<br>
+		but <code class="console">"My File.txt"</code> is a single item. Use "double quotes" most often, esp. if you want variables to show their values in PowerShell.</td>
+	</tr>
+	<tr>
+		<td>- &nbsp;(dash)</td>
+		<td>The <kbd>-</kbd> (dash) is used to start all PowerShell <i>options/parameters/switches</i> on commands, and often for CMD/DOS too (along with the forward slash: <code class="console">/</code>).<br>
+		So <code class="console">-Identity</code> denotes the <i>Identity</i> parameter. In CMD it might also be <i>/identity</i></td>
+	</tr>
+	<tr>
+		<td>; &nbsp;(semicolon)</td>
+		<td>The <kbd>;</kbd> (semicolon) is used to <i>separate commands</i> on the same line in PowerShell. So instead of <code>cd \</code> (press enter) <code>dir</code> (press enter)<br>
+		You can type <code>cd \ ; dir</code> and PowerShell will execute both (change to the root and show the contents of the root).</td>
+	</tr>
+	<tr>
+		<td>&amp;&nbsp;&nbsp;(ampersand)</td>
+		<td>The <kbd>&amp;</kbd> is the <i>command separator</i> in DOS/CMD (so <code>cd \ &amp; dir</code> would be two separate commands on one line).<br>
+		In PowerShell it <i>invokes/starts a command or script</i>, especially one with a space in the	name, you'll see it with Tab completion.</td>
+	</tr>
+	<tr>
+		<td>` &nbsp;(backtick) or<br>
+		^ &nbsp;(caret)</td>
+		<td>These are <i>"escape" characters</i>, which means the shell ignores the next character's special meaning.<br>
+		Use the backtick <kbd>`</kbd> in PowerShell to escape, and the caret <kbd>^</kbd> in CMD/DOS to escape the next character.</td>
+	</tr>
+	<tr>
+		<td>(	) [ ] { }<br>
+		(brackets)
+		</td>
+		<td>The various brackets: <kbd>(</kbd>parentheses<kbd>)</kbd>, <kbd>[</kbd>square brackets<kbd>]</kbd>, and <kbd>{</kbd>curly braces<kbd>}</kbd> are used for various things primarily by <i>PowerShell</i>,<br>
+		such as grouping commands. The main thing is that they come in matching sets, and are not interchangeable. <i>(something]</i> won't work.</td>
+	</tr>
+	</table>
+
+	</div><!-- Page Content ends here -->
+
+	<!-- Footer -->
+	<footer class="w3-container w3-theme" style="padding:16px 32px">
+	  <p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs" >Docs</a> on GitHub.</p>
+	  <p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/" target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
+	</footer>
+		 
+	</div><!-- Main div for the body End -->
+
+	<script>
+		// These came from the w3schools.com Template as well:
+		//
+		// Open and close the sidebar on medium and small screens
+		function w3_open() {
+		  document.getElementById("mySidebar").style.display = "block";
+		  document.getElementById("myOverlay").style.display = "block";
+		}
+		function w3_close() {
+		  document.getElementById("mySidebar").style.display = "none";
+		  document.getElementById("myOverlay").style.display = "none";
+		}
+
+		// Change style of top container on scroll
+		window.onscroll = function() {myFunction()};
+		function myFunction() {
+		  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+			document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+			document.getElementById("myIntro").classList.add("w3-show-inline-block");
+		  } else {
+			document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+			document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+		  }
+		}
+	</script>
+		 
+</body>
+</html> 

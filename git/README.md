@@ -72,7 +72,7 @@ Then when adding to Sourcetree you need to select _Azure DevOps_, the Host URL n
  * In the future this may change to the new URL: https://dev.azure.com/YourDevOpsOrgName, but for now Sourcetree won't accept that.
   
 The authentication will be via PAT, when you Refresh your PAT use your O365/AzureAD login as the username (eg. _username@domain.com_) and the long PAT string you created in Azure DevOps as the password (eg. _kjdhj48dfkdndkaldsbd8r4bdetcetcetc_). It should say "Authentication OK".  
-When you look at all the Authentication settings in SourceTree you'll see various ones added, including dev.azure.com, but the Remote for any repos will be in *.visualstudio.com format (but work fine).
+When you look at all the Authentication settings in SourceTree you'll see various ones added, including dev.azure.com, but the Remote for any repos will be in \*.visualstudio.com format (but work fine).
 
 ## Useful Links:
 

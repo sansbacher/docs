@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Update these for each page -->
+	<title>PowerShell Essentials</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
+	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
+	<meta name="author" content="Saul Ansbacher">
+	<!-- Based on the "Material Design" W3.CSS Demo, with some changes, from www.w3schools.com. Simple and works. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Some custom CSS overrides: -->
+	<link rel="stylesheet" href="../css/sa-custom.css">
+</head>
+<body>
+	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+	  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+	  <!-- Side Nav Bar items -->
+	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
+	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
+	  <a class="w3-bar-item w3-button w3-theme" href="ps-essentials.html">PowerShell Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
+	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
+	  <a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
+	  <a class="w3-bar-item w3-button" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
+	  <a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
+	  <a class="w3-bar-item w3-button" href="console-commands.html">Common Console Commands</a>
+	  <a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
+	  <a class="w3-bar-item w3-button" href="additional-topics.html">Additional Topics</a>
+	  <a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
+	</nav>
+
+	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+	<div class="w3-main" style="margin-left:250px;"><!-- Main div for the body Start -->
+
+	<!-- Change both of these to change the Page Header -->
+	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
+	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+	  <span id="myIntro" class="w3-hide">PowerShell Essentials</span></p>
+	</div>
+	<header class="w3-container w3-theme" style="padding:64px 32px">
+	  <h1 class="w3-xxxlarge">PowerShell Essentials</h1>
+	</header>
+
+	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
+
+	<h2>PowerShell - The Essentials</h2>
+
+	<p>	First: There's <a href="https://docs.microsoft.com/en-us/powershell/scripting/install/installing-windows-powershell" target="_blank">Windows PowerShell</a> (included with Windows and common versions run from 2.0 to 5.1) and <a href="https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows">PowerShell Core</a> (cross-platform download for Windows, macOS, and Linux; versions start at 6.0). There are some differences, but they're not substantial to what this guide will cover. <i>EXCEPT</i> that some modules are Windows PowerShell-only -- such as the ActiveDirectory module; PS Core 7+ is aiming for much closer Windows PS compatibility.</p>
+	<p>	PowerShell is more recent than the CMD/DOS prompt, is mostly compatible, allows you to run the same external .EXE commands, and doesn't have as much legacy baggage. Though it supports as much of the legacy way of doing things as possible - best of both worlds. PowerShell is very <i>regular and consistent</i>. PowerShell is based on Objects rather than Plain Text, and PowerShell includes all the features of the .NET Framework.</p>
+	<p>	To start <b>PowerShell</b> run <code>powershell.exe</code>, or look in your Start Menu for "PowerShell"</p>
+	<p>	Type commands at the <code class="console">PS C:\></code> prompt, press <kbd>Enter</kbd> after each.</p>
+
+	<img src="images/powershell-console-example.png" alt="PowerShell example commands and an error" class="w3-round-small">
+	<p></p>
+	<div class="w3-container w3-theme-l4 w3-leftbar">
+	<p>	In the example above, the command <code>cd "some folder"</code> was typed at the <code class="console">PS C:\></code> prompt, the prompt changed to show the working directory was changed to the "some folder" directory, a valid command was typed, the results came back (showing where the powershell.exe file is located), and then an unknown command was tried - resulting in the error message which says exactly that - the command wasn't recognized. Now the <code class="console">PS C:\some folder></code> prompt waits for the next command.</p>
+	<p>(The yellow and green colours in the commands come from the PowerShell module "PSReadline", which is included as standard with PowerShell 5.1 in Windows 10 and can be downloaded for PS 3.0+)</p>
+	</div>
+	
+	<br>
+	<hr>
+	<h3>Command, Option, Tab</h3>
+	
+	<p>PowerShell <b>commands</b> (or cmdlets are they are known) are often very verbose/long (and are usually of  the form Verb-Noun, like <code>Get-Content</code>) so most people use aliases for common commands (eg. using <code>dir</code> instead of <code>Get-ChildItem</code>). Type <code>alias</code> to see a list of all aliases. The aliases match the old DOS commands, which are shorter, or are abbreviations for longer PowerShell commands. There's also aliases for many Linux/Bash/macOS commands (like <code>ls</code> or <code>cp</code>).</p>
+	<ul>
+		<li>I would only use standard/built-in aliases to ensure they work on all systems.</li>
+		<li>PowerShell commands are usually centered around a function (<i>noun</i>) with different actions (<i>verbs</i>). Such as <code>Get-ADUser</code>, <code>Set-ADUser</code>, <code>New-ADUser</code>, <code>Remove-ADUser</code> - each representing a different action you can perform on <i>ADUsers</i>.</li>
+		<li>While just about anything can be a noun/function/thing, the common actions (verbs) are: Get-, Set-, New-, Add-, Remove-, Export-, Import-, Invoke-, to see them all try: <code>Get-Verb</code></li>
+	</ul>
+
+	<p>You can generally run any DOS/CMD command (.EXE or .BAT file) in PowerShell. While you can run <i>regular external command/EXE files</i>, like <code>PING</code>, <code>IPCONFIG</code>, <code>ROUTE</code>, etc from PowerShell sometimes their options/switches cause issues if you need to "enclose things in quotes". When running external .EXE commands you have to use the format of switches/options each command expects, not the "PowerShell way". PowerShell cmdlets and CMD/DOS .EXE files can interact but the results are not always as expected due to PowerShell outputting and expecting Objects rather than plain-text.</p>
+
+	<p><b>Parameters/switches/options in PowerShell</b> are separated from commands with a <kbd>Space</kbd>, and start with a dash <kbd>-</kbd>, eg. <code class="console">-Identity</code> or <code class="console">-Properties</code>.</p>
+	<ul>
+		<li>You need the space after the command and the dash, you can't type <i>Get-ADUser-Identity</i> (that would be a single long command).</li>
+		<li>Spaces separate options from commands and other options, you can't type <i>-Identity-Properties</i> (that would be a single long option)</li>
+		<li>There's usually also a space after the option if you need to provide a value, like a username or something: <code class="console">-Identity administrator</code> or <code class="console">-Properties mail,proxyAddresses</code></li>
+		<li>But there's no space after the dash, so this wouldn't work: <i>- Identity</i></li>
+		<li>Many common switches/options can be abbreviated (shorten them enough to make them unique, such as <i>-prop</i> for <code class="console">-properties</code>, but <i>-p</i> won't work if there's also a <code class="console">-partition</code> option)</li>
+		<li>And some can be skipped if they can be specified by their location (eg. you can skip <code class="console">-Identity</code> with <code>Get-ADUser</code> and just type <code>
+	Get-ADUser username</code> as <i>Identity</i> is assumed to be the first parameter).</li>
+		<li>Most PowerShell cmdlets let you pass some parameter values via the pipeline where the output of one command forms the input for the another.</li>
+		<li>Switches are not case-sensitive, but can also be as long or verbose as commands -- at least you don't need to guess what <i>-i</i> or <i>-p</i> means!</li>
+	</ul>
+
+	<p>There's <b>Tab completion</b> for both commands and parameters/switches/options, <i>and</i> files/directories. Start typing the command or option and press the <kbd>Tab</kbd> key to cycle through all choices, which even works for files. If you use Tab Completion you won't mind that commands or switches are so long - just type enough and press <kbd>Tab</kbd> a few times to get to what you're looking for.</p>
+	<ul>
+		<li>For example: Type <code>get-adu[press TAB]</code> and it will complete to <code>Get-ADUser</code> then type <code class="console">-i[press TAB]</code> and it will complete to <code class="console">-Identity</code> after which you can type a username.
+		<br>(Assuming you're on a Server 2008 R2 or better Domain Controller, or somewhere with the ActiveDirectory PS Module installed)</li>
+		<li>Or type <code>cd \win[press TAB]</code> and it will complete to <code>cd C:\Windows</code>.</li>
+		<li>Press <kbd>Tab</kbd> multiple times to cycle through various options, such as <code>Get-AD[TAB several times]</code> will cycle through various AD related commads (eg. <code>Get-ADComputer</code>, <code>Get-ADGroup</code>, <code>Get-ADUser</code>, etc). Works for files / directories too!</li>
+		<li>Sometimes using Tab Completion to discover what options are available can be a quick way to learn what a command needs.</li>
+	</ul>
+
+	<hr>
+	<h3>Getting Help</h3>
+
+	<p>To get <b>Help</b> in PowerShell you type <code>help</code> and then cmdlet you want help for, such as: <code>help Get-Process</code>, add <code class="console">-full</code> to see all the details and examples: <code>help Get-Process -full</code></p>
+	<p>The help text will give a description of the command and the options you can (or must) provide. If you add <code class="console">-full</code> you'll get all the details of the various options and often some Examples. If you don't see much run <code>Update-Help</code> to refresh the help file cache.</p>
+	<p>The SYNTAX section will show what command line options/switches/arguments you can use. The general format is that <i>optional</i> arguments are shown in <i>[square brackets]</i>, the value is shown in <i>&lt;angled brackets&gt;</i> indicating the <i>type</i>; if only a limited set of choices are acceptable values they will be shown in <i>{curly braces}</i> seperated by vertical pipes <kbd>|</kbd>. PowerShell commands often have multiple <i>parameter sets</i> which are just distinct groupings of options/arguments representing different ways of running the command (either this set of arguments or another set of arguments).</p>
+
+	<img src="images/ps-help-example.png" alt="PowerShell help Get-ADUser example" class="w3-round-small">
+	<p></p>
+	<div class="w3-container w3-theme-l4 w3-leftbar">
+	<p>In the example above, <code>help Get-ADUser</code> shows there are two parameter sets:</p>
+	<p>In the first <code class="console">-Filter</code> is not optional, but the rest are in square brackets so are optional. <code class="console">-Filter</code> takes a &lt;String&gt; (a series of characters, like a word or sentence), whereas <code class="console">-ResultSetSize</code> takes an &lt;Int32&gt; (32-bit integer number), and <code class="console">-SearchBase</code> can only be one of 3 possible choices: <i>Base, OneLevel, or Subtree</i>.</p>
+	<p>
+	The second way of  using <code>Get-ADUser</code> requires the &lt;ADUser&gt; type value for the <code class="console">-Identity</code> parameter even though you don't need to specify <code class="console">-Identity</code> itself; this is because <code class="console">-Identity</code> is in square brackets but &lt;ADUser&gt; isn't. (An &lt;ADUser&gt; is anything that would identify a User object in AD, such as <i>Username, SID, Distinguished Name, etc</i> -- the <code class="console">-full</code> help will show what's acceptable) The <code class="console">-Properties</code> option can take an array of &lt;String&gt; values (denoted by the empty square brackets after <i>String[]</i>) meaning a collection or list of Strings.</p>
+	<p>Finally most PowerShell cmdlets support various <i>CommonParameters</i>, such as <code class="console">-Verbose</code>, <code class="console">-WhatIf</code>, and <code class="console">-ErrorAction</code>, etc.</p>
+	</div>
+	
+	<br>
+	<hr>
+	<h3>Also-WorthKnowing</h3>
+
+	<p>PowerShell is (generally) <b>NOT Case Sensitive</b>. You can type <code>DIR</code>, <code>dir</code>, <code>DiR</code>, etc. Usually PowerShell commands are written in <i>PascalCase</i> with words smooshed together using <i>CapitalsToSeparateWords</i> for readability, usually starting with a verb, as in: <i>Get-SomeThingYouWant</i>, or <i>Remove-ThingYouDont</i>.</p>
+	<ul>
+		<li>Files are also NOT Case Sensitive in Windows, though they do <i>retain</i> case (so test.txt = TEST.TXT = Test.TxT, they all reference the same file). Note: UNIX/Linux/macOS <i>IS</i> Case Sensitive.</li>
+		<li>But because of the need to put "quotes" around scripts/commands/files/folders with spaces in them you'll soon discover it's best to <i>avoid spaces in names where possible</i> (or use Tab Completion).</li>
+	</ul>
+	
+	<p>To <b>run a script</b> you need to specify the path, even if you are in the same directory you still have to specify the current directory, eg: <code>.\test-script.ps1</code>. You can use Tab Completion to start typing the name and press TAB and it will complete the filename along with the <code class="console">.\</code> before it.</p>
+	<ul>	
+		<li>PowerShell scripts are text files that have a <i>.PS1</i> extension (not .PS, that's PostScript printer files). Windows and most Email/AV/Spam filters will consider them executable so will be blocked from attachments; generally if you want to email a .PS1 file rename it to something like <i>filename_rename-me-PS1.txt</i> (but don't use .ps1.txt in case the double extension is caught as suspecious too).</li>
+		<li>DOS/CMD scripts (.BAT or .CMD files) can be executed just like .EXE files in PowerShell, they're just run by CMD.EXE seamlessly.</li>
+		<li>Before you can run any script the ExecutionPolicy must be RemoteSigned or Unrestricted (unless the script has been signed with a Code Signing Certificate). If you get an error running a script about "running scripts is disabled on this system" run this and answer [<b>Y</b>]es: <code>Set-ExecutionPolicy RemoteSigned</code></li>
+	</ul>	
+	<p>Unlike the CMD/DOS Prompt: you can use the PowerShell prompt to do <b>math</b>, such as typing <code>16 * 4</code> and it will return <code class="console">64</code>. You can enter any PowerShell command at the prompt and test/build scripts one command at a time - that is: variables and whatnot persist between commands (but not between sessions - if you close the window everything not saved to a file is gone).</p>
+	
+	<div class="w3-container w3-theme-l4 w3-leftbar">
+		<p>PowerShell is a Windows program, so be mindful of <b>Run as Administrator</b>, Admin Rights, UAC, etc. If you can't do something, try running your PowerShell prompt as an Administrator.</p>
+	</div>
+
+	</div><!-- Page Content ends here -->
+
+	<!-- Footer -->
+	<footer class="w3-container w3-theme" style="padding:16px 32px">
+	  <p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs">Docs</a> on GitHub.</p>
+	  <p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/" target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
+	</footer>
+		 
+	</div><!-- Main div for the body End -->
+
+	<script>
+		// These came from the w3schools.com Template as well:
+		//
+		// Open and close the sidebar on medium and small screens
+		function w3_open() {
+		  document.getElementById("mySidebar").style.display = "block";
+		  document.getElementById("myOverlay").style.display = "block";
+		}
+		function w3_close() {
+		  document.getElementById("mySidebar").style.display = "none";
+		  document.getElementById("myOverlay").style.display = "none";
+		}
+
+		// Change style of top container on scroll
+		window.onscroll = function() {myFunction()};
+		function myFunction() {
+		  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+			document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+			document.getElementById("myIntro").classList.add("w3-show-inline-block");
+		  } else {
+			document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+			document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+		  }
+		}
+	</script>
+		 
+</body>
+</html> 

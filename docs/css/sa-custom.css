@@ -1,0 +1,25 @@
+/* Initially the body and w3-bar items were in the "Material Design" Template HTML. Moved here, with some changes/additions */
+body {font-family: "Segoe UI",Helvetica,Arial,sans-serif}
+.w3-bar-block .w3-bar-item {
+  padding: 16px;
+  font-weight: bold;
+}
+code {		/* Make all plain CODE tags the same as w3-codespan class for simplicity. Added: white-space: pre; to maintain all spaces in CODE */
+  white-space: pre;
+  font-family:Consolas,"Courier New",monospace;font-size:16px;
+  color:crimson;background-color:#f1f1f1;padding-left:4px;padding-right:4px;font-size:110%
+}
+.console {
+  color:black;padding-left:3px;padding-right:3px;font-size:100%
+}
+kbd {
+	font-size:85%;
+	border:1px solid gray;
+	font-weight: bold;
+	box-shadow:1px 0 1px 0 #eee, 0 1px 0 1px #ccc, 0 1px 0 2px #444;
+	-webkit-border-radius:3px;
+	-moz-border-radius:3px;
+	border-radius:3px;
+	margin:2px 3px;
+	padding:1px 5px;
+}
