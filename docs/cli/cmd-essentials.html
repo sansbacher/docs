@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<!-- Update these for each page -->
 	<title>CMD/DOS Essentials</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
+	<meta name="keywords"
+		content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
 	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
 	<meta name="author" content="Saul Ansbacher">
 	<!-- Based on the "Material Design" W3.CSS Demo, with some changes, from www.w3schools.com. Simple and works. -->
@@ -15,148 +17,232 @@
 	<!-- Some custom CSS overrides: -->
 	<link rel="stylesheet" href="../css/sa-custom.css">
 </head>
+
 <body>
 	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
-	  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-	  <!-- Side Nav Bar items -->
-	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
-	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
-	  <a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
-	  <a class="w3-bar-item w3-button w3-theme" href="cmd-essentials.html">CMD/DOS Essentials</a>
-	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
-	  <a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
-	  <a class="w3-bar-item w3-button" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
-	  <a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
-	  <a class="w3-bar-item w3-button" href="console-commands.html">Common Console Commands</a>
-	  <a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
-	  <a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
-	  <a class="w3-bar-item w3-button" href="additional-topics.html">Additional Topics</a>
-	  <a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
+		<a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i
+				class="fa fa-remove"></i></a>
+		<!-- Side Nav Bar items -->
+		<a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
+		<a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
+		<a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
+		<a class="w3-bar-item w3-button w3-theme" href="cmd-essentials.html">CMD/DOS Essentials</a>
+		<a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
+		<a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
+		<a class="w3-bar-item w3-button" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
+		<a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
+		<a class="w3-bar-item w3-button" href="console-commands.html">Common Console Commands</a>
+		<a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
+		<a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
+		<a class="w3-bar-item w3-button" href="additional-topics.html">Additional Topics</a>
+		<a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
 	</nav>
 
 	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
-	<div class="w3-main" style="margin-left:250px;"><!-- Main div for the body Start -->
+	<div class="w3-main" style="margin-left:250px;">
+		<!-- Main div for the body Start -->
 
-	<!-- Change both of these to change the Page Header -->
-	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
-	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
-	  <span id="myIntro" class="w3-hide">CMD/DOS Essentials</span></p>
-	</div>
-	<header class="w3-container w3-theme" style="padding:64px 32px">
-	  <h1 class="w3-xxxlarge">CMD/DOS Essentials</h1>
-	</header>
+		<!-- Change both of these to change the Page Header -->
+		<div id="myTop" class="w3-container w3-top w3-theme w3-large">
+			<p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+				<span id="myIntro" class="w3-hide">CMD/DOS Essentials</span></p>
+		</div>
+		<header class="w3-container w3-theme" style="padding:64px 32px">
+			<h1 class="w3-xxxlarge">CMD/DOS Essentials</h1>
+		</header>
 
-	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
+		<div class="w3-container" style="padding:32px;padding-right:5%">
+			<!-- Page Content starts here -->
 
-	<h2>CMD/DOS - The Essentials</h2>
+			<h2>CMD/DOS - The Essentials</h2>
 
-	<p>First: The "<b>Command Prompt</b>", as it is offically known in Windows, is the legacy CLI (though it isn't going anywhere) provided by CMD.EXE which resembles the MS-DOS Prompt (provided by COMMAND.COM). CMD.EXE provides some built-in commands, and others are external .EXE commands - but we'll consider anything provided my Microsoft in MS Windows to be "built-in".</p>
-	<p>The CMD Command Prompt aka DOS Prompt carries a lot of <i>legacy baggage</i>, in fact most of the commands are made to operate identically to how they worked in MS-DOS, but with some enhancements. This is both a blessing and a curse.</p>
-	<p>There's less uniform standardization and consistency with "DOS" commands (even ones provided by Microsoft with Windows, due to legacy reasons) but even less so with random Console .EXE files you may download and run. (though many are trying to follow modern Linux/Bash/macOS standards)</p>
-	<ul>
-		<li>Generally I would recommend using PowerShell instead, but some commands may work better in the CMD Command Prompt, especially if they have switches requiring "quoted" values.</li>
-	</ul>		
-	<p>To start the <b>Command Prompt</b> run <code>cmd.exe</code>, or look for "Command Prompt" in your Start menu.</p>
-	<p>Type commands at the <code class="console">C:\></code> prompt and press <kbd>Enter</kbd> after each.</p>
-		
-	<img src="images/cmd-console-example.png" alt="CMD.exe Command Prompt example" class="w3-round-small">
-	<p></p>		
-	<div class="w3-container w3-theme-l4 w3-leftbar">
-		<p>In the example above the command <code>cd "some folder"</code> was typed at the <code class="console">C:\></code> prompt, the prompt changed to show the working directory was changed to the "some folder" directory, a valid command was typed, the results came back (showing where the cmd.exe file is located), and then an unknown command was tried - resulting in the error message which says exactly that - the command wasn't recognized. Now the <code class="console">C:\some folder></code> prompt waits for the next command.</p>
-	</div>
-	<br>
-	<hr>
-	
-	<h3>Commands and Options</h3>
-	
-	<p>Included <b>Windows console commands</b> (both CMD built-in commands and external .EXE commands) are often short (<code>dir</code> instead of "<i>list directory</i>" or <code>md</code> instead of "<i>make directory</i>") and sometimes cryptic (such as <code>qwinsta</code> instead of "query windows station"); often because these commands have been around since the days of MS-DOS and 8 character filename limits. Generally there is no regular pattern all command names follow.</p>
-	<ul>
-		<li>Whereas <i>PowerShell</i> has cmdlets following Verb-Noun format (<code>Get-Content</code>, <code>Set-Content</code>, etc) CMD/DOS commands usually wrap all verb/action functionality into the same command, either using switches/options (like <code class="console">command.exe /add</code> or <code class="console">command.exe /remove</code>) or subcommands (like <code class="console">command.exe list</code> or <code class="console">command.exe edit -option</code>).</li>
-		<li>PowerShell has aliases for many of these older DOS/CMD commands (such as <code>dir</code>, <code>copy</code>, <code>md</code>/<code>mkdir</code>, <code>ren</code>, <code>del</code>, etc) meaning if you learn these you'll be able to operate in both CLI Shells.</li>
-		<li>All Command Prompt commands will output plain-text: what you see is exactly what is output.</li>
-		<li>Third Party downloaded console commands may be equally short or cryptic, especially if they are ports of Linux/macOS/Bash utilities. You can also run Windows GUI commands which will just start the program as if you had double-clicked it (like <code>regedit.exe</code>) however some may also have useful switches/options.</li>
-	</ul>
+			<ul>
+				<li><a href="#commands-options">Commands and Options</a></li>
+				<li><a href="#get-help">Getting Help</a></li>
+				<li><a href="#also-worth-knowing">Also Worth Knowing</a></li>
+			</ul>
 
-	<p><b>Parameters/switches/options</b> for CMD/DOS Commands are separated from commands with a <kbd>Space</kbd> and usually a single dash <kbd>-</kbd> or slash <kbd>/</kbd>, as in <code class="console">-AH</code> or <code class="console">/B</code>.</p>
-	<ul>
-		<li>You need the space after the command and the dash or slash, you can't type <i>dir-ah</i> (that would be a separate command).</li>
-		<li>CMD/DOS Commands can each have their own standard for options/switches, usually each set of switches is separated by a space:</li>
-		<ul>
-			<li>Sometimes you add <i>values</i> after the switch, like: <code class="console">/a value</code></li>
-			<li>Or you append it after a colon or equals, such as <code class="console">-a:value</code> or <code class="console">-a=value</code></li>
-			<li>Sometimes you don't need any punctuation and you just add them together as in <code class="console">/ah</code> or <code class="console">/ahs</code> appending either <i>H</i> or <i>HS</i> to <i>/A</i><br>
-			(In this case the switch is still <code class="console">/A</code>, the H or HS is just the value for <code class="console">/A</code>)</li>
-			<li>Unix/Linux/Bash ported or inspired commands may use double dash <kbd>-</kbd><kbd>-</kbd> for some longer options like <code class="console">--listall</code></li>
-			<li>And sometimes switches to be stacked/combined (where <code class="console">/a /o /n</code> can be written as <code class="console">/aon</code> or as <code class="console">/a/o/n</code> without spaces)</li>
-			<li>Finally, some commands may not use a dash or slash and just have subcommands or options listed after the main command (such as <code>git status</code> not <i>/status</i> or <i>-status</i>)</li>
-			<li>Or mix and match, such as: <code>git log --oneline -n 10</code><br>
-			Note: <code>git</code> is the command for Git, the source code respository package. <code class="console">log</code> is a sub-command for Git. <code class="console">--oneline</code> is a parameter for the "Log" sub-command. And <code class="console">-n</code> is another option for Log with <code class="console">10</code> being the value passed to <code class="console">-n</code></li>
-			<li>Of course single letter switches can have different meanings to different commands...</li>
-		</ul>
-	</ul>
-	<div class="w3-container w3-theme-l4 w3-leftbar">
-		<p>The main point is: <b>Every command can be different so check the help text!</b></p>
-	</div>
-	<br>
-	<hr>
-	
-	<h3>Getting Help</h3>
-	
-	<p>Getting <b>Help</b> for CMD/DOS commands can also vary. A short list of the basic included Windows console commands can be found by running <code>help</code> but this by no means includes them all (mostly just the older legacy MS-DOS derived commands).</p>
-	<p>Usually you need to pass a switch or option for DOS/CMD/Console .EXE commands to show their Help text. It can vary, but one of these should work:</p>
-	<ul>
-		<li><code class="console">-h</code>, <code class="console">/h</code>, <code class="console">--help</code>, <code class="console">/?</code>, <code class="console">-?</code>, or just <code class="console">?</code></li>
-		<li>As in <code>ping /?</code></li>
-	</ul>	
-	<p>If the Help Text is too long add <code class="console">| more</code> after, as in: <code>chkdsk /? | more</code></p>
-	
-	<p>Sometimes you can just type the command with <i>no</i> options and it will provide help, but sometimes the command doesn't require options and it just runs!
-	<br>If this happens and it appears to hang (likely waiting for input) try pressing any of: <kbd>Ctrl</kbd>+<kbd>C</kbd>, <kbd>Ctrl</kbd>+<kbd>Z</kbd>, or <kbd>Ctrl</kbd>+<kbd>D</kbd> to either cancel the command or end the input.</p>
-	<p>While the <i>meaning</i> of console CLI switches/options/arguments can vary usually how they are represented in Help Text is fairly standard. </p>
+			<p>First: The "<b>Command Prompt</b>", as it is officially known in Windows, is the legacy CLI (though it isn't going
+				anywhere) provided by CMD.EXE which resembles the MS-DOS Prompt (provided by COMMAND.COM). CMD.EXE provides some
+				built-in commands, and others are external .EXE commands - but we'll consider anything provided my Microsoft in MS
+				Windows to be "built-in".</p>
+			<p>The CMD Command Prompt aka DOS Prompt carries a lot of <i>legacy baggage</i>, in fact most of the commands are made
+				to operate identically to how they worked in MS-DOS, but with some enhancements. This is both a blessing and a
+				curse.</p>
+			<p>There's less uniform standardization and consistency with "DOS" commands (even ones provided by Microsoft with
+				Windows, due to legacy reasons) but even less so with random Console .EXE files you may download and run. (though
+				many are trying to follow modern Linux/Bash/macOS standards)</p>
+			<ul>
+				<li>Generally I would recommend using PowerShell instead, but some commands may work better in the CMD Command
+					Prompt, especially if they have switches requiring "quoted" values.</li>
+			</ul>
+			<p>To start the <b>Command Prompt</b> run <code>cmd.exe</code>, or look for "Command Prompt" in your Start menu.</p>
+			<p>Type commands at the <code class="console">C:\></code> prompt and press <kbd>Enter</kbd> after each.</p>
 
-	<img src="images/cmd-help-example.png" alt="CMD example help text from: copy /?" class="w3-round-small">
-	<p></p>		
-	<div class="w3-container w3-theme-l4 w3-leftbar">
-		<p>In the example above, <code>copy /?</code> shows there is only one required parameter, the <i>source</i> as it is not enclosed in <i>[square brackets]</i>. The other switches and options (such as <code class="console">/D</code>, <code class="console">/V</code>, etc) are in <i>[square brackets]</i> so they are optional, as is the <i>destination</i>.
-		<br>If options are separated by a vertical pipe <kbd>|</kbd> character that means you can use only one of those options (either <code class="console">/A</code> or <code class="console">/B</code>). Then there is usually a list of what each option/switch means.
-		<br>Whether you can specify options in lower case or use <kbd>-</kbd> instead of <kbd>/</kbd> depends on the command, sometimes if there isn't a <code class="console">/B</code> and a <code class="console">/b</code> option you can use either, other times not, other times they could be different options entirely!</p>
-	</div>
+			<img src="images/cmd-console-example.png" alt="CMD.exe Command Prompt example" class="w3-round-small">
+			<p></p>
+			<div class="w3-container w3-theme-l4 w3-leftbar">
+				<p>In the example above the command <code>cd "some folder"</code> was typed at the <code
+						class="console">C:\></code> prompt, the prompt changed to show the working directory was changed to the
+					"some folder" directory, a valid command was typed, the results came back (showing where the cmd.exe file is
+					located), and then an unknown command was tried - resulting in the error message which says exactly that - the
+					command wasn't recognized. Now the <code class="console">C:\some folder></code> prompt waits for the next
+					command.</p>
+			</div>
+			<br>
+			<hr>
 
-	<br>
-	<hr>
-	
-	<h3>Also worth knowing</h3>
+			<h3 id="commands-options">Commands and Options</h3>
 
-	<p>There's <b>Tab completion</b> only for files/directories at the CMD Command Prompt. Type a command and if you need to specify a file/folder start typing the name and press the <kbd>Tab</kbd> key to cycle through all matching files/folders. For example: type <code>cd \win[press TAB]</code> and it will complete to <code>cd C:\Windows</code></p>
-	<p>Another trick you can sometimes use: the <kbd>*</kbd> wildcard. If it will match only one folder, as in <code>cd \win*</code>, it will resolve to the first folder starting with "win" in the root of the drive.</p>
-	
-	<p>The Command Prompt is (generally) <b>NOT Case Sensitive</b>. You can type <code>DIR</code>, <code>dir</code>, <code>DiR</code>, etc.</p>
-	<ul>
-		<li>Files are also NOT Case Sensitive, though they do <i>retain</i> case (so test.txt = TEST.TXT = Test.TxT, they all reference the same file). Note: UNIX/Linux/macOS IS Case Sensitive.</li>
-	However sometimes switches/parameters/options for external DOS/.EXE commands <i>are</i> case-sensitive!</p>
-	<li>Because of the need to put <i>"quotes"</i> around files/folders with spaces in them you'll soon discover it's best to <i>avoid spaces in names if possible</i> (or use Tab Completion).</li>
-	</ul>
+			<p>Included <b>Windows console commands</b> (both CMD built-in commands and external .EXE commands) are often short
+				(<code>dir</code> instead of "<i>list directory</i>" or <code>md</code> instead of "<i>make directory</i>") and
+				sometimes cryptic (such as <code>qwinsta</code> instead of "query windows station"); often because these commands
+				have been around since the days of MS-DOS and 8 character filename limits. Generally there is no regular pattern
+				all command names follow.</p>
+			<ul>
+				<li>Whereas <i>PowerShell</i> has cmdlets following Verb-Noun format (<code>Get-Content</code>,
+					<code>Set-Content</code>, etc) CMD/DOS commands usually wrap all verb/action functionality into the same
+					command, either using switches/options (like <code class="console">command.exe /add</code> or <code
+						class="console">command.exe /remove</code>) or subcommands (like <code
+						class="console">command.exe list</code> or <code class="console">command.exe edit -option</code>).</li>
+				<li>PowerShell has aliases for many of these older DOS/CMD commands (such as <code>dir</code>, <code>copy</code>,
+					<code>md</code>/<code>mkdir</code>, <code>ren</code>, <code>del</code>, etc) meaning if you learn these you'll
+					be able to operate in both CLI Shells.</li>
+				<li>All Command Prompt commands will output plain-text: what you see is exactly what is output.</li>
+				<li>Third Party downloaded console commands may be equally short or cryptic, especially if they are ports of
+					Linux/macOS/Bash utilities. You can also run Windows GUI commands which will just start the program as if you
+					had double-clicked it (like <code>regedit.exe</code>) however some may also have useful switches/options.</li>
+			</ul>
 
-	<p>To <b>run a script</b> you can just run it as any other built-in or external .EXE command, so long as it is in the <code class="console">PATH</code> it will be found.</p>
-	<ul>
-		<li>	CMD scripts are ASCII text files that have a .BAT or .CMD extension (not .BATCH or .COM). Windows and most Email/AV/Spam filters will consider them executable so will be blocked from attachments; generally if you want to email a .BAT/.CMD file rename it to something like <i>filename_rename-me-BAT.txt</i> (but don't use .bat.txt in case the double extension is caught as suspicious too).</li>
-		<li>	The extension .BAT  means "a file containing a <i>batch</i> of commands to run" and .CMD is for CMD, the command/shell processor.</li>
-	</ul>
-	<p>You can enter any CMD/DOS command at the prompt and test/build scripts one command at a time - that is: variables and whatnot persist between commands (but not between sessions - if you close the window everything not saved to a file is gone). However the Shell itself only has limited expression evaluation abilities, you can can't just type <i>2 + 2</i> and get back <i>4</i> like you can with PowerShell.</p>
+			<p><b>Parameters/switches/options</b> for CMD/DOS Commands are separated from commands with a <kbd>Space</kbd> and
+				usually a single dash <kbd>-</kbd> or slash <kbd>/</kbd>, as in <code class="console">-AH</code> or <code
+					class="console">/B</code>.</p>
+			<ul>
+				<li>You need the space after the command and the dash or slash, you can't type <i>dir-ah</i> (that would be a
+					separate command).</li>
+				<li>CMD/DOS Commands can each have their own standard for options/switches, usually each set of switches is
+					separated by a space:</li>
+				<ul>
+					<li>Sometimes you add <i>values</i> after the switch, like: <code class="console">/a value</code></li>
+					<li>Or you append it after a colon or equals, such as <code class="console">-a:value</code> or <code
+							class="console">-a=value</code></li>
+					<li>Sometimes you don't need any punctuation and you just add them together as in <code
+							class="console">/ah</code> or <code class="console">/ahs</code> appending either <i>H</i> or <i>HS</i>
+						to <i>/A</i><br>
+						(In this case the switch is still <code class="console">/A</code>, the H or HS is just the value for <code
+							class="console">/A</code>)</li>
+					<li>Unix/Linux/Bash ported or inspired commands may use double dash <kbd>-</kbd><kbd>-</kbd> for some longer
+						options like <code class="console">--listall</code></li>
+					<li>And sometimes switches to be stacked/combined (where <code class="console">/a /o /n</code> can be written
+						as <code class="console">/aon</code> or as <code class="console">/a/o/n</code> without spaces)</li>
+					<li>Finally, some commands may not use a dash or slash and just have subcommands or options listed after the
+						main command (such as <code>git status</code> not <i>/status</i> or <i>-status</i>)</li>
+					<li>Or mix and match, such as: <code>git log --oneline -n 10</code><br>
+						Note: <code>git</code> is the command for Git, the source code repository package. <code
+							class="console">log</code> is a sub-command for Git. <code class="console">--oneline</code> is a
+						parameter for the "Log" sub-command. And <code class="console">-n</code> is another option for Log with
+						<code class="console">10</code> being the value passed to <code class="console">-n</code><br>
+							For more info on using Git from the command line see my separate guide <a href="https://github.com/sansbacher/docs/tree/master/git">here</a>.</li>
+					<li>Of course single letter switches can have different meanings to different commands...</li>
+				</ul>
+			</ul>
+			<div class="w3-container w3-theme-l4 w3-leftbar">
+				<p>The main point is: <b>Every command can be different so check the help text!</b></p>
+			</div>
+			<br>
+			<hr>
 
-	<div class="w3-container w3-theme-l4 w3-leftbar">
-		<p>CMD.EXE is a Windows program, so be mindful of <b>Run as Administrator</b>, Admin Rights, UAC, etc. If you can't do something, try running your Command Prompt as an Administrator.</p>
-	</div>
+			<h3 id="get-help">Getting Help</h3>
 
-	</div><!-- Page Content ends here -->
+			<p>Getting <b>Help</b> for CMD/DOS commands can also vary. A short list of the basic included Windows console commands
+				can be found by running <code>help</code> but this by no means includes them all (mostly just the older legacy
+				MS-DOS derived commands).</p>
+			<p>Usually you need to pass a switch or option for DOS/CMD/Console .EXE commands to show their Help text. It can vary,
+				but one of these should work:</p>
+			<ul>
+				<li><code class="console">-h</code>, <code class="console">/h</code>, <code class="console">--help</code>, <code
+						class="console">/?</code>, <code class="console">-?</code>, or just <code class="console">?</code></li>
+				<li>As in <code>ping /?</code></li>
+			</ul>
+			<p>If the Help Text is too long add <code class="console">| more</code> after, as in: <code>chkdsk /? | more</code>
+			</p>
 
-	<!-- Footer -->
-	<footer class="w3-container w3-theme" style="padding:16px 32px">
-	  <p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs" >Docs</a> on GitHub.</p>
-	  <p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/" target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
-	</footer>
-		 
+			<p>Sometimes you can just type the command with <i>no</i> options and it will provide help, but sometimes the command
+				doesn't require options and it just runs!
+				<br>If this happens and it appears to hang (likely waiting for input) try pressing any of:
+				<kbd>Ctrl</kbd>+<kbd>C</kbd>, <kbd>Ctrl</kbd>+<kbd>Z</kbd>, or <kbd>Ctrl</kbd>+<kbd>D</kbd> to either cancel the
+				command or end the input.</p>
+			<p>While the <i>meaning</i> of console CLI switches/options/arguments can vary usually how they are represented in
+				Help Text is fairly standard. </p>
+
+			<img src="images/cmd-help-example.png" alt="CMD example help text from: copy /?" class="w3-round-small">
+			<p></p>
+			<div class="w3-container w3-theme-l4 w3-leftbar">
+				<p>In the example above, <code>copy /?</code> shows there is only one required parameter, the <i>source</i> as it
+					is not enclosed in <i>[square brackets]</i>. The other switches and options (such as <code
+						class="console">/D</code>, <code class="console">/V</code>, etc) are in <i>[square brackets]</i> so they
+					are optional, as is the <i>destination</i>.
+					<br>If options are separated by a vertical pipe <kbd>|</kbd> character that means you can use only one of
+					those options (either <code class="console">/A</code> or <code class="console">/B</code>). Then there is
+					usually a list of what each option/switch means.
+					<br>Whether you can specify options in lower case or use <kbd>-</kbd> instead of <kbd>/</kbd> depends on the
+					command, sometimes if there isn't a <code class="console">/B</code> and a <code class="console">/b</code>
+					option you can use either, other times not, other times they could be different options entirely!</p>
+			</div>
+
+			<br>
+			<hr>
+
+			<h3 id="also-worth-knowing">Also worth knowing</h3>
+
+			<p>There's <b>Tab completion</b> only for files/directories at the CMD Command Prompt. Type a command and if you need
+				to specify a file/folder start typing the name and press the <kbd>Tab</kbd> key to cycle through all matching
+				files/folders. For example: type <code>cd \win[press TAB]</code> and it will complete to
+				<code>cd C:\Windows</code></p>
+			<p>Another trick you can sometimes use: the <kbd>*</kbd> wildcard. If it will match only one folder, as in
+				<code>cd \win*</code>, it will resolve to the first folder starting with "win" in the root of the drive.</p>
+
+			<p>The Command Prompt is (generally) <b>NOT Case Sensitive</b>. You can type <code>DIR</code>, <code>dir</code>,
+				<code>DiR</code>, etc.</p>
+			<ul>
+				<li>Files are also NOT Case Sensitive, though they do <i>retain</i> case (so test.txt = TEST.TXT = Test.TxT, they
+					all reference the same file). Note: UNIX/Linux/macOS IS Case Sensitive.</li>
+				However sometimes switches/parameters/options for external DOS/.EXE commands <i>are</i> case-sensitive!</p>
+				<li>Because of the need to put <i>"quotes"</i> around files/folders with spaces in them you'll soon discover it's
+					best to <i>avoid spaces in names if possible</i> (or use Tab Completion).</li>
+			</ul>
+
+			<p>To <b>run a script</b> you can just run it as any other built-in or external .EXE command, so long as it is in the
+				<code class="console">PATH</code> it will be found.</p>
+			<ul>
+				<li> CMD scripts are ASCII text files that have a .BAT or .CMD extension (not .BATCH or .COM). Windows and most
+					Email/AV/Spam filters will consider them executable so will be blocked from attachments; generally if you want
+					to email a .BAT/.CMD file rename it to something like <i>filename_rename-me-BAT.txt</i> (but don't use
+					.bat.txt in case the double extension is caught as suspicious too).</li>
+				<li> The extension .BAT means "a file containing a <i>batch</i> of commands to run" and .CMD is for CMD, the
+					command/shell processor.</li>
+			</ul>
+			<p>You can enter any CMD/DOS command at the prompt and test/build scripts one command at a time - that is: variables
+				and whatnot persist between commands (but not between sessions - if you close the window everything not saved to a
+				file is gone). However the Shell itself only has limited expression evaluation abilities, you can can't just type
+				<i>2 + 2</i> and get back <i>4</i> like you can with PowerShell.</p>
+
+			<div class="w3-container w3-theme-l4 w3-leftbar">
+				<p>CMD.EXE is a Windows program, so be mindful of <b>Run as Administrator</b>, Admin Rights, UAC, etc. If you
+					can't do something, try running your Command Prompt as an Administrator.</p>
+			</div>
+
+		</div><!-- Page Content ends here -->
+
+		<!-- Footer -->
+		<footer class="w3-container w3-theme" style="padding:16px 32px">
+			<p>Thanks for reading! I hope this has been helpful. Return to all my <a
+					href="https://github.com/sansbacher/docs">Docs</a> on GitHub.</p>
+			<p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/"
+					target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
+		</footer>
+
 	</div><!-- Main div for the body End -->
 
 	<script>
@@ -164,26 +250,27 @@
 		//
 		// Open and close the sidebar on medium and small screens
 		function w3_open() {
-		  document.getElementById("mySidebar").style.display = "block";
-		  document.getElementById("myOverlay").style.display = "block";
+			document.getElementById("mySidebar").style.display = "block";
+			document.getElementById("myOverlay").style.display = "block";
 		}
 		function w3_close() {
-		  document.getElementById("mySidebar").style.display = "none";
-		  document.getElementById("myOverlay").style.display = "none";
+			document.getElementById("mySidebar").style.display = "none";
+			document.getElementById("myOverlay").style.display = "none";
 		}
 
 		// Change style of top container on scroll
-		window.onscroll = function() {myFunction()};
+		window.onscroll = function () { myFunction() };
 		function myFunction() {
-		  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-			document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
-			document.getElementById("myIntro").classList.add("w3-show-inline-block");
-		  } else {
-			document.getElementById("myIntro").classList.remove("w3-show-inline-block");
-			document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
-		  }
+			if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+				document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+				document.getElementById("myIntro").classList.add("w3-show-inline-block");
+			} else {
+				document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+				document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+			}
 		}
 	</script>
-		 
+
 </body>
-</html> 
+
+</html>

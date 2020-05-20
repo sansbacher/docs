@@ -40,7 +40,7 @@ Why "yet-another-Git-Guide"? Because most of the ones I found online were:
 - Assuming you were working on a large team or a huge project
 - Or that you want to contribute to Open Source projects with Pull Requests, etc
 - Many of the Cheatsheets just listed the command, like `git add`, without context or options or explanation
-- Some of the "beginner" guides assumed you had no CLI or dev experience
+- Some of the "beginner" guides assumed you had no CLI or dev experience (if you do, see [my guide here](https://sansbacher.github.io/docs/cli/index.html))
 
 This guide is narrower in focus, for one or a few devs working together on a small to moderate sized project, likely not working on the same source file at the same time, and using Windows. And that you're somewhat experienced with developing software and Windows. It's long because it tries to explain things (so I don't forget...)
  
@@ -111,6 +111,7 @@ When you look at all the Authentication settings in SourceTree you'll see variou
   - Or this is another good site/overview of Forking and contributing: <https://www.gun.io/blog/how-to-github-fork-branch-and-pull-request>
 - If you work on a larger project try this: <https://nvie.com/posts/a-successful-git-branching-model>
 - My basic Markdown Reference: <https://github.com/sansbacher/docs/tree/master/markdown>
+- My CLI/Command Line tutorial: <https://sansbacher.github.io/docs/cli/index.html>
 
 ## Definitions
 
@@ -217,7 +218,7 @@ Either start with some existing files to initialize a local repo:
 _OR_, create a new remote repo in GitHub and clone it locally:  
 `git clone URL`  
 
-Then _create a .gitignore_ and _Create/Edit some code files_. After some work check what's not Commited, then Stage and Commit those files:  
+Then _create a .gitignore_ and _Create/Edit some code files_. After some work check what's not Committed, then Stage and Commit those files:  
 `git status`  
 `git add -A`  
 `git commit -m "Added some new files to master"`  
@@ -237,7 +238,7 @@ Once your dev or bugfix work is done, Checkout master and merge in your work fro
 `git checkout master`  
 `git merge dev`  
 `git log --oneline`  
-_Possibly_ deal with any merge conflicts, but if everything looks good push your code to the remote repo:  
+_Possibly_ deal with any merge conflicts (remember to commit), but if everything looks good push your code to the remote repo:  
 `git pull --rebase && git push`  
 _And Deploy_ your code or application.
 

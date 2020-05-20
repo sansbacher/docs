@@ -1,5 +1,16 @@
 {
 	"cSpell.enableFiletypes": [
 		"html"
+	],
+	"cSpell.words": [
+		"IPCONFIG",
+		"chdir",
+		"clians",
+		"mkdir",
+		"notranslate",
+		"psversiontable",
+		"pswindow",
+		"recurse",
+		"rmdir"
 	]
 }

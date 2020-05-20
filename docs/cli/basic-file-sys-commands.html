@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<!-- Update these for each page -->
 	<title>Basic File System Commands</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta name="keywords" content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
+	<meta name="keywords"
+		content="command line,powershell,cmd,dos,console,shell,terminal,command,cmdline,commandline,howto,how-to,guide,commands,admin,administrator,windows,win32">
 	<meta name="description" content="A commandline tutorial for PowerShell, CMD, and the CLI in general for Windows Admins">
 	<meta name="author" content="Saul Ansbacher">
 	<!-- Based on the "Material Design" W3.CSS Demo, with some changes, from www.w3schools.com. Simple and works. -->
@@ -15,170 +17,209 @@
 	<!-- Some custom CSS overrides: -->
 	<link rel="stylesheet" href="../css/sa-custom.css">
 </head>
+
 <body>
 	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
-	  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-	  <!-- Side Nav Bar items -->
-	  <a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
-	  <a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
-	  <a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
-	  <a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
-	  <a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
-	  <a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
-	  <a class="w3-bar-item w3-button w3-theme" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
-	  <a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
-	  <a class="w3-bar-item w3-button" href="console-commands.html">Common Console Commands</a>
-	  <a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
-	  <a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
-	  <a class="w3-bar-item w3-button" href="additional-topics.html">Additional Topics</a>
-	  <a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
+		<a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i
+				class="fa fa-remove"></i></a>
+		<!-- Side Nav Bar items -->
+		<a class="w3-bar-item w3-button" href="index.html">CLI Home</a>
+		<a class="w3-bar-item w3-button" href="cli-basics.html">CLI Basics</a>
+		<a class="w3-bar-item w3-button" href="ps-essentials.html">PowerShell Essentials</a>
+		<a class="w3-bar-item w3-button" href="cmd-essentials.html">CMD/DOS Essentials</a>
+		<a class="w3-bar-item w3-button" href="cli-keystrokes.html">CLI Keystrokes</a>
+		<a class="w3-bar-item w3-button" href="cli-symbols.html">CLI Symbols</a>
+		<a class="w3-bar-item w3-button w3-theme" href="basic-file-sys-commands.html">Basic File Sys Commands</a>
+		<a class="w3-bar-item w3-button" href="cli-tasktest.html">CLI Task Test</a>
+		<a class="w3-bar-item w3-button" href="console-commands.html">Common Console Commands</a>
+		<a class="w3-bar-item w3-button" href="ps-bootcamp.html">PowerShell Boot Camp</a>
+		<a class="w3-bar-item w3-button" href="cmd-bootcamp.html">CMD/DOS Boot Camp</a>
+		<a class="w3-bar-item w3-button" href="additional-topics.html">Additional Topics</a>
+		<a class="w3-bar-item w3-button" href="https://github.com/sansbacher/docs">Return to Docs</a>
 	</nav>
 
 	<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
-	<div class="w3-main" style="margin-left:250px;"><!-- Main div for the body Start -->
+	<div class="w3-main" style="margin-left:250px;">
+		<!-- Main div for the body Start -->
 
-	<!-- Change both of these to change the Page Header -->
-	<div id="myTop" class="w3-container w3-top w3-theme w3-large">
-	  <p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
-	  <span id="myIntro" class="w3-hide">Basic File System Commands</p>
-	</div>
-	<header class="w3-container w3-theme" style="padding:64px 32px">
-	  <h1 class="w3-xxxlarge">Basic File System Commands</h1>
-	</header>
+		<!-- Change both of these to change the Page Header -->
+		<div id="myTop" class="w3-container w3-top w3-theme w3-large">
+			<p><i class="fa fa-bars w3-button w3-theme w3-hide-large w3-xlarge" onclick="w3_open()"></i>
+				<span id="myIntro" class="w3-hide">Basic File System Commands</p>
+		</div>
+		<header class="w3-container w3-theme" style="padding:64px 32px">
+			<h1 class="w3-xxxlarge">Basic File System Commands</h1>
+		</header>
 
-	<div class="w3-container" style="padding:32px;padding-right:5%"><!-- Page Content starts here -->
+		<div class="w3-container" style="padding:32px;padding-right:5%">
+			<!-- Page Content starts here -->
 
-	<h2>Basic File System Commands you should know</h2>
+			<h2>Basic File System Commands you should know</h2>
 
-	<p>Here's the basic file system commands you should know, most of these are actually CMD/Command Prompt commands but PowerShell has aliases for them. In PowerShell I don't know anyone who types <code>Get-ChildItem</code>, and while you may see the short alias <code>gci</code> occationally (especially on Microsoft blogs), most people type <code>dir</code> because it's familiar muscle memory (or <code>ls</code> if they are Linux/UNIX users as there are aliases for those as well).</p>
-	
-	<p>Because they will work from both the CMD Command Prompt and PowerShell they're doubly useful to know - you'll be productive regardless of which shell you're using - and many of these will work in Linux/Bash as well! This isn't a complete list, but is enough to get you doing all basic Windows File Explorer functions via the CLI.</p>
-	
-	<p>Navigating a system from the Command Prompt (CMD or PowerShell) will be much easier if you know these, and because of various switches and options it can be both quicker and possible to do things you just can't from Windows File Explorer.</p>
+			<p>Here's the basic file system commands you should know, most of these are actually CMD/Command Prompt commands but PowerShell
+				has aliases for them. In PowerShell I don't know anyone who types <code>Get-ChildItem</code>, and while you may see the
+				short alias <code>gci</code> occasionally (especially on Microsoft blogs), most people type <code>dir</code> because it's
+				familiar muscle memory (or <code>ls</code> if they are Linux/UNIX users as there are aliases for those as well).</p>
 
-	<div class="w3-container w3-theme-l4 w3-leftbar">
-	<p><b>NOTE:</b> While PowerShell has aliases for all these commands the <i>switches</i> are <b>not</b> the same between the CMD and PowerShell versions!<br>
-	For example, to see all sub folders/files recursively in at the Command Prompt you'd use <code>dir /s</code> but in PowerShell it's <code>dir -recurse</code></p>
-	
-	<p>See the <i>Getting Help</i> sections of the <i>Essentials</i> pages to see what options/switches each command supports!<br>
-	Basically: type <code>help [name of command]</code> in either case, or <code>[name of command] /?</code> in the CMD Command Prompt.</p>
-	</div>
-	<p></p>
-	
-<table class="w3-table-all">
-	<tr>
-	  <th>Command</th>
-	  <th>Description</th>
-	</tr>
-<tr>
-	<td><code>cls</code></td>
-	<td>Clears the Console window, short for "clear screen"</td>
-</tr>
-<tr>
-	<td><code>c:</code> or <code>e:</code></td>
-	<td>Switch the current drive/volume by just typing the drive letter and a colon <kbd>:</kbd>, you can use any valid letter.</td>
-</tr>
-<tr>
-	<td><code>dir</code></td>
-	<td>Shows the Directory listing (displaying all files / folders), you can specify somewhere else too, eg. <code>dir c:\temp</code><br>
-	But just <code>dir</code> will show the directory listing of the current folder.</td>
-</tr>
-<tr>
-	<td><code>md</code> or <code>mkdir</code></td>
-	<td>Make Directory ie. create a Folder such as: <code>mkdir c:\temp\new2</code> to create a <i>new2</i> folder inside c:\temp<br>
-	If you just use <code>mkdir new2</code> it will create <i>new2</i> in whatever directory you are in.</td>
-</tr>
-<tr>
-	<td><code>cd</code> or <code>chdir</code></td>
-	<td>Change Directory, changes to the specified directory / folder, eg. <code>cd c:\temp\new2</code><br>
-	Or just <code>cd new2</code> if you were already in the <i>c:\temp</i> folder.</td>
-</tr>
-<tr>
-	<td><code>rd</code> or <code>rmdir</code></td>
-	<td>Remove Directory (if it's not empty it will prompt you if you mean it) - <code>rd c:\temp\new2</code> will remove the <i>new2</i> subfolder of c:\temp<br>
-</td>
-</tr>
-<tr>
-	<td><code>pwd</code></td>
-	<td>In PowerShell (or Linux/Bash) it Prints the current Working Directory, which is also shown in your prompt, eg. <code class="console">PS C:\temp&gt;</code><br>
-	In DOS/CMD you can just type <code>cd</code> with no folder to change to and it will display your Current Directory.</td>
-</tr>
-<tr>
-	<td><code>copy</code></td>
-	<td>Copy a file, specify <i>source</i> and <i>destination</i> which is often a folder, eg. <code>copy file.txt c:\temp</code><br>
-	Which will copy <i>file.txt</i> in the current directory to <i>c:\temp</i>
-</td>
-</tr>
-<tr>
-	<td><code>move</code></td>
-	<td>Move a file, similar to copy by you don't end up with a second copy - the original is removed.<br>
-	<code>move c:\temp\file.txt c:\windows\temp</code> will move the file to <i>c:\windows\temp</i> regardless of what folder you are in.</td>
-</tr>
-<tr>
-	<td><code>ren</code></td>
-	<td>Rename a file or folder, specify <i>CurrentName</i> and <i>NewName</i>, eg. <code>ren file.txt "Descriptive Name.txt"</code></td>
-</tr>
-<tr>
-	<td><code>del</code></td>
-	<td>Delete a file, just specify the file like <code>del file.txt</code> or <code>del c:\temp\file.txt</code><br>
-	Note: does <b>NOT</b> move it to the Recycle Bin and there's <i>no undelete</i>!</td>
-</tr>
-<tr>
-	<td><code>write</code> or <code>echo</code></td>
-	<td>Prints something to the screen, if multiple words aren't in "quotes" they will appear on separate lines, like <code>write "Hello, world!"</code><br>
-	Note: <code>write</code> only works in PowerShell, but <code>echo</code> works in both (and in CMD you don't need quotes if there's spaces)</td>
-</tr>
-<tr>
-	<td><code>more</code></td>
-	<td>Displays the contents of a text file to the screen, one page at a time if needed. Eg: <code>more file.txt</code> (press <kbd>q</kbd> to quit)<br>
-	Also works with <i>pipeline</i> input (covered in the Boot Camps) such as: <code>dir c:\windows | more</code></td>
-</tr>
-<tr>
-	<td><code>help</code></td>
-	<td>Get help for any PowerShell command/alias or a list of basic CMD Windows commands (shows the options and examples) eg. <code>help copy</code></td>
-</tr>
-<tr>
-	<td><code>alias</code></td>
-	<td>In PowerShell almost all of these are aliases, <code>alias</code> will show you all aliases, or you can specify one to see the real command.<br>
-	Eg: <code>alias copy</code> shows it is really <code>Copy-Item</code> in PowerShell. Doesn't do anything in CMD/DOS.</td>
-</tr>
-<tr>
-	<td><code>SOME.EXE</code></td>
-	<td>You can run any regular .EXE file, eg. <code>ping 127.0.0.1</code> or <code>notepad script.ps1</code> to edit a script, the .EXE isn't needed.</td>
-</tr>
-<tr>
-	<td><code>exit</code></td>
-	<td>Quits your CLI Console session and closes the window, doesn't ask for confirmation!</td>
-</tr>
-<tr>
-	<td><code>.\script.ps1</code></td>
-	<td>Runs the named script in the <i>current</i> directory. You can't just type the name, you <i>need</i> to specify the path in PowerShell.<br>
-	For .BAT or .CMD scripts you can just type their name as if they were .EXE files, even in PowerShell.</td>
-</tr>
+			<p>Because they will work from both the CMD Command Prompt and PowerShell they're doubly useful to know - you'll be productive
+				regardless of which shell you're using - and many of these will work in Linux/Bash as well! This isn't a complete list, but
+				is enough to get you doing all basic Windows File Explorer functions via the CLI.</p>
 
-</table>
+			<p>Navigating a system from the Command Prompt (CMD or PowerShell) will be much easier if you know these, and because of various
+				switches and options it can be both quicker and possible to do things you just can't from Windows File Explorer.</p>
 
-	<p></p>
-	<div class="w3-container w3-theme-l4 w3-leftbar">
-	<p><b>Remember:</b> Windows Command Prompt commands are <i>not</i> case sensitive, you can use <code>dir</code> or <code>DIR</code>, <code>C:</code> or <code>c:</code> regardless of how they're displayed above.<br>
-	<i>Usually</i> switch/option case is not important either - but for some non-PowerShell external console .EXE command they can be.</p>
-	</div>
+			<div class="w3-container w3-theme-l4 w3-leftbar">
+				<p><b>NOTE:</b> While PowerShell has aliases for all these commands the <i>switches</i> are <b>not</b> the same between the
+					CMD and PowerShell versions!<br>
+					For example, to see all sub folders/files recursively in at the Command Prompt you'd use <code>dir /s</code> but in
+					PowerShell it's <code>dir -recurse</code></p>
 
-	<p>Seems overwhelming if you're new to using the CLI. There's also a sort of play-by-play CLI Task Test you can try: <a href="cli-tasktest.html" target="_blank">a list of very basic CLI tasks to try from a command prompt</a> - along with an answer list showing what to type to complete them all (you can use PowerShell on your own PC).</p>
-	
-	<p>You can keep this page open as a quick reference.</p>
-	
-	<p>If you feel like you need extra practice then I strongly suggest Zed's <a href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">CLI Crash Course</a> which has exercises for most basic file system commands.</p>
-	
-	</div><!-- Page Content ends here -->
+				<p>See the <i>Getting Help</i> sections of the <i>Essentials</i> pages to see what options/switches each command
+					supports!<br>
+					Basically: type <code>help [name of command]</code> in either case, or <code>[name of command] /?</code> in the CMD
+					Command Prompt.</p>
+			</div>
+			<p></p>
 
-	<!-- Footer -->
-	<footer class="w3-container w3-theme" style="padding:16px 32px">
-	  <p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs" >Docs</a> on GitHub.</p>
-	  <p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/" target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
-	</footer>
-		 
+			<table class="w3-table-all">
+				<tr>
+					<th>Command</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td><code>cls</code></td>
+					<td>Clears the Console window, short for "clear screen"</td>
+				</tr>
+				<tr>
+					<td><code>c:</code> or <code>e:</code></td>
+					<td>Switch the current drive/volume by just typing the drive letter and a colon <kbd>:</kbd>, you can use any valid
+						letter.</td>
+				</tr>
+				<tr>
+					<td><code>dir</code></td>
+					<td>Shows the Directory listing (displaying all files / folders), you can specify somewhere else too, eg.
+						<code>dir c:\temp</code><br>
+						But just <code>dir</code> will show the directory listing of the current folder.</td>
+				</tr>
+				<tr>
+					<td><code>md</code> or <code>mkdir</code></td>
+					<td>Make Directory ie. create a Folder such as: <code>mkdir c:\temp\new2</code> to create a <i>new2</i> folder inside
+						c:\temp<br>
+						If you just use <code>mkdir new2</code> it will create <i>new2</i> in whatever directory you are in.</td>
+				</tr>
+				<tr>
+					<td><code>cd</code> or <code>chdir</code></td>
+					<td>Change Directory, changes to the specified directory / folder, eg. <code>cd c:\temp\new2</code><br>
+						Or just <code>cd new2</code> if you were already in the <i>c:\temp</i> folder.</td>
+				</tr>
+				<tr>
+					<td><code>rd</code> or <code>rmdir</code></td>
+					<td>Remove Directory (if it's not empty it will prompt you if you mean it) - <code>rd c:\temp\new2</code> will remove
+						the <i>new2</i> subfolder of c:\temp<br>
+					</td>
+				</tr>
+				<tr>
+					<td><code>pwd</code></td>
+					<td>In PowerShell (or Linux/Bash) it Prints the current Working Directory, which is also shown in your prompt, eg. <code
+							class="console">PS C:\temp&gt;</code><br>
+						In DOS/CMD you can just type <code>cd</code> with no folder to change to and it will display your Current Directory.
+					</td>
+				</tr>
+				<tr>
+					<td><code>copy</code></td>
+					<td>Copy a file, specify <i>source</i> and <i>destination</i> which is often a folder, eg.
+						<code>copy file.txt c:\temp</code><br>
+						Which will copy <i>file.txt</i> in the current directory to <i>c:\temp</i>
+					</td>
+				</tr>
+				<tr>
+					<td><code>move</code></td>
+					<td>Move a file, similar to copy by you don't end up with a second copy - the original is removed.<br>
+						<code>move c:\temp\file.txt c:\windows\temp</code> will move the file to <i>c:\windows\temp</i> regardless of what
+						folder you are in.</td>
+				</tr>
+				<tr>
+					<td><code>ren</code></td>
+					<td>Rename a file or folder, specify <i>CurrentName</i> and <i>NewName</i>, eg.
+						<code>ren file.txt "Descriptive Name.txt"</code></td>
+				</tr>
+				<tr>
+					<td><code>del</code></td>
+					<td>Delete a file, just specify the file like <code>del file.txt</code> or <code>del c:\temp\file.txt</code><br>
+						Note: does <b>NOT</b> move it to the Recycle Bin and there's <i>no undelete</i>!</td>
+				</tr>
+				<tr>
+					<td><code>write</code> or <code>echo</code></td>
+					<td>Prints something to the screen, if multiple words aren't in "quotes" they will appear on separate lines, like
+						<code>write "Hello, world!"</code><br>
+						Note: <code>write</code> only works in PowerShell, but <code>echo</code> works in both (and in CMD you don't need
+						quotes if there's spaces)</td>
+				</tr>
+				<tr>
+					<td><code>more</code></td>
+					<td>Displays the contents of a text file to the screen, one page at a time if needed. Eg: <code>more file.txt</code>
+						(press <kbd>q</kbd> to quit)<br>
+						Also works with <i>pipeline</i> input (covered in the Boot Camps) such as: <code>dir c:\windows | more</code></td>
+				</tr>
+				<tr>
+					<td><code>help</code></td>
+					<td>Get help for any PowerShell command/alias or a list of basic CMD Windows commands (shows the options and examples)
+						eg. <code>help copy</code></td>
+				</tr>
+				<tr>
+					<td><code>alias</code></td>
+					<td>In PowerShell almost all of these are aliases, <code>alias</code> will show you all aliases, or you can specify one
+						to see the real command.<br>
+						Eg: <code>alias copy</code> shows it is really <code>Copy-Item</code> in PowerShell. Doesn't do anything in CMD/DOS.
+					</td>
+				</tr>
+				<tr>
+					<td><code>SOME.EXE</code></td>
+					<td>You can run any regular .EXE file, eg. <code>ping 127.0.0.1</code> or <code>notepad script.ps1</code> to edit a
+						script, the .EXE isn't needed.</td>
+				</tr>
+				<tr>
+					<td><code>exit</code></td>
+					<td>Quits your CLI Console session and closes the window, doesn't ask for confirmation!</td>
+				</tr>
+				<tr>
+					<td><code>.\script.ps1</code></td>
+					<td>Runs the named script in the <i>current</i> directory. You can't just type the name, you <i>need</i> to specify the
+						path in PowerShell.<br>
+						For .BAT or .CMD scripts you can just type their name as if they were .EXE files, even in PowerShell.</td>
+				</tr>
+
+			</table>
+
+			<p></p>
+			<div class="w3-container w3-theme-l4 w3-leftbar">
+				<p><b>Remember:</b> Windows Command Prompt commands are <i>not</i> case sensitive, you can use <code>dir</code> or
+					<code>DIR</code>, <code>C:</code> or <code>c:</code> regardless of how they're displayed above.<br>
+					<i>Usually</i> switch/option case is not important either - but for some non-PowerShell external console .EXE command
+					they can be.</p>
+			</div>
+
+			<p>Seems overwhelming if you're new to using the CLI. There's also a sort of play-by-play CLI Task Test you can try: <a
+					href="cli-tasktest.html" target="_blank">a list of very basic CLI tasks to try from a command prompt</a> - along with an
+				answer list showing what to type to complete them all (you can use PowerShell on your own PC).</p>
+
+			<p>You can keep this page open as a quick reference.</p>
+
+			<p>If you feel like you need extra practice then I strongly suggest Zed's <a
+					href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">CLI Crash Course</a> which has exercises
+				for most basic file system commands.</p>
+
+		</div><!-- Page Content ends here -->
+
+		<!-- Footer -->
+		<footer class="w3-container w3-theme" style="padding:16px 32px">
+			<p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs">Docs</a> on
+				GitHub.</p>
+			<p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/"
+					target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
+		</footer>
+
 	</div><!-- Main div for the body End -->
 
 	<script>
@@ -186,26 +227,27 @@
 		//
 		// Open and close the sidebar on medium and small screens
 		function w3_open() {
-		  document.getElementById("mySidebar").style.display = "block";
-		  document.getElementById("myOverlay").style.display = "block";
+			document.getElementById("mySidebar").style.display = "block";
+			document.getElementById("myOverlay").style.display = "block";
 		}
 		function w3_close() {
-		  document.getElementById("mySidebar").style.display = "none";
-		  document.getElementById("myOverlay").style.display = "none";
+			document.getElementById("mySidebar").style.display = "none";
+			document.getElementById("myOverlay").style.display = "none";
 		}
 
 		// Change style of top container on scroll
-		window.onscroll = function() {myFunction()};
+		window.onscroll = function () { myFunction() };
 		function myFunction() {
-		  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-			document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
-			document.getElementById("myIntro").classList.add("w3-show-inline-block");
-		  } else {
-			document.getElementById("myIntro").classList.remove("w3-show-inline-block");
-			document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
-		  }
+			if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+				document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
+				document.getElementById("myIntro").classList.add("w3-show-inline-block");
+			} else {
+				document.getElementById("myIntro").classList.remove("w3-show-inline-block");
+				document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
+			}
 		}
 	</script>
-		 
+
 </body>
-</html> 
+
+</html>

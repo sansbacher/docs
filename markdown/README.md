@@ -1,13 +1,15 @@
 # Basic / Useful Markdown Reference
 ![Markdown logo](images/markdown-logo.png)
-- [Useful Markdown Links](#useful-markdown-links)
-- [Headers and Lines](#headers-and-lines)
-- [Basic text](#basic-text)
-- [Source code](#source-code)
-- [Links and Images](#links-and-images)
-- [Lists](#lists)
-- [Tables](#tables)
-- [HTML Tags](#html-tags)
+- [Basic / Useful Markdown Reference](#basic--useful-markdown-reference)
+  - [Useful Markdown Links](#useful-markdown-links)
+  - [Headers and Lines](#headers-and-lines)
+- [Header1, is the LARGEST HEADER](#header1-is-the-largest-header)
+  - [Basic text](#basic-text)
+  - [Source code](#source-code)
+  - [Links and Images](#links-and-images)
+  - [Lists](#lists)
+  - [Tables](#tables)
+  - [HTML Tags](#html-tags)
 
 Markdown is a fairly readable plain-text format that can be easily rendered as HTML. On GitHub if the file has an .MD extension it happens automatically, README.md is automatically displayed in any folder.
 
@@ -178,16 +180,16 @@ Can also use `../dir/file.md` references as well for relative links, within a re
 **The above created using:**
 ```markdown
 **Links:**  
-[Link text](http://www.domain.com/page.htm)			A Link to http://www.domain.com/page.htm  
-https://www.google.com								Will automatically become a link to Google  
-<https://github.com>								Will also become a link to GitHub, is quick and more official.
+[Link text](http://www.domain.com/page.htm)         A Link to http://www.domain.com/page.htm  
+https://www.google.com                              Will automatically become a link to Google  
+<https://github.com>                                Will also become a link to GitHub, is quick and more official.
 
 So you can write a link to <https://www.google.ca> or you can suggest someone [click here](https://www.google.ca/) to get to Google, depending on what you want.
 
-[Back to Basic Text section](#basic-text)			Link to an Anchor from a #HEADER on the same page  
+[Back to Basic Text section](#basic-text)           Link to an Anchor from a #HEADER on the same page  
 
 **Images:**  
-![Optional Image Alt Text](images/example-image.png)			Embed an image, starts with ! (JPG, PNG, and maybe GIF)  
+![Optional Image Alt Text](images/example-image.png)       Embed an image, starts with ! (JPG, PNG, and maybe GIF)  
 
 Can also use `../dir/file.md` references as well for relative links, within a repo, or `images/file.png`, etc.
 ```
