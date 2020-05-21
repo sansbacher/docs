@@ -14,8 +14,8 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- Some custom CSS overrides: -->
-	<link rel="stylesheet" href="../css/sa-custom.css">
+	<!-- Some custom CSS overrides, SCRIPT is loaded at the END: -->
+	<link rel="stylesheet" href="../assets/css/sa-custom.css">
 </head>
 
 <body>
@@ -52,13 +52,15 @@
 			<h1 class="w3-xxxlarge">PowerShell Essentials</h1>
 		</header>
 
+		<button onclick="topFunction()" id="toTopButton" class="w3-button w3-theme-action" title="Go to top">Top</button>
+
 		<div class="w3-container" style="padding:32px;padding-right:5%">
 			<!-- Page Content starts here -->
 
 			<h2>PowerShell - The Essentials</h2>
 
 			<ul>
-				<li><a href="#tab-completion">Commands, Options, Tab Completion</a></li>
+				<li><a href="#command-option-tab">Commands, Options, Tab Completion</a></li>
 				<li><a href="#get-help">Getting Help</a></li>
 				<li><a href="#also-worth-knowing">Also Worth Knowing</a></li>
 			</ul>
@@ -97,7 +99,7 @@
 
 			<br>
 			<hr>
-			<h3 id="tab-completion">Command, Option, Tab</h3>
+			<h3 id="command-option-tab">Command, Option, Tab</h3>
 
 			<p>PowerShell <b>commands</b> (or cmdlets are they are known) are often very verbose/long (and are usually of the form
 				Verb-Noun, like <code>Get-Content</code>) so most people use aliases for common commands (eg. using
@@ -136,15 +138,20 @@
 					for <code class="console">-properties</code>, but <i>-p</i> won't work if there's also a <code
 						class="console">-partition</code> option)</li>
 				<li>And some can be skipped if they can be specified by their location (eg. you can skip <code
-						class="console">-Identity</code> with <code>Get-ADUser</code> and just type <code>
-	Get-ADUser username</code> as <i>Identity</i> is assumed to be the first parameter).</li>
+						class="console">-Identity</code> with <code>Get-ADUser</code> and just type <code>Get-ADUser username</code>
+						as <i>Identity</i> is assumed to be the first parameter).</li>
 				<li>Most PowerShell cmdlets let you pass some parameter values via the pipeline where the output of one command
 					forms the input for the another.</li>
 				<li>Switches are not case-sensitive, but can also be as long or verbose as commands -- at least you don't need to
 					guess what <i>-i</i> or <i>-p</i> means!</li>
 			</ul>
 
-			<p>There's <b>Tab completion</b> for both commands and parameters/switches/options, <i>and</i> files/directories.
+			<div class="w3-container w3-theme-l4 w3-leftbar">
+				<p><b>Tip:</b> Two common parameters that many PowerShell commands support (especially nearly all built-in ones) are: <code class="console">-WhatIf</code> and <code class="console">-Confirm</code><br>
+				The first will run the command and just lets you know what it <i>would do</i> without doing it. The second will <i>ask</i> before performing the action.</p>
+			</div>
+
+			<p id="tab-completion">There's <b>Tab completion</b> for both commands and parameters/switches/options, <i>and</i> files/directories.
 				Start typing the command or option and press the <kbd>Tab</kbd> key to cycle through all choices, which even works
 				for files. If you use Tab Completion you won't mind that commands or switches are so long - just type enough and
 				press <kbd>Tab</kbd> a few times to get to what you're looking for.</p>
@@ -254,31 +261,7 @@
 
 	</div><!-- Main div for the body End -->
 
-	<script>
-		// These came from the w3schools.com Template as well:
-		//
-		// Open and close the sidebar on medium and small screens
-		function w3_open() {
-			document.getElementById("mySidebar").style.display = "block";
-			document.getElementById("myOverlay").style.display = "block";
-		}
-		function w3_close() {
-			document.getElementById("mySidebar").style.display = "none";
-			document.getElementById("myOverlay").style.display = "none";
-		}
-
-		// Change style of top container on scroll
-		window.onscroll = function () { myFunction() };
-		function myFunction() {
-			if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-				document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
-				document.getElementById("myIntro").classList.add("w3-show-inline-block");
-			} else {
-				document.getElementById("myIntro").classList.remove("w3-show-inline-block");
-				document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
-			}
-		}
-	</script>
+	<script src="../assets/js/sa-custom.js"></script><!-- Custom scripts loaded here, to ensure page is fully loaded -->
 
 </body>
 

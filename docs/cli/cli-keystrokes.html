@@ -14,8 +14,8 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!-- Some custom CSS overrides: -->
-	<link rel="stylesheet" href="../css/sa-custom.css">
+	<!-- Some custom CSS overrides, SCRIPT is loaded at the END: -->
+	<link rel="stylesheet" href="../assets/css/sa-custom.css">
 </head>
 
 <body>
@@ -51,6 +51,8 @@
 		<header class="w3-container w3-theme" style="padding:64px 32px">
 			<h1 class="w3-xxxlarge">Command Line Keystrokes</h1>
 		</header>
+
+		<button onclick="topFunction()" id="toTopButton" class="w3-button w3-theme-action" title="Go to top">Top</button>
 
 		<div class="w3-container" style="padding:32px;padding-right:5%">
 			<!-- Page Content starts here -->
@@ -159,31 +161,7 @@
 
 	</div><!-- Main div for the body End -->
 
-	<script>
-		// These came from the w3schools.com Template as well:
-		//
-		// Open and close the sidebar on medium and small screens
-		function w3_open() {
-			document.getElementById("mySidebar").style.display = "block";
-			document.getElementById("myOverlay").style.display = "block";
-		}
-		function w3_close() {
-			document.getElementById("mySidebar").style.display = "none";
-			document.getElementById("myOverlay").style.display = "none";
-		}
-
-		// Change style of top container on scroll
-		window.onscroll = function () { myFunction() };
-		function myFunction() {
-			if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-				document.getElementById("myTop").classList.add("w3-card-4", "w3-animate-opacity");
-				document.getElementById("myIntro").classList.add("w3-show-inline-block");
-			} else {
-				document.getElementById("myIntro").classList.remove("w3-show-inline-block");
-				document.getElementById("myTop").classList.remove("w3-card-4", "w3-animate-opacity");
-			}
-		}
-	</script>
+	<script src="../assets/js/sa-custom.js"></script><!-- Custom scripts loaded here, to ensure page is fully loaded -->
 
 </body>
 
