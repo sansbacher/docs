@@ -47,3 +47,11 @@ window.onscroll = function() {
 	scrollToTop();
 	changeTopOnScroll();
 };
+
+// Make all IMG with class="clickable" be links pointing to their own SRC
+let clickableImages = document.getElementsByClassName("clickable")
+for (let img of clickableImages) {
+	img.addEventListener("click", function() {
+		window.open(this.getAttribute("src"));
+	});
+}
