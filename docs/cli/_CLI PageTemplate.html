@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Some custom CSS overrides, SCRIPT is loaded at the END: -->
 	<link rel="stylesheet" href="../assets/css/sa-custom.css">
+	<link rel="stylesheet" href="../assets/css/prism.css">		<!-- For Syntax highlighting of PRE CODE blocks -->
 </head>
 <body>
 	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
@@ -61,7 +62,7 @@
 
 	<div class="w3-container">
 		<div class="w3-panel w3-card w3-theme-light w3-threequarter">
-		  <h5>Example Code:</h5>
+		  <h5>Example Console Code:</h5>
 		  <div class="w3-code notranslate">
 			C:\> Here_is_some_code.exe<br>
 			Use-Some-Command -With -Switches "And Stuff"<br>
@@ -70,6 +71,22 @@
 	</div>
 
 	<p>Along with some example inline code: <code class="w3-codespan">Get-Command -foo BAR</code> is what you'd type. Or simply <code>CMD.EXE</code> will work and here is a prompt <code class="console">C:\></code>. Make sure to press <kbd>Enter</kbd> after! You can specify an option like <code class="console">-this</code> thanks to the sa-custom.css</p>
+
+	<p>And here is some example SOURCE code, using <a href="https://prismjs.com/" target="_blank">PrismJS</a> to format it, additional languages will need to be added, right now just PowerShell:</p>
+
+	<div class="w3-container">
+		<div class="w3-panel w3-card w3-theme-l3 w3-threequarter">
+			<h5>Example Source code:</h5>
+<pre><code class="language-powershell"># Example function
+function pingt ($Target) { 
+	# Prints a constant PING with a time/date stamp
+	ping -t $Target | ForEach { 
+		"{0} - {1}" -f ( Get-Date ), $_ 
+	} 
+}
+</code></pre>
+		</div>
+	</div>
 
 	<br>
 	<hr>
@@ -168,6 +185,6 @@
 	</div><!-- Main div for the body End -->
 
 	<script src="../assets/js/sa-custom.js"></script><!-- Custom scripts loaded here, to ensure page is fully loaded -->
-
+	<script src="../assets/js/prism.js"></script>
 </body>
 </html> 

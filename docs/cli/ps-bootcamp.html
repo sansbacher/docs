@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Some custom CSS overrides, SCRIPT is loaded at the END: -->
 	<link rel="stylesheet" href="../assets/css/sa-custom.css">
+	<link rel="stylesheet" href="../assets/css/prism.css"> <!-- For Syntax highlighting of PRE CODE blocks -->
 </head>
 
 <body>
@@ -69,13 +70,23 @@
 					<li><a href="#concept-pipeline">The Pipeline</a></li>
 				</ul>
 				<li><a href="#advanced-control">Advanced Control Structures</a></li>
+				<ul>
+					<li><a href="#concept-foreach">Foreach</a></li>
+					<li><a href="#concept-if-then">If ... Then</a></li>
+					<li><a href="#concept-functions">Functions</a></li>
+					<li><a href="#concept-write">Write vs Write-Host</a></li>
+				</ul>
 				<li><a href="#final-points">Final PowerShell Points</a></li>
+				<ul>
+					<li><a href="#concept-profile">Your $PROFILE</a></li>
+				</ul>
 			</ul>
 
 			<p>This section will give a brief boot-camp / accelerated crash course to get up to speed on PowerShell quickly. It won't be
 				very in depth, but it should provide enough info you can get by or at least search for more in-depth pages about a certain
 				topic. It also won't teach you how to <i>program</i> scripts or some of the PowerShell best practices or gotchas - it's a
-				basic "get started fast" guide.</p>
+				basic "get started fast" guide. This overall guide was mainly just about the Command Line in general, but once you know the
+				basics you want to start learning more - start here!</p>
 
 			<p>I assume you can complete the <a href="cli-tasktest.html">CLI Task Test</a>, if not run through Zen's <a
 					href="https://learnpythonthehardway.org/book/appendixa.html" target="_blank">CLI Crash Course</a> first. Most what you
@@ -106,7 +117,7 @@
 				<code class="console">-Identity</code> or <code class="console">-Properties</code>. Any value comes after, such as: <code
 					class="console">-Identity jsmith</code>. PowerShell commands/cmdlets and options/parameters are <i>not</i> case
 				sensitive, but usually displayed using PascalCase so words forced together AreEasierToRead. Cmdlets and Parameters are often
-			long so use <a href="ps-essentials.html#tab-completion"><kbd>Tab</kbd> Completion</a>.</p>
+				long so use <a href="ps-essentials.html#tab-completion"><kbd>Tab</kbd> Completion</a>.</p>
 
 			<p>PowerShell cmdlets come in various modules: many of which are included with Windows/PowerShell, come with other programs
 				(like Active Directory or SQL Server), or can be downloaded from the <a href="https://www.powershellgallery.com/"
@@ -126,7 +137,8 @@
 					<p><code>Get-Help</code> (alias = <code>help</code>) to display the Help Text for any command, cmdlet, or just about
 						anything. Using <code class="console">-full</code> will usually give you detailed help and examples, such as:
 						<code>help get-content -full</code> (you can skip right the examples with <code class="console">-Examples</code>, as
-						in: <code>help get-content -examples</code>). See the <a href="ps-essentials.html#get-help">Essentials</a> page for more details.
+						in: <code>help get-content -examples</code>). See the <a href="ps-essentials.html#get-help">Essentials</a> page for
+						more details.
 					</p>
 					<p>
 						You can also get help on various internal aspects of PowerShell, they all start with <i>about_</i> such as
@@ -234,7 +246,8 @@
 
 			<p>Object variables have their name on the Large Bucket that you can pick (like <code class="console">$UserObject</code>) but
 				the Property and Method names are set by the template Type for that sort of Object.<br>
-				You can reference the Properties and Methods with "dot notation" - by using the Object's variable name, a dot, and the
+				You can reference the Properties and Methods with "dot notation" - by using the Object's variable name, a dot <kbd>.</kbd>,
+				and the
 				Property or Method. Eg: <code class="console">$Object.Property</code> or <code class="console">$Object.Method()</code><br>
 				&nbsp; &rarr; Properties are just variables and hold values, sometimes you can <i>set</i> them, other times you can only
 				<i>get</i> them (if they are read-only).<br>
@@ -283,7 +296,8 @@
 			</div> <!-- centred half length HR -->
 
 			<p>Often you need to access Properties, Methods, or even just evaluate a PowerShell expression, variable or command
-				<i>within</i> another command or context. You can use sub-expressions to do this by enclosing the command/variable/expression
+				<i>within</i> another command or context. You can use sub-expressions to do this by enclosing the
+				command/variable/expression
 				in brackets like: <code class="console">(Some-Command)</code> and then you can access Properties/Methods, like: <code
 					class="console">(Some-Command).OneProperty</code></p>
 
@@ -341,7 +355,7 @@
 			<div class="w3-container w3-theme-l4 w3-leftbar">
 				<p>
 					Remember you can use <code>Get-Command</code> to see what other commands deal with "Objects", such as
-					<code>Get=Member *-Object</code>
+					<code>Get-Member *-Object</code>
 				</p>
 			</div>
 
@@ -355,7 +369,7 @@
 			</ul>
 			Because of the regular and non-cryptic nature of PowerShell you can probably guess what most of these do even without using
 			<code>help</code> with them. For example, the last one is literally "directory of C:\Windows, sorted by file Length, whose
-			output goes into a GridView (a kind of pop-up list of data)"
+			output goes into a GridView (a kind of pop-up list of data window)"
 			</p>
 
 			<p>Saving/exporting (or reading/importing) data to/from files using Pipeline data is possible too: <code>Set-Content</code>,
@@ -482,24 +496,31 @@
 				<code>if</code>) to create scripts or solve more advanced problems with PowerShell. For now, focus on being comfortable with
 				PowerShell and the Command Line in general.</p>
 
-			<p>The Pipeline cmdlet: <code>Foreach-Object</code> (or the aliases: <code>foreach</code> or even just the percent sign
+			<hr>
+			<h4 id="concept-foreach">Foreach</h4>
+
+			<p>The Pipeline <i>cmdlet</i>: use the <code>Foreach-Object</code> (or the aliases: <code>foreach</code> or even just the
+				percent sign
 				<kbd>%</kbd> by itself) to do something to everything in an Array/Collection in the Pipeline, where <code
 					class="console">$_</code> represents the current Item/Object being processed, like with <code>Where</code>, for example:
-				<code>dir | foreach { write "Here is a file: $($_.Name)" }</code></p>
+				<code>dir | foreach { write "Here is a file: $($_.Name)" }</code>. Note: the default action of the Pipeline is to pass all
+				objects to the next command, so you only need <code>foreach</code> if you want to accomplish something specific with each
+				item.</p>
 
-			<p>The confusingly named PowerShell statement: <code>foreach</code> which is very similar to <code>Foreach-Object</code>
+			<p>The confusingly named PowerShell <i>statement</i>: <code>foreach</code> which is very similar to <code>Foreach-Object</code>
 				(especially since alias for one is the same as the other - PowerShell figures out which) but the <code>foreach</code>
 				doesn't use the Pipeline but names each item it works on (the <code class="console">$file</code> variable in the example
 				below) instead of using <code class="console">$_</code>.</p>
 
 			<p>Which <code>foreach</code> method you use doesn't matter a lot, one will make more sense in some situations and the other in
 				other situations. Use whichever makes the most sense at the time - ie. are you working with data in the Pipeline? Within
-				.PS1 scripts the <code>foreach</code> statement is often used to do multiple things to each item in the array. Have a look at
+				.PS1 scripts the <code>foreach</code> statement is often used to do multiple things to each item in the array. Have a look
+				at
 				the example below - they both produce the same output.</p>
 
 			<div class="w3-container">
 				<div class="w3-panel w3-card w3-theme-light w3-threequarter">
-					<h5>An Example of Variables with "double" and 'single' quotes:</h5>
+					<h5>An example of Foreach-Object and foreach statement:</h5>
 					<div class="w3-code notranslate">
 						PS C:\> $AllFiles = dir c:\windows<br>
 						PS C:\> # With the Foreach-Object cmdlet you process via the pipeline (input and output):<br>
@@ -516,20 +537,34 @@
 				</div>
 			</div>
 
+			<div class="w3-container">
+				<div class="w3-quarter">&nbsp;</div>
+				<div class="w3-half">
+					<hr>
+				</div>
+			</div> <!-- centred half length HR -->
+
+			<hr>
+			<h4 id="concept-if-then">If ... Then</h4>
+
 			<p>The conditional <code>IF</code>/<code>ELSE</code> statement, which uses <i>Conditionals</i> like <code>Where</code> does, is
-				used for branching and making logical decisions. You can decide to do something IF a certain condition is true or ELSE do
-				another things. A script that is just a collection of commands saves you from having to type them all, a script that uses
-				variables makes it easier to maintain and update, a script that uses loops (such as above) can do the same thing to all
-				Objects in an Array - but a script that can make <i>decisions</i> can be very powerful. An example of a <code>if</code> is
-				below:</p>
+				used for branching and making logical decisions (often called <i>If ... Then ...</i> statements). You can decide to do
+				something IF a certain condition is true or ELSE do another thing.<br>
+				A script that is just a collection of commands saves you from having to type them over and over, a script
+				that uses
+				variables is more flexible and easier to maintain and update, a script that uses loops (such as above) can do the same thing
+				to all
+				Objects in an Array without repeating lines - but a script that can make <i>decisions</i> can be very powerful (eg. Install
+				X, if successful do Y, else do Z).
+				An example of a simple <code>if</code> is below:</p>
 
 			<div class="w3-container">
 				<div class="w3-panel w3-card w3-theme-light w3-threequarter">
-					<h5>An Example of Variables with "double" and 'single' quotes:</h5>
+					<h5>An Example of an IF / ELSE Condition:</h5>
 					<div class="w3-code notranslate">
-						PS C:\> $value = 25<br>
+						PS C:\> $value = 35<br>
 						PS C:\> # Use IF to decide what to print:<br>
-						PS C:\> if ($value -lt 10) { write "$value is a small number" } else { write "$value is a big number" }<br>
+						PS C:\> if ($value -lt 20) { write "$value is a small number" } else { write "$value is a big number" }<br>
 						25 is a big number<br>
 					</div>
 				</div>
@@ -541,41 +576,211 @@
 					Note: in the above two examples (for <code>foreach</code> and <code>if</code>) there's a <i>Script Block</i> in
 					<i>{curly braces}</i> with commands that are run.<br>
 					You can have multiple commands within Script Blocks, separated by semi-colons <kbd>;</kbd> or within a .PS1 script by
-					putting commands on separate lines.
+					putting commands on separate lines.<br>
 				</p>
 			</div>
 
-			<p>There's also <code>For</code> loops, <code>Do</code> <code>While</code> or <code>Until</code> loops, <code>Switch</code>
-				statements, and <i>Functions</i>. These are all beyond the scope of this document, but custom functions allow you to
-				encapsulate common commands into a subroutine, where any output in the Pipeline is returned. This often causes headaches for
-				people coming from other scripting languages, so it's worth noting (in case you are used to another programming/scripting
-				language):
+			<p>Here is an example of a small script which has several lines within a script block, you can copy and paste it into a <class
+					id="console">.PS1</class>
+				file and run it:</p>
+
+			<div class="w3-container">
+				<div class="w3-panel w3-card w3-theme-l3 w3-threequarter">
+					<h5>Multi-line script blocks</h5>
+					<pre><code class="language-powershell"># Tells you if a number is larger or smaller than 20
+$MyArray = 5, 10, 15, 20, 25, 30, 35, 40
+write "Starting..."
+foreach ($Number in $MyArray) {
+	# Several lines inside the foreach {script-block}
+	if ($Number -lt 20) {
+		write "$Number is smaller than 20"
+	} elseif ($Number -eq 20) {
+		# several lines inside this if/elseif script-block
+		write "-=-=-=-=-=-=-"
+		write "$Number IS Twenty!!"
+		write "-=-=-=-=-=-=-"
+	} else {
+		write "$Number is larger than 20"
+	}
+}
+write "All done."
+</code></pre>
+				</div>
+			</div>
+
+			<p>Note that the above example also included <code>ELSEIF</code> which lets you stack several conditions into one
+				<code>IF</code> statement (IF this, ELSEIF that, ELSEIF another ELSE final option).</p>
+
+			<div class="w3-container">
+				<div class="w3-quarter">&nbsp;</div>
+				<div class="w3-half">
+					<hr>
+				</div>
+			</div> <!-- centred half length HR -->
+
+			<p>Other control structures include <code>For</code> loops, <code>Do</code> <code>While</code> or <code>Until</code> loops,
+				<code>Switch</code>
+				statements, and <i>Functions</i>. Most of these are beyond the scope of this document, and probably not anything you'll need
+				right away.
+				But custom <i>functions</i> allow you to encapsulate common commands into a subroutine you can re-use - and keep your code
+				tidy.
+			</p>
+
+			<hr>
+			<h4 id="concept-functions">Functions</h4>
+
+			<p>
+				Functions are blocks of code that you can use and re-use within your code. You can define Functions on the command line or,
+				more commonly,
+				within scripts (<code class="console">.PS1</code> files) -- they are like mini scripts within scripts. You can define and
+				pass parameters
+				to functions, and they can return values (but they don't have to). Any value that is output within a Function is returned
+				when the Function
+				exits. This allows you to assign the output of a function to a variable, like: <code
+					class="console">$var = My-Function</code>.</p>
+
+			<p>
+				In many languages you need an explicit <code>return</code> keyword, but it's
+				optional in PowerShell - where <i>any</i>
+				output in the Pipeline
+				is returned. This often causes headaches for people coming from other scripting languages, so it's worth pointing it out (in
+				case
+				you are used to
+				another programming/scripting language like JavaScript, Python, C/Java, etc).
+			</p>
+
+			<p>
+				To create a Function just use the <code>function</code> keyword, the <i>name</i> of the function, and put any
+				<i>optional</i> parameters you
+				want in (brackets). Then put your code in {curly braces} after - called a script-block. It's best to follow the standard
+				<i>Noun-Verb</i>
+				naming convention. There's a lot more you can do with functions, including supporting the <code>help</code> command or
+				validating parameters with
+				<a href="https://ss64.com/ps/syntax-function-advanced.html" target="_blank">Advanced Functions</a> which can also allow you
+				to accept
+				Pipeline input. Functions don't have to be long, they can be short and just save you from typing the same code over and
+				over.
+			</p>
+
+			<div class="w3-container">
+				<div class="w3-panel w3-card w3-theme-light w3-threequarter">
+					<h5>Two example functions:</h5>
+					<div class="w3-code notranslate">
+						PS C:\> # You can enter functions on one line in the Console, or across several lines in a script.<br>
+						PS C:\> # See the current date:<br>
+						PS C:\> Get-Date<br>
+						Tuesday, June 9, 2020 10:26:07 PM<br>
+						PS C:\> # Define a function with no parameters:<br>
+						PS C:\> function Get-Tomorrow { (Get-Date).AddDays(1) }<br>
+						PS C:\> # Test it:<br>
+						PS C:\> Get-Tomorrow<br>
+						Wednesday, June 10, 2020 10:26:20 PM<br>
+						PS C:\> # Define a function with a parameter and then assign the results to a variable:<br>
+						PS C:\> function Get-FutureDate ($Days) { (Get-Date).AddDays($Days) }<br>
+						PS C:\> $NextWeek = Get-FutureDate -Days 7<br>
+						PS C:\> $NextWeek<br>
+						Tuesday, June 16, 2020 10:26:45 PM<br>
+					</div>
+				</div>
+			</div>
+
 			<ul>
 				<li>It's important to know: <code>Write "Some text."</code> will output via the Pipeline (and by default display on the
 					screen), whereas <code>Write-Host "Some text."</code> will not output via the Pipeline - it displays directly on the
-					screen.</li>
+					Console screen.</li>
 				<li>A common cause of frustration with Functions is not understanding that they are designed to <i>work with the
 						Pipeline</i> and getting unexpected output returned is a common mistake by mixing up <code>write</code> and
-					<code>write-host</code></li>
+					<code>write-host</code><br>
+					See below for more on <code>Write-Host</code> verses <code>Write</code>.</li>
 				<li>And while there is a <code>return</code> statement it's not needed as <i>anything</i> output to the Pipeline (such as by
-					<code>write</code>) is returned by a function.</li>
-				<li>Also: unlike calling a Method on an Object you don't use <i>(brackets)</i> with functions - which are like cmdlets, you
+					<code>write</code> or from a command) is returned by a function.</li>
+				<li>Also: unlike calling a Method on an Object you don't use <i>(brackets)</i> when calling functions. They are like
+					cmdlets, you
 					just pass arguments like:<br>
 					<code>My-Function $Param1 "value 2" -Switch3</code> do not do this: <i>My-Function ($Param1, "value 2", -Switch3)</i> -
-					that will create an Array!</li>
+					that will create an Array!<br>
+					Note: You can optionally skip <code class="console">-parameter</code> name with a function or cmdlet if you match the
+					order of the arguments</li>
 			</ul>
-			</p>
 
 			<div class="w3-container w3-theme-l4 w3-leftbar">
 				<p>
-					If the above means nothing to you, don't worry - unless you're used to Bash, Python, Javascript, C/C++, C#, VBScript,
-					Pascal, etc it's not meant to!<br>
+					If the above sections mean nothing to you, don't worry - unless you're used to Bash, Python, Javascript, C/C++, C#,
+					VBScript,
+					Pascal, etc it won't matter until you start scripting!<br>
 					If you ARE interested in learning more about programming with PowerShell try <a
 						href="https://en.wikiversity.org/wiki/PowerShell" target="_blank">PowerShell on Wikiversity</a>, or if you're coming
 					from Bash/Python/etc you can <a href="https://learnxinyminutes.com/docs/powershell/" target="_blank">Learn PowerShell in
 						Y Minutes</a>.
 				</p>
 			</div>
+
+			<div class="w3-container">
+				<div class="w3-quarter">&nbsp;</div>
+				<div class="w3-half">
+					<hr>
+				</div>
+			</div> <!-- centred half length HR -->
+
+			<hr>
+			<h4 id="concept-write">Write vs Write-Host</h4>
+
+			<p>
+				Mentioning <code>Write-Host</code> and <code>Write</code> above it's worth expanding briefly on these, and also how to
+				accept user input. Normally a script
+				takes its input from a file (like a .CSV file), from another command, or parameters on the command line. But sometimes being
+				able to ask the user for
+				input can often be beneficial (and simpler) too, that's where <code>Read-Host</code> comes in.
+			</p>
+
+			<ul>
+				<li><code>Write</code> is an alias for <code>Write-Output</code> (the alias <code>echo</code> also works), and as mentioned
+					above sends whatever it prints get sent
+					to the Pipeline and displayed by the Shell on the Console. It's the <i>implied</i> final item in a Pipeline, even if you
+					don't specify it.<br>
+					That is: <code>dir | sort Length</code> and <code>dir | sort Length | Write-Output</code> are semantically the same.<br>
+					If you use <code>write</code> in a Function the output goes to the Pipeline and is returned by the Function (instead of
+					being displayed on the screen)</li>
+				<li><code>Write-Host</code> sends whatever it prints <i>directly</i> to the Console window, bypassing the Pipeline. If you
+					use it in a Function it will just
+					display on the screen, it isn't placed in the Pipeline or returned.<br>
+					It also has <code class="console">-ForegroundColor</code> and <code class="console">-BackgroundColor</code> options, so
+					you can do:<br>
+					<code>write-host -fore red -back green "It's Christmas time!"</code></li>
+				<li>If you can output to the Console you should be able to input as well, and using <code>Read-Host</code> you can! You can
+					even specify a prompt/question;
+					the input is returned as a String, but PowerShell can convert to a number. You could ask for someone's name using:<br>
+					<code>$Name = Read-Host -Promp "Please enter your name"</code> and PowerShell will wait for the operator to type
+					something and press <kbd>Enter</kbd>, placing
+					whatever is typed in <code class="console">$Name</code>.</li>
+			</ul>
+
+			<p>Here's two versions of the same Function, one using <code>Write-Host</code> and one using <code>Write</code> to illustrate:
+			</p>
+
+			<div class="w3-container">
+				<div class="w3-panel w3-card w3-theme-light w3-threequarter">
+					<h5>Write-Host vs Write in Functions:</h5>
+					<div class="w3-code notranslate">
+						PS C:\> # With Write-Host note that the message displays when the Function is called:<br>
+						PS C:\> Function Add-Nums ($a, $b) { write-host "Adding: $a and $b."; $a + $b }<br>
+						PS C:\> $c = Add-Nums 3 10<br>
+						Adding: 3 and 10.<br>
+						PS C:\> write "The answer is $c!"<br>
+						The answer is 13!<br>
+						PS C:\> # With Write instead, where the message is returned into $c<br>
+						PS C:\> Function Add-Nums ($a, $b) { write "Adding: $a and $b."; $a + $b }<br>
+						PS C:\> $c = Add-Nums 3 10<br>
+						PS C:\> write "The answer is $c!"<br>
+						The answer is Adding: 3 and 10. 13!<br>
+					</div>
+				</div>
+			</div>
+
+			<p>It's not that either is right or wrong, they both have their places. However, it's usually more correct to use
+				<code>Write</code> and only return
+				whatever should be returned from within a Function (and only use <code>Write-Host</code> to display diagnostic information.
+			</p>
 
 			<hr>
 			<h3 id="final-points">Final PowerShell Points</h3>
@@ -589,6 +794,9 @@
 					try:<br>
 					<code>(dir c:\windows).Name -join "; "</code><br>
 					<code>(write "My name is Jane!").replace("Jane", "Sarah")</code></li>
+				<li>Note: Other useful String methods include <code class="console">.Trim()</code>, <code class="console">.ToUpper()</code>, <code class="console">.ToLower()</code>
+					and more, check out:<br>
+					<code>"Any string" | Get-Member</code> to see all the functions you can use!</li>
 				<li>You can make a PowerShell Script by pasting all the lines you want to run into a plain text file and saving it as a .PS1
 					file, then running it is like typing those commands at the prompt, one line at a time - making it easy to carry out the
 					same set of commands over and over, or on different systems. If the .PS1 file is in your current directory you need to
@@ -598,6 +806,78 @@
 			</ul>
 			</p>
 
+			<div class="w3-container">
+				<div class="w3-quarter">&nbsp;</div>
+				<div class="w3-half">
+					<hr>
+				</div>
+			</div> <!-- centred half length HR -->
+
+			<h4 id="concept-profile">Your $PROFILE</h4>
+
+			<p>After all that, you can also customize your <code class="console">$PROFILE</code> - which is a built-in variable that points
+				to a configuration file that
+				PowerShell executes whenever it is started. You can see the path and filename by just typing the <code>$PROFILE</code> or
+				open it up in an editor
+				with something like: <code>notepad $PROFILE</code>. You can place configuration options and small "helper" functions to use
+				on the command line.</p>
+
+			<p>Your <code class="console">$PROFILE</code> is yours, it's saved in YOUR Windows Profile, so if you use any of the functions
+				you add in anywhere scripts
+				they won't be available on any other systems or running as any other users (such as scheduling a script to run under
+				SYSTEM). You should only place
+				functions/settings in there that you will use while administering a system from PowerShell, if multiple systems you'll need
+				to copy it over.</p>
+
+			<div class="w3-container">
+				<div class="w3-panel w3-card w3-theme-l3 w3-threequarter">
+					<h5>Sample $PROFILE for PowerShell 5.1</h5>
+					<pre><code class="language-powershell"># Some configuration for the built-in PSReadline module:
+# Make Up and Down arrows act more like CMD's command history:
+Set-PSReadlineOption -HistorySearchCursorMovesToEnd:$true
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+
+# Some helper functions for the command line:
+
+Function Get-OffsetDate ($Days = -7) {
+	# Returns the date $Days in the past/future (default = 7 days ago)
+	# Example: dir | Where LastWriteTime -gt (Get-OffsetDate -5)
+	(Get-Date).AddDays($Days)
+}
+
+Function Format-Date ($Date = (Get-Date)) {
+	# Returns a date in just "YYYY-MM-DD" format (default = Today)
+	# Example: $TwoWeekDateStamp = Format-Date (Get-Date).AddDays(14)
+	(Get-Date $Date).ToString("yyyy-MM-dd")
+}
+
+Function Truncate-String ($String, $Length) {
+	# Truncates/cuts a string to Length by cutting off characters on the RIGHT
+	# Example: $FirstFiveChars = Truncate-String "0123456789ABCD" 5
+	if (!$String) { 
+		$null			# If no string then return null
+	} else {
+		# Return a portion of the String, the lesser of $Length or the String's .Length
+		$String.substring(0, [System.Math]::Min($Length, $String.Length))
+	}
+}
+
+Function Read-Input ($Prompt, $Default = "") {
+	# Returns input like Read-Host except just pressing Enter returns a $Default value
+	# Example: $FileName = Read-Input -Prompt "Enter a file name" -Default "data.csv"
+	$Input = Read-Host "$Prompt, or accept [$Default]"
+	if ($Input -eq "") { $Default } else { $Input }
+}
+</code></pre>
+				</div>
+			</div>
+
+			<p>Feel free to use any of these, but if you use them in scripts you'll need to copy and paste them into the script before
+				calling them.</p>
+
+			<p>Of course this is just scratching the surface of PowerShell, but it should be enough to get you started!</p>
+
 		</div><!-- Page Content ends here -->
 
 		<!-- Footer -->
@@ -605,13 +885,14 @@
 			<p>Thanks for reading! I hope this has been helpful. Return to all my <a href="https://github.com/sansbacher/docs">Docs</a> on
 				GitHub.</p>
 			<p class="w3-small">HTML and CSS theme (with some modifications) from <a href="https://www.w3schools.com/w3css/"
-					target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works.</p>
+					target="_blank">W3 Schools</a>. W3.CSS is free to use, no license is necessary. Simple and works. Syntax highlighting by
+				<a href="https://prismjs.com/" target="_blank">Prism</a>.</p>
 		</footer>
 
 	</div><!-- Main div for the body End -->
 
 	<script src="../assets/js/sa-custom.js"></script><!-- Custom scripts loaded here, to ensure page is fully loaded -->
-
+	<script src="../assets/js/prism.js"></script>
 </body>
 
 </html>

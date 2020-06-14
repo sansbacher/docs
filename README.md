@@ -5,6 +5,7 @@
 * [Git for Small Teams or Single Devs](https://github.com/sansbacher/docs/tree/master/git) (with a Windows focus)
 * [Basic Markdown](https://github.com/sansbacher/docs/tree/master/markdown) (just the essentials)
 * [Command Line (CLI) for Windows](https://sansbacher.github.io/docs/cli/index.html) - (For PowerShell and CMD Command Prompt)
+* Basic VIM usage - Coming eventually
 * PowerShell for Admins - Coming one day (I hope...)
 
 ## Non-Computer Related:
