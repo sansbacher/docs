@@ -174,11 +174,31 @@
 						<code>netdom verify PC-NAME /d:some-domain.local</code></td>
 				</tr>
 				<tr>
+					<td><code>QWINSTA</code></td>
+					<td>Shows how the long PowerShell names really are better: stands for Query WINdows STAtion - to find out who is logged on to a server, such as an RDS/TS.<br>
+					You could then log someone off with <code>LOGOFF id#</code> where <code class="console">id#</code> is the ID number returned from <code>QWINSTA</code>. You can also use <code>QUERY SESSION</code>.</td>
+				</tr>
+				<tr>
 					<td><code>GPUPDATE</code> and<br>
 						<code>GPRESULT</code></td>
 					<td>Force updating GPOs on a workstation and logoff with: <code>gpupdate /force /logoff</code><br>
 						Or check GPO Resultant Set of Policies to see what GPOs are in effect with in an HTML report with:
 						<code>gpresult /H c:\output.htm</code></td>
+				</tr>
+				<tr>
+					<td><code>EVENTCREATE</code></td>
+					<td>Add an entry to the Windows Event Log, can't create all Event IDs, only 1 - 1000. PowerShell has <code>Get-EventLog</code> and <code>Get-WinEvent</code> to view the logs.<br>
+						For example, <code>EVENTCREATE /ID 999 /L APPLICATION /T WARNING /SO ExampleApp /D "Example event triggered"</code></td>
+				</tr>
+				<tr>
+					<td><code>ICACLS</code></td>
+					<td>Change, Display, Modify, Backup or Restore Access Control Lists (ACLs) of Files and Folders. Similar to <code>Get-Acl</code> and <code>Set-Acl</code> in PowerShell.<br>
+						For example, replace all permissions with default inherited ACLs from the parent folder: <code>ICACLS "c:\folder\*" /reset /T /C /L</code></td>
+				</tr>
+				<tr>
+					<td><code>TAKEOWN</code></td>
+					<td>Take Ownership of a file or folders. Sometimes you need to do this before changing permissions if you've been denied access:<br>
+					<code>TAKEOWN /F "c:\folder\*" /R /D Y</code> (can add <code class="console">/A</code> to assign to the local Admin instead of the current user)</td>
 				</tr>
 				<tr>
 					<td><code>GIT</code></td>
@@ -280,6 +300,13 @@
 							class="console">delete</code>, <code class="console">import</code>, <code class="console">export</code> Registry
 						Values or whole Keys. For example, to allow multiple RDP sessions on a Windows Server:<br>
 						<code>reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fSingleSessionPerUser /d 0 /t REG_DWORD /f</code>
+					</td>
+				</tr>
+				<tr>
+					<td><code>SCHTASKS</code></td>
+					<td>View (<code class="console">query</code>), Change, <code
+							class="console">delete</code>, <code class="console">create</code>, or control Scheduled Tasks. Eg. to set a task to run as SYSTEM instead of a user:<br>
+						<code>SCHTASKS /change /RU "NT AUTHORITY\SYSTEM" /tn "Name of Task"</code>
 					</td>
 				</tr>
 				<tr>

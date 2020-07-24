@@ -3,6 +3,7 @@
 - [Why this document](#why-this-document)
 - [Git Install](#git-install)
 - [Sourcetree and Azure DevOps](#sourcetree-and-azure-devops)
+- [Using the native Windows OpenSSH client](#using-the-native-windows-openssh-client)
 - [Useful Links:](#useful-links)
   - [Setup](#setup)
   - [Learn](#learn)
@@ -73,6 +74,48 @@ Then when adding to Sourcetree you need to select _Azure DevOps_, the Host URL n
   
 The authentication will be via PAT, when you Refresh your PAT use your O365/AzureAD login as the username (eg. _username@domain.com_) and the long PAT string you created in Azure DevOps as the password (eg. _kjdhj48dfkdndkaldsbd8r4bdetcetcetc_). It should say "Authentication OK".  
 When you look at all the Authentication settings in SourceTree you'll see various ones added, including dev.azure.com, but the Remote for any repos will be in \*.visualstudio.com format (but work fine).
+
+## Using the native Windows OpenSSH client
+With Windows GitHub works best using HTTPS based repository URLs, whereas macOS and Linux usually use SSH. When using SSH on Windows (for whatever reason, or to interface to Git related non-GitHub resources, such as [Heroku](https://wwww.heroku.com/) perhaps) Windows users are often instructed to use the Git Bash console that included with Git For Windows - while possible it less intuitive and doesn't allow the easy usage of native CLI tools. You CAN use the native/built-in OpenSSH client, here's how (using PowerShell - this can be done from the CMD/Command Prompt but it's easier to just use PowerShell for this). Should work on Windows 10 and Server 2019.
+
+Check if you already have the native Win32 Microsoft port of OpenSSH installed, in PowerShell type:  
+`Get-Command ssh.exe`  
+It should return something like _C:\WINDOWS\System32\OpenSSH\ssh.exe_, if not then run:  
+`Get-WindowsCapability -Online | Where Name -like 'OpenSSH*'`  
+And if it says "OpenSSH.Client" is "NotPresent" then run this to install it (the OpenSSH.Server is _not_ required):  
+`Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0`  
+Running `ssh -V` should give you the version.
+
+You'll then need to create a Public/Private Key pair, use:  
+`ssh-keygen -t rsa -b 4096 -C "your@email-address.com"`  
+Use NO passphrase. This should create in two files in a _.ssh_ subfolder in your Windows Profile, eg: `~\.ssh\` (aka `$env:USERPROFILE\.ssh`)  
+- Your PRIVATE identification has been saved in C:\Users\USERNAME\.ssh\id_rsa
+- Your PUBLIC key has been saved in C:\Users\USERNAME\.ssh\id_rsa.pub
+- Check with: `dir ~\.ssh`
+
+The SSH-Agent service must be enabled and started, so run:  
+`Set-Service ssh-agent -StartupType Automatic`  
+`Start-Service ssh-agent`  
+Check with: `Get-Service ssh-agent | Select Status, StartType, Name, DisplayName`  
+Then add the PRIVATE Key with:  
+`ssh-add ~\.ssh\id_rsa`  
+Confirm with: `ssh-add -l`
+
+Generally you'll need to copy the PUBLIC key somewhere (so you can connect using your Private Key).
+- For example in GitHub it's under your Profile Settings, SSH and GPG Keys, New SSH Key.
+- Give it a name and paste in the contents of the Public Key, which you can copy to the clipboard with: `type ~\.ssh\id_rsa.pub | clip`
+- It should be one long line starting with "ssh-rsa" and ending with your email address.
+- You can double check the MD5 Hash displayed using: `ssh-keygen -l -E md5 -f "$env:USERPROFILE\.ssh\id_rsa.pub"`
+- With Github you can confirm it works using: `ssh -T git@github.com` (note: use exactly _git@github.com_ not your name)  
+  It should display something like "Hi _YourGitHubUsername_! You've successfully authenticated, but GitHub does not provide shell access." and disconnect (and probably warn about adding an an IP, etc)  
+  If you get an error check that the SSH-Agent service is running.
+- For other services it will be different, eg. for Heroku just run `heroku keys:add` and the Heroku CLI will find and upload the correct Key.
+
+The _trick_ to using the built-in SSH Client with Git for Windows is that you need to tell Git to _use_ the built-in SSH.EXE command and not the Bash ssh.exe command, so you **must** run:  
+`git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"`  
+Or whatever location `Get-Command ssh.exe` returns. You can then add a Remote Repo using an SSH URL, such as:  
+`git remote add origin git@github.com:YourGitHubUsername/TheGitHubRepoName.git`  
+And use it as you would any other remote repo.
 
 ## Useful Links:
 
@@ -276,6 +319,8 @@ Or just specify something that is in the PATH and it'll work too:
 Your `user.name` and `user.email` which is used for Commits:  
 `git config --global user.name "Jane McDeveloper"`  
 `git config --global user.email "jane@mcdev.com"`  
+And if you want want to use the [native/built-in Windows OpenSSH client](#using-the-native-windows-openssh-client) add:  
+`git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"`  
 Tip: You can omit the `--global` and override Global settings per-repo if needed.  
 
 **Edit Global options visually**, opens in current `core.editor`, see above to specify another editor  
@@ -298,7 +343,8 @@ And many preconfigured .gitignore files can be found here: <https://github.com/g
 Usually remote-Name (aka the Remote) is `origin`, but could be anything. URL is like: https://github.com/userName/repoName.git  
 Azure DevOps Repo URLs look like: https://orgName@dev.azure.com/orgName/repoName/_git/repoName  
 Credentials may be prompted, eg. if it's an Azure DevOps repo, it may pop-up and auto-create a Personal Access Token  
-`git remote add origin URL`
+`git remote add origin URL`  
+If the URL looks more like: _git@github.com:GitHubUsername/GitHubRepoName.git_ then you'll need to [configure SSH first](#using-the-native-windows-openssh-client) - but on Windows using HTTPS URLs is simpler.
 
 **List what Remotes have been added to a local repo**  
 `git remote -v`  
@@ -338,7 +384,9 @@ Can also specify a source:destination, as in `git push origin local-Branch:remot
 NOTE: If Push is rejected because Remote was updated, either fetch or pull to integrate the Remote changes before pushing local changes.  
 `git push`  
 If it's the first push the branch tracking won't be set, so use `--set-upstream`: (or if pushing a dev or other Branch, which you can specify. Git tells you this if you haven't run it and it only happens once so no need to memorize this)  
-`git push --set-upstream origin master`
+`git push --set-upstream origin master`  
+If you have multiple remote repos (such as master, azure, heroku, etc) you can specify which branch to push to which remote using:  
+`git push remoteRepo local-Branch`
 
 #### Pull/Push TYPICAL
 The general/common sequence of commands (except the first pull/push of a repo).
