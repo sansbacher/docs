@@ -105,6 +105,14 @@
 				in Notepad (eg. to remove some header lines) before further processing it.</p>
 
 			<h3>More advanced CMD Usage</h3>
+			
+			<p>If you're not sure what the command you're looking for is, you can list the basic built-in CMD commands with <code>help</code>,
+			and you can search for external (included or downloaded) .EXE file with <code>where.exe</code>, including using wildcards. So
+			you can search for any .EXE that includes "exec" with <code>where.exe *exec*.exe</code> - which might show the <code>MSIEXEC</code>
+			and <code>PSEXEC.EXE</code> (if you had it installed). So searching for <code>where.exe *dfs*.exe</code> would show any DFS related commands.<br>
+			Note: <code>Where</code> (without .exe) is also a built-in PowerShell command, so using .exe with <code>where.exe</code> will let you use it in PowerShell too.
+			</p>
+
 
 			<p>CMD has environment variables which you can see with the <code>SET</code> command, and reference them with percent signs
 				<kbd>%</kbd> on either side, such as <code class="console">%windir%</code> or <code class="console">%USERNAME%</code> to

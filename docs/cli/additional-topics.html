@@ -55,21 +55,27 @@
 
 	<p>If you will be editing or creating Scripts you should find a better editor than Notepad, something with Syntax Highlighting will make it much easier to code and spot errors. Some suggestions:</p>
 
-<ul>
-	<li>Windows includes the PowerShell Integrated Scripting Environment (ISE) - usually installed and ready to go. Try running: <code>ISE</code> from PowerShell<br>
-		Or look in the Start Menu for "Windows PowerShell ISE"</li>
-	<li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> has solid <a href="https://code.visualstudio.com/docs/languages/powershell" target="_blank">PowerShell support</a> with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell" target="_blank">PowerShell extension</a></li>
-	<li><a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a> is also very popular and works with .PS1, .BAT and .CMD files too.</li>
-	<li>Or the smaller, portable and very similar <a href="https://xhmikosr.github.io/notepad2-mod/" target="_blank">Notepad2</a>, also works with .PS1/.BAT/.CMD files.</li>
-	<li>Unless you already know them, don't try to use Vim or Emacs. If you already know them, feel free to use them</li>
-</ul>
+	<ul>
+		<li>Windows includes the PowerShell Integrated Scripting Environment (ISE) - usually installed and ready to go.<br>
+		Try running: <code>powershell_ise.exe</code> or just <code>ise</code>from within PowerShell, or look in the Start Menu for "Windows PowerShell ISE"</li>
+		<li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> has solid <a href="https://code.visualstudio.com/docs/languages/powershell" target="_blank">PowerShell support</a> with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell" target="_blank">PowerShell extension</a></li>
+		<li><a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a> is also very popular and works with .PS1, .BAT and .CMD files too.</li>
+		<li>Or the smaller, portable and very similar <a href="https://xhmikosr.github.io/notepad2-mod/" target="_blank">Notepad2</a>, also works with .PS1/.BAT/.CMD files.</li>
+		<li>Unless you already know them, don't try to use Vim or Emacs. If you already know them, feel free to use them</li>
+	</ul>
 
-<p>If you run across a VBScript (.VBS file) you can run it with either <code>WSCRIPT.EXE</code> or <code>CSCRIPT.EXE</code>. <code>Wscript</code> is the Windows Scripting Host, and won't open a console, but any output is done via pop-up message boxes. <code>Cscript</code> is the Console Scripting Host - so while a Console opens the output is all at console. Example:<br> <code>cscript.exe //nologo c:\path\and\NameOfScript.VBS</code></p>
+	<p>If you run across a VBScript (.VBS file) you can run it with either <code>WSCRIPT.EXE</code> or <code>CSCRIPT.EXE</code>. <code>Wscript</code> is the Windows Scripting Host, and won't open a console, but any output is done via pop-up message boxes. <code>Cscript</code> is the Console Scripting Host - so while a Console opens the output is all at console. Example:<br> <code>cscript.exe //nologo c:\path\and\NameOfScript.VBS</code></p>
 
-<p>When pasting single or multiple commands from the web to a Console/Shell (or into a script file) keep in mind that may blogs will mangle the commands. PowerShell.exe and CMD.exe aren't very forgiving at times. So extra spaces need to be removed, or added. Funny characters may need to be trimmed, and those curly <i>"smart quotes"</i> may need to changed to regular "double" or 'single' quotes. Sometimes dashes need to be changed from longer Em- and En-dashes to regular hyphens/dashes. If something still doesn't work: check to see if spaces were added (like <i>Get -Content -Path someFile.txt</i>) or removed (like <i>Get-Content-Path someFile.txt</i>).</p>
+	<p>When pasting single or multiple commands from the Web or an MS Word Doc to a Console/Shell (or into a script file) keep in mind that may blogs will mangle the commands. PowerShell.exe and CMD.exe aren't very forgiving at times. So extra spaces need to be removed, or added. Funny characters may need to be trimmed, and those curly <i>"smart quotes"</i> may need to changed to regular "double" or 'single' quotes. Sometimes dashes need to be changed from longer Em- and En-dashes to regular hyphens/dashes, a &gt; redirection sign will display as the HTML "&amp;gt;" entity, or the \ may be missing or swapped for a /. If something still doesn't work: check to see if spaces were added/removed (like <i>Get -Content -Path someFile.txt</i>) or removed (like <i>Get-Content-Path someFile.txt</i>).</p>
+
+	<p>As you begin to explore the CLI and discover useful commands or techniques it's often helpful to start a text file to keep CLI notes and example commands in. If you use one of the
+	above Editors you can save your "notes" file with a .PS1 extension so the syntax highlighting kicks in. Use lines beginning with <code class="console">#</code> for your comments.
+	And make the very first line <code>exit</code> so nothing will happen if you try to run it by mistake.
+	</p>
 
 	<div class="w3-container w3-theme-l4 w3-leftbar">
-		<p>Tip: You can type <code>cmd</code> or <code>powershell</code> in the Address Bar of any Windows File Explorer window to open the CMD Command Prompt or a PowerShell Console <i>in that folder</i>, which can save a lot of CD'ing or copy/paste.</p>
+		<p>Tip: You can type <code>cmd</code> or <code>powershell</code> in the Address Bar of any Windows File Explorer window to open the CMD Command Prompt or a PowerShell Console <i>in that folder</i>, which can save a lot of CD'ing or copy/paste.<br>
+		Or: you can drag-and-drop the path from Windows Explorer to the Console by dragging folder icon to the immediate left of the path in the Address Bar.</p>
 	</div>
 
 <p>Other Useful Links - there's no point listing every PowerShell related site (this isn't Yahoo circa 1999!) but if you want some decent generic PowerShell info: </p>
@@ -84,7 +90,7 @@
 	<li><a href="http://www.robvanderwoude.com/powershellstart.php" target="_blank">Rob van der Woude</a> has lots of useful scripting info, including PowerShell.</li>
 	<li>There are also Cheat Sheets, such as this <a href="http://ramblingcookiemonster.github.io/images/Cheat-Sheets/powershell-basic-cheat-sheet2.pdf" target="_blank">basic PowerShell one [PDF]</a> if you want a quick reference.</li>
 	<li>If you want to learn general programming using PowerShell checkout <a href="https://en.wikiversity.org/wiki/Windows_PowerShell" target="_blank">Wikiversity</a>.</li>
-	<li>And if you'd like 100 short videos that teach <a href="https://www.youtube.com/playlist?list=PL6D474E721138865A&amp;feature=view_all" target="_blank">PowerShell in a Month of Lunchs</a> it's free on YouTube.</li>
+	<li>And if you'd like 100 short videos that teach <a href="https://www.youtube.com/playlist?list=PL6D474E721138865A&amp;feature=view_all" target="_blank">PowerShell in a Month of Lunches</a> it's free on YouTube.</li>
 	<li>Or follow along as someone delves into writing a <a href="https://community.spiceworks.com/topic/597348-introduction-to-powershell" target="_blank">PowerShell Script</a>, also a good Introduction to PowerShell</li>
 	<li>Similarly making the leap from <a href="https://mikefrobbins.com/2016/02/04/video-making-the-leap-from-powershell-one-liners-and-scripts-to-advanced-functions-and-script-modules/" target="_blank">PowerShell commands to Scripts</a>.</li>
 	<li>If you have experience already with Bash, Python, Javascript, C# or other programming languages you may find <a href="https://learnxinyminutes.com/docs/powershell/" target="_blank">Learn PowerShell in Y Minutes</a> helpful<br>

@@ -115,6 +115,10 @@
 				<li>Third Party downloaded console commands may be equally short or cryptic, especially if they are ports of
 					Linux/macOS/Bash utilities. You can also run Windows GUI commands which will just start the program as if you
 					had double-clicked it (like <code>regedit.exe</code>) however some may also have useful switches/options.</li>
+				<li>You can run any .EXE so long as it is in the <code class="console">PATH</code> environment variable.<br>
+					If it's not, then you'll need to specify the whole path, such as: <code>c:\windows\system32\inetsrv\appcmd.exe</code>,<br>
+					Or you'll need to change to the folder (<code>cd c:\windows\system32\inetsrv</code>) and then run <code>appcmd.exe</code>
+				</li>
 			</ul>
 
 			<p><b>Parameters/switches/options</b> for CMD/DOS Commands are separated from commands with a <kbd>Space</kbd> and
@@ -167,7 +171,9 @@
 						class="console">/?</code>, <code class="console">-?</code>, or just <code class="console">?</code></li>
 				<li>As in <code>ping /?</code></li>
 			</ul>
-			<p>If the Help Text is too long add <code class="console">| more</code> after, as in: <code>chkdsk /? | more</code>
+			<p>If the Help Text is too long add <code class="console">| more</code> after, as in: <code>chkdsk /? | more</code>. But don't just type the name of the command
+			with no switches to see what it may do until you've tried /?, /h, etc. because some commands will <i>do something</i> even with no options/switches. For example:
+			<code>IISRESET</code> will restart all IIS Web Services if you provide no options, which may not be what you want/expect! <code>iisreset /?</code> will show the help.
 			</p>
 
 			<p>Sometimes you can just type the command with <i>no</i> options and it will provide help, but sometimes the command

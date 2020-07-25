@@ -121,6 +121,12 @@
 				.EXE commands you have to use the format of switches/options each command expects, not the "PowerShell way".
 				PowerShell cmdlets and CMD/DOS .EXE files can interact but the results are not always as expected due to
 				PowerShell outputting and expecting Objects rather than plain-text.</p>
+				
+			<p>
+				You can run any internal or downloaded .EXE so long as it is in the <code class="console">PATH</code> environment variable.
+				If it's not, then you'll need to specify the whole path, such as: <code>c:\windows\system32\inetsrv\appcmd.exe</code>,
+				or you'll need to change to the folder (<code>cd c:\windows\system32\inetsrv</code>) and then run <code>appcmd.exe</code>, for example.
+			</p>
 
 			<p><b>Parameters/switches/options in PowerShell</b> are separated from commands with a <kbd>Space</kbd>, and start
 				with a dash <kbd>-</kbd>, eg. <code class="console">-Identity</code> or <code class="console">-Properties</code>.

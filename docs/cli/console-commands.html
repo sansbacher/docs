@@ -77,6 +77,14 @@
 				listed (such as <code>dfsradmin</code> and <code>dfsrdiag</code> for DFS-R Service, or <code>iisreset</code> for IIS). Many
 				of these you can run from a Windows Workstation, not just a Server.
 			</p>
+			<ul>
+				<li>Find these by using either <code>WHERE.EXE</code> or <code>Get-Command</code> in PowerShell.</li>
+				<li>For example: <code>where.exe *dfs*.exe</code> or <code>Get-Command *dfs*</code></li>
+				<li>Some may not be in the <code class="console">PATH</code> and you'll have to specify the full path, such as <code>c:\windows\system32\inetsrv\appcmd.exe</code></li>
+				<li>Sometimes the PowerShell 'name' may be different, for example <code>where.exe *bde*.exe</code> to find BitLocker CMD commands, but <code>Get-Commands *BitLocker*</code> in PowerShell.</li>
+				<li>You can also look by PowerShell Module Name: find all the Modules installed with <code>Get-Module -ListAvailable</code><br>
+				and then check a particular Module with: <code>Get-Command -Module Hyper-V</code> (or whatever Module Name you want)</li>
+			</ul>
 
 			<p>Of course one major function is maintaining Active Directory, and while there are commands to manage AD using external CLI
 				commands - they aren't pleasant or intuitive (eg. <code>dsquery</code>, <code>dsadd</code>, etc). A <b>much</b> more
@@ -257,10 +265,9 @@
 				</tr>
 				<tr>
 					<td><code>WHERE.EXE</code></td>
-					<td>Shows the location of a command by searching the <code class="console">PATH</code> environment variable, helpful if
-						the wrong version is being run, eg. <code>where.exe psexec.exe</code><br>
-						In PowerShell you need to include .EXE or it will assume you mean <code>Where-Object</code>. In PowerShell you can
-						also just use <code>Get-Command</code></td>
+					<td>Find a command or partial command by searching the <code class="console">PATH</code> environment variable, eg.
+					<code>where.exe psexec.exe</code> or <code>where.exe *bde*.exe</code><br>
+						In PowerShell you need to include .EXE or it will assume you mean <code>Where-Object</code>, but just use <code>Get-Command</code> instead.</td>
 				</tr>
 				<tr>
 					<td><code>DIR ENV:</code> or<br>

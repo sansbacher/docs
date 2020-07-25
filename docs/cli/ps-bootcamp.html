@@ -234,6 +234,12 @@
 					gets converted to the string "5" and concatenated/appended to "6" creating a 2-character String)</li>
 				<li>An <i>Array</i> is a Type as well: an Object that is a List or Collection of other Variables</li>
 			</ul>
+			
+			<p>A final type of Variable worth mention is the Environment Variable. These are set either per-machine or per-user by the system but
+			contain useful information, such as the name of the computer or currently logged in user, the location of the Windows folder, and more.
+			In the CMD Command Prompt you access them with <code class="console">%</code> as in <code class="console">%USERNAME%</code> but in PowerShell
+			you access them like any other variable using <code class="console">$</code> but in the <code class="console">ENV:</code> <i>virtual drive</i>.
+			So the current logged in user is <code class="console">$ENV:USERNAME</code>, and they work in Strings too, such as <code class="console">"My computer is $ENV:COMPUTERNAME"</code>.</p>
 
 			<h4 id="concept-objects">Objects</h4>
 
