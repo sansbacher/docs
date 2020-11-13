@@ -319,6 +319,9 @@ Or just specify something that is in the PATH and it'll work too:
 Your `user.name` and `user.email` which is used for Commits:  
 `git config --global user.name "Jane McDeveloper"`  
 `git config --global user.email "jane@mcdev.com"`  
+Set the default Branch name to `main` instead of "master":
+git config --global init.defaultBranch main  
+(You can rename your existing repos' "master" Branch to "main" by following [5 simple steps](https://stevenmortimer.com/5-steps-to-change-github-default-branch-from-master-to-main/).  
 And if you want want to use the [native/built-in Windows OpenSSH client](#using-the-native-windows-openssh-client) add:  
 `git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"`  
 Tip: You can omit the `--global` and override Global settings per-repo if needed.  
