@@ -153,7 +153,7 @@ And use it as you would any other remote repo.
 - If you do want to learn GitHub and Pull Requests: <https://www.brianbunke.com/blog/2017/05/12/github-pr>
   - Or this is another good site/overview of Forking and contributing: <https://www.gun.io/blog/how-to-github-fork-branch-and-pull-request>
 - If you work on a larger project try this: <https://nvie.com/posts/a-successful-git-branching-model>
-- My basic Markdown Reference: <https://github.com/sansbacher/docs/tree/master/markdown>
+- My basic Markdown Reference: <https://github.com/sansbacher/docs/tree/main/markdown>
 - My CLI/Command Line tutorial: <https://sansbacher.github.io/docs/cli/index.html>
 
 ## Definitions
@@ -184,7 +184,7 @@ It's assumed you know that Git is a _Distributed Source Code Revision, or Versio
     The currently pointed to Commit in the Index is called HEAD, as it is usually the tip of the current Branch. When the next Commit is made the HEAD pointer is updated to the latest Commit. But you can Checkout a specific Commit (which isn't the tip of a Branch) resulting in a Detached HEAD situation, allowing you to review the Working Tree at a certain point in time. The Commit before HEAD would be its parent, the Commit before that is the grandparent, back to the initial Commit.
 
 * **Branch**  
-    A series of Commits back to a common ancestor is a Branch. The first/initial Branch is usually called "master" and begins at the initial Commit. At any point another Branch can be given a name and diverge off with a new line of Commits, such as "dev", "bugFix", "someFeature", etc. Branches can be Merged back together (eg. when a feature or bug has been fixed). Usually the master Branch is where you deploy live/production code from, and a separate Branch is created for other development paths. A Branch can be Checkedout and worked on without impacting other Branches.
+    A series of Commits back to a common ancestor is a Branch. The first/initial Branch is usually called "master" or "main" and begins at the initial Commit. At any point another Branch can be given a name and diverge off with a new line of Commits, such as "dev", "bugFix", "someFeature", etc. Branches can be Merged back together (eg. when a feature or bug has been fixed). Usually the master or main Branch is where you deploy live/production code from, and a separate Branch is created for other development paths. A Branch can be Checkedout and worked on without impacting other Branches.
 
 * **Checkout**  
     Checkingout a Branch (which implies Checkingout the tip/end-point Commit of a Branch), or a specific Commit (by Hash, Tag, or anything else that Git can resolve to a Commit in the Index) means the state of the Tracked files in the Working Directory are set to how they were snapshotted when they were Staged for that Commit. Ignored files are left alone, but all Tracked files will be as they were in the Commit - in this way you can view any Committed snapshot in time, on any Branch held in the Git Index. If you subsequently Modify any Tracked files (or add a new file to be Tracked) they can be Staged and then a new Commit will be added to the Checkedout Branch, or a new Branch created.
@@ -196,7 +196,7 @@ It's assumed you know that Git is a _Distributed Source Code Revision, or Versio
     As in a Remote Repo, a Git Repository that is stored on some other non-local machine. It could be someone else's computer (you can clone from and Push/Pull from someone else's local repo), a private Git server, or a hosted Git service like GitHub. In a local Git Repo the default name for the Remote repo is "origin" (since generally you keep your source code on a server somewhere to protect it and Clone it to your local computer) - thus the Remote Repo would be the origin of those files. There are several services beyond GitHub that are Git compatible, such as GitLab, BitBucket, etc - some also offer free Public Repos (though some charge to host Private Repos). GitHub is the most popular. Microsoft has an Azure Hosted version, part of Azure DevOps, called Azure DevOps Repos. GitHub and Azure Repos treat README.md files as special, showing their Markdown contents as HTML when you browse Repo directories, and also support LFS [Large File Support] as otherwise GitHub has a 100MB file size limit. Markdown is a simplified version of human readable Text Files that map to basic HTML. This document is written in Markdown.
 
 * **Pull or Push**  
-    The act of Pulling down updated files from the Remote Repo to your local Report (Working Directory) - to refresh your working copy is a Pull (the initial Pull is called a Clone, since you're starting with nothing). The act of Pushing changed files up to the Remote Repo is a Push. You can Push/Pull any (or all) Branches, but generally only the "master" and perhaps a "dev" Branch. The Pushed/Pulled files are then Merged into the local (or Remote, depending on if it's a Push or a Pull) Repo. Local versions of the Remote's Branches are designated with the name of the Remote/Branch, such as origin/master - indicates the master Branch on the Remote called origin, which would map to your local master Branch (and upstream/dev would be the dev Branch on the Remote called upstream).
+    The act of Pulling down updated files from the Remote Repo to your local Report (Working Directory) - to refresh your working copy is a Pull (the initial Pull is called a Clone, since you're starting with nothing). The act of Pushing changed files up to the Remote Repo is a Push. You can Push/Pull any (or all) Branches, but generally only the "master" / "main" and perhaps a "dev" Branch. The Pushed/Pulled files are then Merged into the local (or Remote, depending on if it's a Push or a Pull) Repo. Local versions of the Remote's Branches are designated with the name of the Remote/Branch, such as origin/master - indicates the master Branch on the Remote called origin, which would map to your local master Branch (and upstream/dev would be the dev Branch on the Remote called upstream).
 
 * **Merge**  
     When Pushing or Pulling changes to/from a Remote Repo those changes need to be Merged together by creating a new set of Files comprising all of the files, and changes to Files, from both Branches. If there are Merge Conflicts you will be given a chance to pick either which file "wins" or even which Hunk of a file "wins" (a Hunk is Git's name for a chunk or part of a file that has changed). Even if a file is changed by both Branches as long as it's not in the same Hunk/part then the file will be automatically Merged - only when both Branches change the same line(s) will a Conflict occur. You can also Merge two local Branches, such as merging a bugFix Branch into a dev Branch, or the dev into master Branch before deploying. In addition to Merging you can also Rebase - which replays/moves a Branch onto another Branch - the end result is more or less the same.
@@ -212,25 +212,25 @@ The Circles are Commits, the first one was created by **init** from local files,
 ## Suggested Git Project Workflow
 
 **For a small Team or a Single Developer:**
-1. For a Project create and Clone a repo with a master Branch [to deploy from] and a single dev Branch [for development / work-in-progress / beta].
+1. For a Project create and Clone a repo with a main Branch [to deploy from] and a single dev Branch [for development / work-in-progress / beta].
 2. Then each developer creates a feature/bugFix/etc Branch (or name-dev Branch, eg. jane-dev) for whatever they are working on.
 3. Initially they would all point to the same initial Commit (empty repo or the existing code), and diverge from there.
-   1. The master Branch should always be deploy-ready, the dev Branch would be based on the master Branch after each release.
+   1. The main Branch should always be deploy-ready, the dev Branch would be based on the main Branch after each release.
    2. The dev Branch should be the "base" from which all feature/bugFix/name-dev Branches are based on.
 4. Everyone Checksout on their feature/bugFix/name-dev Branch doing what they need to do, testing their work as they go. (they are free to make sub Branches as needed)
 5. When someone finishes something they Merge their Branch into the dev Branch, testing with any other new changes anyone else has Merged in.  
     Rebasing dev onto their Branch may help eliminate conflicts in their Branch before finally Merging their Branch into dev.
-6. When everyone (or enough people) have finished merging in their work to dev Branch, do final tests in dev, then Merge dev into master Branch and deploy.
-7. Then start again (ensure all Branches point to master [`branch -f` to force], and begin diverging and working, then merging back in)  
+6. When everyone (or enough people) have finished merging in their work to dev Branch, do final tests in dev, then Merge dev into main Branch and deploy.
+7. Then start again (ensure all Branches point to main [`branch -f` to force], and begin diverging and working, then merging back in)  
     This would be working on a new release. But you can always checkout the previous release to do bugfixes.
 8. Everyone is responsible for pushing their Branches to Remote and pushing dev to Remote, if they've merged in and tested some feature/bugFix.  
-    Push master to Remote only once released, and Tag it with something like "ver1.0" or something.
+    Push main to Remote only once released, and Tag it with something like "ver1.0" or something.
 
 **For a single developer only:**
 * If you didn't want to keep features/bugFixes in separate Branches you could just work in dev.
-* Then once tested Merge into master, and deploy.
-* But having separate master (release ready), dev (work-in-progress), and separate feature/bugFix Branches is good practice.  
-    It allows you to jump between features/bugFixes if needed, and make big changes/mistakes while maintaining a release-ready master Branch.
+* Then once tested Merge into main, and deploy.
+* But having separate main (release ready), dev (work-in-progress), and separate feature/bugFix Branches is good practice.  
+    It allows you to jump between features/bugFixes if needed, and make big changes/mistakes while maintaining a release-ready main Branch.
 
 This all assumes no one is really working on the exact same "thing" - likely different files or modules, and if some common library is edited (eg. fixed) let the team know to Pull changes from dev to get the now updated common file. Everyone is equal, and competent within their realm, on the Team.  
 If people don't play nicely then you need to look at having certain people "own" certain Branches and Devs would need to submit Pull Requests which would be reviewed and then Merged in. (There's lots of guides on the internet for using Git with larger Teams/Projects, including one linked above)
@@ -246,8 +246,8 @@ Generally this is what you'll be doing, see next section for the commands:
 5. Other devs do the same with their local repos
 6. Pull the changes others have made to your local repo
 7. Merge everyone's changes together
-8. Push the final version (master Branch) to GitHub
-9. Deploy from the master Branch
+8. Push the final version (main or master Branch) to GitHub
+9. Deploy from the main or master Branch
 10. Roll-back or undo if ever needed, as Git saves all changes
 
 ### Everyday Git Commands TYPICAL
@@ -264,7 +264,7 @@ _OR_, create a new remote repo in GitHub and clone it locally:
 Then _create a .gitignore_ and _Create/Edit some code files_. After some work check what's not Committed, then Stage and Commit those files:  
 `git status`  
 `git add -A`  
-`git commit -m "Added some new files to master"`  
+`git commit -m "Added some new files to main"`  
 
 Push those files to the remote repo, but first pull in any changes someone else may have pushed to the remote repo:  
 `git pull --rebase`  
@@ -277,8 +277,8 @@ _Edit some more files_ and if you've not added any new files you can Stage and C
 `git commit -am "Edited some existing files"`  
 _Repeat as needed_, using `git add -A` for any new files.
 
-Once your dev or bugfix work is done, Checkout master and merge in your work from dev:  
-`git checkout master`  
+Once your dev or bugfix work is done, Checkout main and merge in your work from dev:  
+`git checkout main`  
 `git merge dev`  
 `git log --oneline`  
 _Possibly_ deal with any merge conflicts (remember to commit), but if everything looks good push your code to the remote repo:  
@@ -287,11 +287,11 @@ _And Deploy_ your code or application.
 
 You can now either delete the unneeded dev Branch:  
 `git branch -d dev`  
-_OR_, if you want to keep the dev Branch but "catch-it-up" to the now merged-together master Branch:  
+_OR_, if you want to keep the dev Branch but "catch-it-up" to the now merged-together main Branch:  
 `git branch -f dev`  
-Then Check it out to continue working (editing, Staging, Committing, and merging back to master):  
+Then Check it out to continue working (editing, Staging, Committing, and merging back to main):  
 `git checkout dev`  
-Remember: before starting to work on something new, you want your dev Branch to point to the current master, and you should `git pull` to ensure your local master includes any work someone else may have committed at the same time.
+Remember: before starting to work on something new, you want your dev Branch to point to the current main, and you should `git pull` to ensure your local main includes any work someone else may have committed at the same time.
 
 ## Git Commands
 
@@ -357,8 +357,8 @@ Delete a Remote from a local repo (but leave it on the server)
 `git remote rm remote-Name`
 
 **Clone\download a remote repo** Will create a folder called "repoName" in current directory. URL should be like https://domain.com/path/repoName.git  
-Will call the Remote `origin` (use `-o otherName` to use a different name), and will have `origin/master` as default Branch.
-If you Checkout origin/master it will go into detected HEAD mode and use origin/HEAD since origin/master only updates from Remote - you must Fetch to update origin.  
+Will call the Remote `origin` (use `-o otherName` to use a different name), and will have `origin/main` as default Branch.
+If you Checkout origin/main it will go into detected HEAD mode and use origin/HEAD since origin/main only updates from Remote - you must Fetch to update origin.  
 Can also specify a `folderName` after URL, which doesn't have to exist, if you want a different folder name.  
 Add `--depth 1` to only clone latest Commit (shallow clone) if you don't need the full Commit history.
 Credentials may be prompted, eg. if it's an Azure DevOps repo, it may pop-up and auto-create a Personal Access Token  
@@ -472,7 +472,7 @@ Or sometimes, if names of files and Branches conflict:
 ### Commit
 
 **Make a Commit** to the current Branch of all Staged files to the Git Index.
-If you skip `-m "message"` the editor will open so you can type a longer message. If you haven't created/checked out a Branch it will create one called master.  
+If you skip `-m "message"` the editor will open so you can type a longer message. If you haven't created/checked out a Branch it will create one called master or main.  
 Good Commit messages will be a short 1 line sentence [up to 50 chars] summarizing your changes, a blank line, then a short paragraph with more details.
 Use the imperative: "Add tests for X" not "I added test for X" since a Commit message tells what will happen once a Commit is applied to the Working Tree.  
 If you can't describe in few sentences what you did, you probably should commit more often.  
@@ -492,7 +492,7 @@ Don't do this to Commits that have been pushed/shared to a Public repo.
 
 **Add a Tag to some Commit** (or if omitted to HEAD) to name a Commit if it's significant (eg. a new release, like 'v1.0' or 'v1.2').
 Tags can be checked out (since they reference a Commit), but HEAD is then Detached since you can't Commit to a tag.
-By default Tags are not pushed to Remotes, add `--tags` to the `git push` command if wanting to push Tags (eg. milestone releases on master Branch), they will be Pulled automatically if they exist.  
+By default Tags are not pushed to Remotes, add `--tags` to the `git push` command if wanting to push Tags (eg. milestone releases on main Branch), they will be Pulled automatically if they exist.  
 `git tag "aTagName" [SomeOptionalCommit]`
 
 **See Tags**, can specify a pattern after to find only certain tags. Or `-d` to delete a tag:  
