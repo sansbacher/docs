@@ -76,7 +76,7 @@ The authentication will be via PAT, when you Refresh your PAT use your O365/Azur
 When you look at all the Authentication settings in SourceTree you'll see various ones added, including dev.azure.com, but the Remote for any repos will be in \*.visualstudio.com format (but work fine).
 
 ## Using the native Windows OpenSSH client
-With Windows GitHub works best using HTTPS based repository URLs, whereas macOS and Linux usually use SSH. When using SSH on Windows (for whatever reason, or to interface to Git related non-GitHub resources, such as [Heroku](https://wwww.heroku.com/) perhaps) Windows users are often instructed to use the Git Bash console that included with Git For Windows - while possible it less intuitive and doesn't allow the easy usage of native CLI tools. You CAN use the native/built-in OpenSSH client, here's how (using PowerShell - this can be done from the CMD/Command Prompt but it's easier to just use PowerShell for this). Should work on Windows 10 and Server 2019.
+With Windows GitHub works best using HTTPS based repository URLs, whereas macOS and Linux usually use SSH. When using SSH on Windows (for whatever reason, or to interface to Git related non-GitHub resources, such as [Heroku](https://wwww.heroku.com/) perhaps) Windows users are often instructed to use the Git Bash console that included with Git For Windows - while possible it's less intuitive and doesn't allow the easy usage of native CLI tools. You CAN use the native/built-in OpenSSH client, here's how (using PowerShell - this can be done from the CMD/Command Prompt but it's easier to just use PowerShell for this). Should work on Windows 10 and Server 2019.
 
 Check if you already have the native Win32 Microsoft port of OpenSSH installed, in PowerShell type:  
 `Get-Command ssh.exe`  
@@ -106,12 +106,13 @@ Generally you'll need to copy the PUBLIC key somewhere (so you can connect using
 - Give it a name and paste in the contents of the Public Key, which you can copy to the clipboard with: `type ~\.ssh\id_rsa.pub | clip`
 - It should be one long line starting with "ssh-rsa" and ending with your email address.
 - You can double check the MD5 Hash displayed using: `ssh-keygen -l -E md5 -f "$env:USERPROFILE\.ssh\id_rsa.pub"`
-- With Github you can confirm it works using: `ssh -T git@github.com` (note: use exactly _git@github.com_ not your name)  
+    - Or using the SHA256 Hash (such as with Github) using: `ssh-keygen -l -E sha256 -f "$env:USERPROFILE\.ssh\id_rsa.pub"`
+- With Github you can confirm it works using: `ssh -T git@github.com` (note: use exactly _git@github.com_ not your name!)  
   It should display something like "Hi _YourGitHubUsername_! You've successfully authenticated, but GitHub does not provide shell access." and disconnect (and probably warn about adding an an IP, etc)  
   If you get an error check that the SSH-Agent service is running.
 - For other services it will be different, eg. for Heroku just run `heroku keys:add` and the Heroku CLI will find and upload the correct Key.
 
-The _trick_ to using the built-in SSH Client with Git for Windows is that you need to tell Git to _use_ the built-in SSH.EXE command and not the Bash ssh.exe command, so you **must** run:  
+The _trick_ to using the built-in SSH Client with Git for Windows is that you need to tell Git to _use_ the built-in SSH.EXE command and _not_ the Bash ssh.exe command, so you **must** run:  
 `git config --global core.sshCommand "'C:\Windows\System32\OpenSSH\ssh.exe'"`  
 Or whatever location `Get-Command ssh.exe` returns. You can then add a Remote Repo using an SSH URL, such as:  
 `git remote add origin git@github.com:YourGitHubUsername/TheGitHubRepoName.git`  
