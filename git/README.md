@@ -54,7 +54,7 @@ Many editors have Git integration too, such as [VisualStudio Code](https://code.
 ## Git Install
 _It's assumed that **[Git](https://git-scm.com/downloads)** itself is installed:_  
 When installing pick a reasonable editor (eg. [Notepad2](https://xhmikosr.github.io/notepad2-mod/), [Notepad++](https://notepad-plus-plus.org/), or [VS Code](https://code.visualstudio.com/), etc. - don't pick _Vim_ or _Emacs_ unless you already know those editors (and know to ignore advice against using them!); you can change the editor later if needed. Also select to use Git from the Windows Command line; OpenSSL + Checkout Windows-Style/Commit Unix-Style; MinTTY for MSYS2; and File System Caching + Git Credential Manager.
-* If using MFA with GitHub or Azure DevOps also install the updated [Windows Credential Manager](https://github.com/Microsoft/Git-Credential-Manager-for-Windows) - it just works.  
+* If using MFA with GitHub or Azure DevOps also install the updated [Windows Credential Manager Core](https://github.com/microsoft/Git-Credential-Manager-Core) - it should be part of new version of Git.  
 * If you just want to use the regular Windows CMD or PowerShell command line (instead of the Bash shell) and don't already have some Win32 ports of the standard UNIX utils (like cat, cut, split, grep, etc) then add `%ProgramFiles%\Git\usr\bin` to your PATH.  
 * If you use PowerShell and want a fancy prompt that shows current Git info/status and supports Git-command TAB completion you can install **Posh-Git** from the PowerShell Gallery with `Install-Module Posh-Git`
 
@@ -121,7 +121,7 @@ And use it as you would any other remote repo.
 
 ### Setup
 - _Git_ Download: <https://git-scm.com/downloads>
-- _Git Windows Credential Manager_, supporting MFA: <https://github.com/Microsoft/Git-Credential-Manager-for-Windows>
+- _Git Windows Credential Manager_, supporting MFA (should be included): <https://github.com/microsoft/Git-Credential-Manager-Core>
 - _Sourcetree_, a decent Git GUI: <https://www.sourcetreeapp.com>
   - Or _GitKraken_ is another good Git GUI: <https://www.gitkraken.com>
   - Windows File Explorer / right-click fans may like _TortoiseGit_ GUI client: <https://tortoisegit.org>
