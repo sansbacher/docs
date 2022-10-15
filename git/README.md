@@ -448,14 +448,16 @@ Or: (also `-A` works)
 
 ### Undo Tracked Files
 
-**Untrack (unstage/remove) a file** so it won't be Committed (or files, like *.txt).
+**Untrack (unstage/remove) a file** so it won't be Committed (or files, like *.txt), useful as `.gitignore` is only for not-yet-tracked files, it won't remove already tracked files!  
 HEAD is a pointer -> to the most recent Commit, normally the tip of the active/checked out Branch itself, but can be checked out itself (resulting in Detached HEAD mode).
 `git reset` by itself will unstage _all_ Tracked files, leaving them as untracked.  
 `git reset HEAD some-File.txt`  
 Can also use this to unstage a file:  
 `git restore --staged some-File.txt`  
 But the safest option is to use `git rm` with `--cached` as it will _only_ remove from the Index, not the Working Tree:  
-`git rm --cached some-File.txt`
+`git rm --cached some-File.txt`  
+BUT it will remove it from other dev's machines if they do a `git pull` so this is even BETTER:  
+`git update-index --skip-worktree some-File.txt`  
 
 **Undo status back to how HEAD was before you added any files** - REMOVES any Tracked files (but leaves un-tracked files). Don't use on public Branches that someone else may be using (eg. origin/master), use revert instead!  
 `git reset --hard`
