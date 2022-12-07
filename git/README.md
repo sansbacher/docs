@@ -454,10 +454,17 @@ HEAD is a pointer -> to the most recent Commit, normally the tip of the active/c
 `git reset HEAD some-File.txt`  
 Can also use this to unstage a file:  
 `git restore --staged some-File.txt`  
-But the safest option is to use `git rm` with `--cached` as it will _only_ remove from the Index, not the Working Tree:  
+But the safest option is to use `git rm` with `--cached` as it will _only_ remove from the Index, not the Working Tree (see below):  
 `git rm --cached some-File.txt`  
-BUT it will remove it from other dev's machines if they do a `git pull` so this is even BETTER:  
+But it will remove it from other dev's machines if they do a `git pull`:  
 `git update-index --skip-worktree some-File.txt`  
+
+**Remove Tracked files that _should have been_ ignored** If you have committed files and THEN added a `.gitignore` those files will continue to be tracked. If you want to remove them from the Git Index (but leave them in your working try) _as if you had .gitignored them beforehand_ 
+then you SHOULD use `git rm --cached some-File.txt`. If you have a LOT of files, you can do this to see which files will be removed (and no longer tracked. Make sure your `.gitignore` exists):  
+`git ls-files --ignored --exclude-standard -c`  
+Then you can remove them all (assuming you're running in _PowerShell_) with:  
+`git ls-files --ignored --exclude-standard -c | foreach { git rm --cached $_ }`  
+That will remove from the Git Cache/Index any files that should have been ignored. You should then do a `git add -A` and a `git commit -am "Added .gitignore and purged should-be-ignored files"` to commit the changes.  
 
 **Undo status back to how HEAD was before you added any files** - REMOVES any Tracked files (but leaves un-tracked files). Don't use on public Branches that someone else may be using (eg. origin/master), use revert instead!  
 `git reset --hard`
