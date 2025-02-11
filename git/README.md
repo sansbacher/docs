@@ -1,35 +1,36 @@
 # GIT Commands for Single Devs / Small Teams
 ![Git for Windows logo](images/git_windows_logo.png)  
-- [Why this document](#why-this-document)
-- [Git Install](#git-install)
-- [Sourcetree and Azure DevOps](#sourcetree-and-azure-devops)
-- [Using the native Windows OpenSSH client](#using-the-native-windows-openssh-client)
-- [Useful Links:](#useful-links)
-  - [Setup](#setup)
-  - [Learn](#learn)
-  - [Reference](#reference)
-  - [Other Stuff](#other-stuff)
-- [Definitions](#definitions)
-- [Git Illustrated](#git-illustrated)
-- [Suggested Git Project Workflow](#suggested-git-project-workflow)
-  - [Basic Git Process](#basic-git-process)
-  - [Everyday Git Commands TYPICAL](#everyday-git-commands-typical)
-- [Git Commands](#git-commands)
-  - [The Basics](#the-basics)
-  - [Initialization](#initialization)
-  - [Push and Pull](#push-and-pull)
-    - [Pull/Push TYPICAL](#pullpush-typical)
-  - [Status](#status)
-  - [Add Files](#add-files)
-  - [Undo Tracked Files](#undo-tracked-files)
-  - [Commit](#commit)
-  - [Undo Commits](#undo-commits)
-  - [Stashing](#stashing)
-  - [Branches](#branches)
-  - [Merge and Rebase](#merge-and-rebase)
-  - [Merge vs Rebase Illustrated](#merge-vs-rebase-illustrated)
-    - [Merge/Rebase TYPICAL](#mergerebase-typical)
-  - [Troubleshooting](#troubleshooting)
+- [GIT Commands for Single Devs / Small Teams](#git-commands-for-single-devs--small-teams)
+  - [Why this document](#why-this-document)
+  - [Git Install](#git-install)
+  - [Sourcetree and Azure DevOps](#sourcetree-and-azure-devops)
+  - [Using the native Windows OpenSSH client](#using-the-native-windows-openssh-client)
+  - [Useful Links:](#useful-links)
+    - [Setup](#setup)
+    - [Learn](#learn)
+    - [Reference](#reference)
+    - [Other Stuff](#other-stuff)
+  - [Definitions](#definitions)
+  - [Git Illustrated](#git-illustrated)
+  - [Suggested Git Project Workflow](#suggested-git-project-workflow)
+    - [Basic Git Process](#basic-git-process)
+    - [Everyday Git Commands TYPICAL](#everyday-git-commands-typical)
+  - [Git Commands](#git-commands)
+    - [The Basics](#the-basics)
+    - [Initialization](#initialization)
+    - [Push and Pull](#push-and-pull)
+      - [Pull/Push TYPICAL](#pullpush-typical)
+    - [Status](#status)
+    - [Add Files](#add-files)
+    - [Undo Tracked Files](#undo-tracked-files)
+    - [Commit](#commit)
+    - [Undo Commits](#undo-commits)
+    - [Stashing](#stashing)
+    - [Branches](#branches)
+    - [Merge and Rebase](#merge-and-rebase)
+    - [Merge vs Rebase Illustrated](#merge-vs-rebase-illustrated)
+      - [Merge/Rebase TYPICAL](#mergerebase-typical)
+    - [Troubleshooting](#troubleshooting)
 
 ## Why this document
 
@@ -185,10 +186,10 @@ It's assumed you know that Git is a _Distributed Source Code Revision, or Versio
     The currently pointed to Commit in the Index is called HEAD, as it is usually the tip of the current Branch. When the next Commit is made the HEAD pointer is updated to the latest Commit. But you can Checkout a specific Commit (which isn't the tip of a Branch) resulting in a Detached HEAD situation, allowing you to review the Working Tree at a certain point in time. The Commit before HEAD would be its parent, the Commit before that is the grandparent, back to the initial Commit.
 
 * **Branch**  
-    A series of Commits back to a common ancestor is a Branch. The first/initial Branch is usually called "master" or "main" and begins at the initial Commit. At any point another Branch can be given a name and diverge off with a new line of Commits, such as "dev", "bugFix", "someFeature", etc. Branches can be Merged back together (eg. when a feature or bug has been fixed). Usually the master or main Branch is where you deploy live/production code from, and a separate Branch is created for other development paths. A Branch can be Checkedout and worked on without impacting other Branches.
+    A series of Commits back to a common ancestor is a Branch. The first/initial Branch is usually called "master" or "main" and begins at the initial Commit. At any point another Branch can be given a name and diverge off with a new line of Commits, such as "dev", "bugFix", "someFeature", etc. Branches can be Merged back together (eg. when a feature or bug has been fixed). Usually the master or main Branch is where you deploy live/production code from, and a separate Branch is created for other development paths. A Branch can be Checked out and worked on without impacting other Branches.
 
 * **Checkout**  
-    Checkingout a Branch (which implies Checkingout the tip/end-point Commit of a Branch), or a specific Commit (by Hash, Tag, or anything else that Git can resolve to a Commit in the Index) means the state of the Tracked files in the Working Directory are set to how they were snapshotted when they were Staged for that Commit. Ignored files are left alone, but all Tracked files will be as they were in the Commit - in this way you can view any Committed snapshot in time, on any Branch held in the Git Index. If you subsequently Modify any Tracked files (or add a new file to be Tracked) they can be Staged and then a new Commit will be added to the Checkedout Branch, or a new Branch created.
+    Checking out a Branch (which implies Checking out the tip/end-point Commit of a Branch), or a specific Commit (by Hash, Tag, or anything else that Git can resolve to a Commit in the Index) means the state of the Tracked files in the Working Directory are set to how they were snapshotted when they were Staged for that Commit. Ignored files are left alone, but all Tracked files will be as they were in the Commit - in this way you can view any Committed snapshot in time, on any Branch held in the Git Index. If you subsequently Modify any Tracked files (or add a new file to be Tracked) they can be Staged and then a new Commit will be added to the Checked out Branch, or a new Branch created.
 
 * **Stash**  
     Temporary storage of Tracked files, like an "unnamed temp" Branch. If you have Modified files but you don't want to Commit and you don't want to lose those changes, but you need to Checkout a different Branch/Commit into your Working Directory (eg. to start working on a bug fix ASAP, or see how the code was at a certain point in time - like before a some major change or code refactor) you can Stash your Modified files first. You can then Apply your Stashed files to your current Working Directory, or Check back out the Branch you were working on then Apply your Stashed files and pick up where you left off. Stashed files are only in your local Repo, they are not pushed to any Remote Repos [use an actual, if temporary, Branch for that].
@@ -218,7 +219,7 @@ The Circles are Commits, the first one was created by **init** from local files,
 3. Initially they would all point to the same initial Commit (empty repo or the existing code), and diverge from there.
    1. The main Branch should always be deploy-ready, the dev Branch would be based on the main Branch after each release.
    2. The dev Branch should be the "base" from which all feature/bugFix/name-dev Branches are based on.
-4. Everyone Checksout on their feature/bugFix/name-dev Branch doing what they need to do, testing their work as they go. (they are free to make sub Branches as needed)
+4. Everyone Checks out on their feature/bugFix/name-dev Branch doing what they need to do, testing their work as they go. (they are free to make sub Branches as needed)
 5. When someone finishes something they Merge their Branch into the dev Branch, testing with any other new changes anyone else has Merged in.  
     Rebasing dev onto their Branch may help eliminate conflicts in their Branch before finally Merging their Branch into dev.
 6. When everyone (or enough people) have finished merging in their work to dev Branch, do final tests in dev, then Merge dev into main Branch and deploy.
@@ -340,7 +341,7 @@ Can set most of the same `--global` options in the local file, to override globa
 
 **Create a new/empty local repo** in the current directory, which means Git adds a hidden `.git/` folder to hold the Index.  
 You should then add some files, esp. a `.gitignore` text file to list any files to ignore, see structure here: <https://guide.freecodecamp.org/git/gitignore>  
-And many preconfigured .gitignore files can be found here: <https://github.com/github/gitignore>  
+And many pre-configured .gitignore files can be found here: <https://github.com/github/gitignore>  
 `git init`
 
 **Add a Remote repo to an existing local repo**. Can have more than one Remote.  
@@ -471,7 +472,7 @@ That will remove from the Git Cache/Index any files that should have been ignore
 
 **Undo changes** (or undelete) just one Tracked file to how it was in the last Commit.
 Almost all committed information in Git can be recovered; however any uncommitted information can be lost forever.
-If deleted may need to Unstage/untract the file first if it was Staged: `git reset HEAD some-File.txt`  
+If deleted may need to Unstage/untrack the file first if it was Staged: `git reset HEAD some-File.txt`  
 `git checkout some-file.txt`  
 Or sometimes, if names of files and Branches conflict:  
 `git checkout -- path/to/file.txt`
@@ -531,7 +532,7 @@ So you can go back to how things were but keep the changes you made, without mak
 `git stash`
 
 **See your Stashes**  
-`git statsh list`  
+`git stash list`  
 Or the actual files  
 `git stash show`
 
@@ -545,7 +546,8 @@ Can use `apply` instead of `pop` to leave the files in the Stash, so you can app
 ### Branches
 
 **List all Branches** FYI: current/checked out Branch has a `*` before it. To show Remote repos/branches too add: `-a`, to see last Commit in each add: `-v`
-To show only branches not yet merged into the checkedout Branch add: `--no-merged`, there's also `--merged` to see which have been merged in.  
+To show only branches not yet merged into the checked out Branch add: `--no-merged`, there's also `--merged` to see which have been merged in. Or just `-r` to
+only show remote branches, but otherwise this will show all local branches:   
 `git branch`  
 See more details, including the current Commit message each Branch points to and some previous Commits:  
 `git show-branch`
@@ -559,6 +561,11 @@ Can also specify relative Commits to a Branch, append `^` for each parent. So gr
 Or append `~##` to move back some number of Commits, so grandparent would _some-Branch~2_  
 FYI: in CMD/DOS `^` is for escaping, so `^^` is really `^`, the grandparent would be `^^^^`, etc. It's normal ^ = parent in PowerShell or Bash.  
 `git checkout some-Branch`
+
+**Create a new Local Branch from an existing Remote Branch** If you have a remote Branch (`git branch -r`) but not a local version (`git branch`) of it you can
+can create one from the remote Branch and check it out with:  
+`git checkout --track origin/remoteBranchName`  
+(Could also use something like the below command: `git checkout -b some-Branch origin/some-Branch`)
 
 **Create a new Branch AND checkout** that Branch at the same time.
 Could rename with: `git branch -m some-Branch new-Branch-Name` and delete later if you just need a temporary Branch     
@@ -600,9 +607,9 @@ Can also do be specific about destination and source (this moves source-Branch o
 This image shows the difference between Merge and Rebase, created using <https://learngitbranching.js>  
 ![Merge vs Rebase](images/merge_vs_rebase.png)  
 The image shows the Working Tree (at the **top**) _before_ Merge or Rebase. The (C#) circles represent Commits (in order they were made) and the black arrows show the parent of each Commit (C5's parent is C4, which has C3 as its parent, etc). The coloured blobs/arrows indicate Branches (master and dev). Thus at Commit C1 the dev Branch diverged from master, but master continued to have Commits made to it, while dev was simultaneously worked on. They now need to be re-joined:
- - The **middle** picture shows what it would look like after _Merging_ dev INTO master with `git merge dev` (with master Checkedout). Note that a new Commit is created with 2 parents (C5 in master and C9 in dev) that has the union of both Branches.
+ - The **middle** picture shows what it would look like after _Merging_ dev INTO master with `git merge dev` (with master Checked out). Note that a new Commit is created with 2 parents (C5 in master and C9 in dev) that has the union of both Branches.
  - The **bottom** picture shows what it would look like after _Rebasing_ dev ONTO master with `git rebase master dev`. Note that the Commits from dev are replayed onto master from the point dev diverged from master [they're new Commits - denoted C6', C7' etc] and the original Commits are discarded. Commit C9' (the final replayed dev Commit) has all the code as if work on dev Branch had commenced after all the work on master was done (same as being merged).  
-    Tip: the master Branch can be moved to where dev is (C9') with `git branch master -f` since dev is already Checkedout.
+    Tip: the master Branch can be moved to where dev is (C9') with `git branch master -f` since dev is already Checked out.
 
 **Merge/Rebase Conflicts**: If there's a conflict with a certain file/files it's helpful to use a GUI tool that can show the Differing Lines (difftool).
 But Git will handle different parts of the same file that are changed that don't conflict, and for when the same lines _are_ changed it will indicate IN the file.  
@@ -612,7 +619,7 @@ These conflicts happen while merging or rebasing two Branches, or while pulling 
 To See the failed patch:  
 `git am --show-current-patch`  
 Resolve all conflicts manually, either by editing the file to be 'correct'. Or to grab a whole file from one side or the other:  
-[In a merge `--ours` refers to the checkedout-Branch, in a rebase `--ours` refers to the being-rebased-in-Branch, ie. the destination-Branch]  
+[In a merge `--ours` refers to the checked out-Branch, in a rebase `--ours` refers to the being-rebased-in-Branch, ie. the destination-Branch]  
 `git checkout --ours someFile.txt`  
 OR: [In a merge `--theirs` refers to the being merged-in-Branch, in a rebase `--theirs` refers to the checked-out-Branch, ie. the source-Branch]  
 `git checkout --theirs someFile.txt`  
